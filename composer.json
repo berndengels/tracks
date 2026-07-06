@@ -5,7 +5,7 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.3",
+        "php": "^8.2",
         "abduns/laravel-gpx-reader": "^1.0",
         "berndengels/laravel-email-exceptions": "^1.0",
         "ginocampra/laravel-leaflet": "^1.0",
