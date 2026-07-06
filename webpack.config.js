@@ -1,6 +1,6 @@
 const path = require('path'),
-    webpack = require('webpack'),
-    supportedLocales = ['de'],
+//    webpack = require('webpack'),
+//    supportedLocales = ['de'],
     TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
@@ -24,10 +24,6 @@ module.exports = {
             'pinia@': path.resolve('resources/js/vue/stores'),
             'm@': path.resolve('resources/js/vue/mixins'),
             'c@': path.resolve('resources/js/vue/components'),
-/*
-            '@fonts': path.resolve('public/fonts'),
-            '@modules': path.resolve('node_modules'),
-*/
         },
     },
 };
