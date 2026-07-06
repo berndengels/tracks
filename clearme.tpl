@@ -1,15 +1,6 @@
 #!/bin/bash
-if [ "$1" == "sail" ]; then
-	php="/usr/local/bin/php"
-	sail redis-cli FLUSHALL
-	composer="/usr/local/bin/composer"
-else
-	php="sail php"
-	redis-cli FLUSHALL
-	composer="sail composer"
-fi
-#php="/opt/plesk/php/8.0/bin/php"
-#composer="$php /usr/local/psa/var/modules/composer/composer.phar"
+php="/opt/plesk/php/8.4/bin/php"
+composer="$php /usr/local/psa/var/modules/composer/composer.phar"
 
 echo "clear all caches"
 if [ -f "./bootstrap/cache/packages.php" ]; then

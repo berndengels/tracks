@@ -18,3 +18,7 @@ yarn-error.log
 /.idea
 /.vscode
 /.editorconfig
+/.phpstorm.meta.php
+/clearme
+/perms
+/Envoy.blade.php
