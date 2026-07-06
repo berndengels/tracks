@@ -24161,6 +24161,5 @@ body {
 
 #map {
   width: 100%;
-  height: 1000px;
-  border: 1px solid grey;
+  height: 100vh;
 }

@@ -8,22 +8,20 @@
                 zoom: 8,
                 center: [center.x, center.y]
             }),
-            tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            baseLayer = L.tileLayer('https://t2.openseamap.org/tile/{z}/{x}/{y}.png', {
                 maxZoom: 19,
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+//                errorTileUrl: 'path-to-error-tile.png',
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
             }).addTo(map);
 
-//        map.fitBounds(bounds);
-
         $(tracks).each((t, v) => {
-            let lastPoint = v.points[v.points.length - 1].point;
-            console.info('lastPoint', lastPoint)
+            let lastPoint = v.points[v.points.length - 1].point,
+//            console.info('lastPoint', lastPoint)
+                marker = L.marker(lastPoint).addTo(map),
+                latlngs = v.points.map(p => p.point),
+                polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
 
-            let marker = L.marker(lastPoint).addTo(map);
             marker.bindTooltip(v.name);
-
-            let latlngs = v.points.map(p => p.point)
-            let polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
 /*
             $(v.points).each((i,v) => {
                 L.tooltip()
