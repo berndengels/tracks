@@ -6,7 +6,7 @@
             center = bounds.getCenter(),
             map = L.map('map', {
                 center: [center.x, center.y],
-                zoom: 8
+//                zoom: 8
             }),
             tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
