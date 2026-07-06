@@ -1,8 +1,13 @@
 const path = require('path'),
     webpack = require('webpack'),
-    supportedLocales = ['de'];
+    supportedLocales = ['de'],
+    TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
+    optimization: {
+        minimize: false,
+        minimizer: [new TerserPlugin()],
+    },
     module: {
         rules: [
 //            { test: /\.css$/, use: 'css-loader' },
