@@ -37,6 +37,6 @@ class Track extends Model
     ];
     public function data()
     {
-        return $this->hasMany(TrackData::class);
+        return $this->hasMany(TrackData::class)->orderBy('datetime');
     }
 }

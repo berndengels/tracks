@@ -1,8 +1,7 @@
 @extends('layouts.default')
 
 @section('main')
-    <div class="container w-100">
-        <h3>Sailing Tracks</h3>
+    <div class="w-100">
         <x-map class="w-100" :tracks="$tracks" :bounds="$bounds" />
     </div>
 @endsection

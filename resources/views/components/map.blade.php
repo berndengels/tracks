@@ -13,6 +13,8 @@
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
 
+//        map.fitBounds(bounds);
+
         $(tracks).each((t, v) => {
             let lastPoint = v.points[v.points.length - 1].point;
             console.info('lastPoint', lastPoint)
@@ -31,8 +33,5 @@
             });
 */
         });
-/*
-        map.fitBounds(polyline.getBounds());
-*/
     })
 </script>
