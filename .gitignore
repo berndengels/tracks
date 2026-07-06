@@ -22,3 +22,4 @@ yarn-error.log
 /clearme
 /perms
 /Envoy.blade.php
+/composer.lock
