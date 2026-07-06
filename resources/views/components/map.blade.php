@@ -5,7 +5,7 @@
             tracks = {!! $tracks !!},
             center = bounds.getCenter(),
             map = L.map('map', {
-//                zoom: 8,
+                zoom: 8,
                 center: [center.x, center.y]
             }),
             tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
