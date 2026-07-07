@@ -33,6 +33,8 @@ class TrackData extends Model
     public $timestamps = false;
     protected $casts = [
         'datetime'  => 'datetime',
+        'lat'   => 'decimal:6',
+        'lng'   => 'decimal:6'
     ];
     public function track()
     {

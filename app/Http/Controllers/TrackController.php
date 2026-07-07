@@ -12,24 +12,43 @@ class TrackController extends Controller
      */
     public function index()
     {
-        $tracks = Track::orderBy('start')
+        $features = Track::orderBy('start')
             ->get()
             ->map(fn(Track $t) => [
-                'name'  => $t->name,
-                'start' => $t->start->format('d.m.Y H:i'),
-                'end'   => $t->end->format('d.m.Y H:i'),
-                'points'    => $t->data()->orderBy('id')->get()->map(fn(TrackData $p) => [
-                    'point' => [$p->lat, $p->lng],
-                    'speed' => $p->speed,
-                    'time'  => $p->datetime->format('d.m.Y H:i')
-                ])->toArray()
+                'type'  => 'Feature',
+                'properties' => [
+                    'id'    => $t->id,
+                    'name'  => $t->name,
+                    'start' => $t->start->format('d.m.Y H:i'),
+                    'end'   => $t->end->format('d.m.Y H:i'),
+                    'color' => 'red',
+                ],
+                'geometry' => [
+                    'type'  => 'LineString',
+                    'coordinates'   => $t->data()->orderBy('datetime')->get()->map(fn(TrackData $p) => [
+                        (float) $p->lng,
+                        (float) $p->lat,
+                        0,
+                        $p->speed
+                    ]),
+                ]
         ]);
 
-        $minLat = TrackData::selectRaw('MIN(lat) AS val')->first()->val;
-        $maxLat = TrackData::selectRaw('MAX(lat) AS val')->first()->val;
-        $minLng = TrackData::selectRaw('MIN(lng) AS val')->first()->val;
-        $maxLng = TrackData::selectRaw('MAX(lng) AS val')->first()->val;
-        $bounds = [[$minLat, $minLng], [$maxLat, $maxLng]];
+        $tracks = collect([
+            'type'  => 'FeatureCollection',
+            'name'  =>  'Bernds Segeltörn 2026',
+            'features'  => $features,
+        ])->toJson();
+
+        $minLat = (float) TrackData::selectRaw('MIN(lat) AS val')->first()->val;
+        $maxLat = (float) TrackData::selectRaw('MAX(lat) AS val')->first()->val;
+        $minLng = (float) TrackData::selectRaw('MIN(lng) AS val')->first()->val;
+        $maxLng = (float) TrackData::selectRaw('MAX(lng) AS val')->first()->val;
+
+        $nordEast   = [$maxLat, $maxLng];
+        $southWest  = [$minLat, $minLng];
+        $bounds     = [$nordEast, $southWest];
+//        \Storage::disk('public')->write('geo.json', $tracks);
 
         return view('tracks.index', compact('tracks','bounds'));
     }
