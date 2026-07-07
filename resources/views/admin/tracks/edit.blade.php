@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('main')
-	<div class="container-fluid w-100 mt-3">
+	<div class="container-fluid w-100 m-3">
 		<x-btn-back route="{{ route('admin.tracks.index') }}" />
 		<div class="row">
 			<div class="col-sm-12 col-lg-4">

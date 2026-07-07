@@ -22,15 +22,18 @@
 <body>
     <div class="grid-container">
         @auth
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
+            <div class="float-end m-3">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
 
-                <x-responsive-nav-link :href="route('logout')"
-                                       onclick="event.preventDefault();
+                    <x-responsive-nav-link :href="route('logout')"
+                                           :active="true"
+                                           onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                    {{ __('Log Out') }}
-                </x-responsive-nav-link>
-            </form>
+                        {{ __('Log Out') }}
+                    </x-responsive-nav-link>
+                </form>
+            </div>
         @endauth
         @yield('main')
     </div>
