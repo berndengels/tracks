@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 class UpdateTrackRequest extends AdminRequest
 {
+    protected $booleanFields = ['active'];
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -13,6 +15,7 @@ class UpdateTrackRequest extends AdminRequest
     {
         return [
             'name'  => 'required',
+            'active'    => 'boolean'
         ];
     }
 }

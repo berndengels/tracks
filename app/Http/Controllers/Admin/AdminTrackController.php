@@ -58,24 +58,25 @@ class AdminTrackController extends Controller
 
                             $points
                                 ->chunk(1000)
-                                ->each(fn(Collection $c) => $track->data()->insertOrIgnore($c->toArray()));
+                                ->each(fn(Collection $c) => $track->trackdata()->insertOrIgnore($c->toArray()));
                         }
                     }
                 }
             }
         }
 
-        return $this->index();
+        return redirect()->route('admin.tracks.index')->with('success', 'Daten erfolgreich angelegt!');
     }
 
     public function edit(Track $track) {
         return view('admin.tracks.edit', compact('track'));
     }
 
-    public function update(UpdateTrackRequest $request, Track $track) {
+    public function update(UpdateTrackRequest $request, Track $track)
+    {
         $track->update($request->validated());
 
-        return $this->index();
+        return redirect()->route('admin.tracks.index')->with('success', 'Daten erfolgreich bearbeitet!');
     }
 
     /**
@@ -85,6 +86,6 @@ class AdminTrackController extends Controller
     {
         $track->delete();
 
-        return $this->index();
+        return redirect()->route('admin.tracks.index')->with('success', 'Daten erfolgreich gelöscht!');
     }
 }

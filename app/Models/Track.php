@@ -34,8 +34,10 @@ class Track extends Model
     protected $casts = [
         'start' => 'datetime',
         'end' => 'datetime',
+        'active'    => 'bool'
     ];
-    public function data()
+
+    public function trackdata()
     {
         return $this->hasMany(TrackData::class)->orderBy('datetime');
     }

@@ -9,6 +9,7 @@
 					@method('put')
 					@bind($track)
 					<x-form-input floating name="name" label="Name" />
+                    <x-form-checkbox floating name="active" label="Aktiv" />
 					@endbind
 					<div class="mt-3">
 						<x-form-submit class="btn-sm btn-primary" icon="fas fa-save">Speichern</x-form-submit>

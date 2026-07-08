@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Track;
 use App\Models\TrackData;
+use Illuminate\Database\Eloquent\Builder;
 
 class TrackController extends Controller
 {
@@ -12,7 +13,9 @@ class TrackController extends Controller
      */
     public function index(int $modulo = 10)
     {
-        $lineFeatures = Track::orderBy('start')
+        $lineFeatures = Track::with(['trackdata'])
+            ->whereActive(true)
+            ->orderBy('start')
             ->get()
             ->map(fn(Track $t) => [
                 'type'  => 'Feature',
@@ -26,8 +29,7 @@ class TrackController extends Controller
 
                 'geometry' => [
                     'type'  => 'LineString',
-//                    'coordinates'   => $t->data()->orderBy('datetime')->get()->map(fn(TrackData $p) => [(float) $p->lng,(float) $p->lat]),
-                    'coordinates'   => $t->data()->orderBy('datetime')->get()->map(function (TrackData $p, $idx) use ($modulo) {
+                    'coordinates'   => $t->trackdata()->orderBy('datetime')->get()->map(function (TrackData $p, $idx) use ($modulo) {
                         if(0 === $idx || 0 === $idx % $modulo) {
                             return [(float) $p->lng,(float) $p->lat];
                         } else {
@@ -37,7 +39,9 @@ class TrackController extends Controller
                 ]
         ]);
 
-        $pointFeatures = TrackData::with(['track'])->orderBy('datetime')
+        $pointFeatures = TrackData::with(['track'])
+            ->whereHas('track', fn(Builder $q) => $q->whereActive(true))
+            ->orderBy('datetime')
             ->get()
             ->map(function (TrackData $p, $idx) use ($modulo) {
                 if(0 === $idx || 0 === $idx % $modulo) {
