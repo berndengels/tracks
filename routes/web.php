@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\AdminTrackController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Route::get('/', [TrackController::class, 'index'])->name('tracks');
+    Route::get('/{modulo?}', [TrackController::class, 'index'])->name('tracks');
 });
 
 Route::group([

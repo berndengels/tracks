@@ -11,23 +11,13 @@
         tracks = {!! $tracks !!},
         points = {!! $points !!},
         bounds = L.latLngBounds(nordEast, southWest),
-        center = bounds.getCenter();
-/*
-        pointLatlngs = points.features.map(f => f.map(c => [
+        center = bounds.getCenter(),
+        pointLatlngs = points.features.map(c => [
             c.geometry.coordinates[1],   // Latitude
             c.geometry.coordinates[0]    // Longitude
-        ]));
-*/
-    var pointLatlngs = [];
+        ]);
 
-    points.features.forEach(v => {
-        v.forEach(c => {
-            pointLatlngs.push([
-                c.geometry.coordinates[1],   // Latitude
-                c.geometry.coordinates[0]    // Longitude
-            ]);
-        });
-    });
+    console.info('points', points.features.length);
 
     $(document).ready(() => {
         map = L.map('map', {
@@ -42,58 +32,40 @@
                     dashArray: '3',
                 };
             },
-/*
-            pointToLayer = (feature, latlng) => {
-                L.circleMarker(latlng, {
-                    radius: 6,
-                    opacity: 0,
-                    fillOpacity: 0
-                })
-            },
-            onEachFeature = (feature,layer) => {
-                layer.on("click", () => {
-                    layer.bindPopup(
-                        `${feature.properties.datetime} Geschwindigkeit: ${feature.properties.speed} kts`
-                    ).openPopup();
-                });
-            },
-*/
             openStreetMapLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }),
             openSeaMapLayer = L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
-                attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors'
+                attribution: '&copy; <a href="http://www.openseamap.org">OpenSeaMap</a>'
             }),
             lineStringLayer = L.geoJSON(tracks, {
-                style: getStyle,
-//                pointToLayer: pointToLayer,
-//                onEachFeature: onEachFeature
+                style: getStyle
             }),
             pointLayer = L.polyline(pointLatlngs, {
-//                color: 'green',
                 weight: 6,
                 opacity: 0,
                 fillOpacity: 0
-            })
+            }),
+            attributeControl = L.control.attribution({
+                position: 'topright'
+            }).addAttribution(`Points: ${points.features.length}`)
         ;
         pointLayer.on("click", (e) => {
             let nearest = null,
                 minDistance = Infinity;
 
-            points.features.forEach(items => {
-                items.forEach(feature => {
-                    const latlng = L.latLng(
-                            feature.geometry.coordinates[1],
-                            feature.geometry.coordinates[0]
-                        ),
-                        distance = e.latlng.distanceTo(latlng);
+            points.features.forEach(feature => {
+                const latlng = L.latLng(
+                        feature.geometry.coordinates[1],
+                        feature.geometry.coordinates[0]
+                    ),
+                    distance = e.latlng.distanceTo(latlng);
 
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                        nearest = feature;
-                    }
-                });
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    nearest = feature;
+                }
             });
 
             const p = nearest.properties;
@@ -107,6 +79,7 @@
         openSeaMapLayer.addTo(map);
         lineStringLayer.addTo(map);
         pointLayer.addTo(map)
+        attributeControl.addTo(map)
         map.fitBounds(lineStringLayer.getBounds());
     });
 

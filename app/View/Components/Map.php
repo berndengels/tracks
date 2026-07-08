@@ -17,9 +17,7 @@ class Map extends Component
         public string $tracks,
         public string $points,
         public array $bounds
-    ) {
-
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

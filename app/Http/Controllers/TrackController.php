@@ -11,7 +11,7 @@ class TrackController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(int $modulo = 1)
     {
         $lineFeatures = Track::orderBy('start')
             ->get()
@@ -27,28 +27,39 @@ class TrackController extends Controller
 
                 'geometry' => [
                     'type'  => 'LineString',
-                    'coordinates'   => $t->data()->orderBy('datetime')->get()->map(fn(TrackData $p) => [(float) $p->lng,(float) $p->lat]),
+//                    'coordinates'   => $t->data()->orderBy('datetime')->get()->map(fn(TrackData $p) => [(float) $p->lng,(float) $p->lat]),
+                    'coordinates'   => $t->data()->orderBy('datetime')->get()->map(function (TrackData $p, $idx) use ($modulo) {
+                        if(0 === $idx || 0 === $idx % $modulo) {
+                            return [(float) $p->lng,(float) $p->lat];
+                        } else {
+                            return null;
+                        }
+                    })->reject(fn($d) => !$d)->values()->toArray(),
                 ]
         ]);
-        $pointFeatures = Track::orderBy('start')
-            ->get()
-            ->map(fn(Track $t) => $t->data()->orderBy('datetime')->get())
-            ->map(fn(Collection $c) => $c->map(fn(TrackData $p) => [
-                'type'  => 'Feature',
-                'properties' => [
-                    'speed'    => $p->speed,
-                    'datetime'  => $p->datetime->addHours(2)->format('d.m.Y H:i:s'),
-                ],
-                'geometry'  => [
-                    'type'  => 'Point',
-                    'coordinates'  => [(float) $p->lng,(float) $p->lat],
-                ],
-            ]));
 
+        $pointFeatures = TrackData::orderBy('datetime')
+            ->get()
+            ->map(function (TrackData $p, $idx) use ($modulo) {
+                if(0 === $idx || 0 === $idx % $modulo) {
+                    return [
+                        'type'  => 'Feature',
+                        'properties' => [
+                            'speed'    => $p->speed,
+                            'datetime'  => $p->datetime->addHours(2)->format('d.m.Y H:i:s'),
+                        ],
+                        'geometry'  => [
+                            'type'  => 'Point',
+                            'coordinates'  => [(float) $p->lng,(float) $p->lat],
+                        ],
+                    ];
+                } else {
+                    return null;
+                }
+            })->reject(fn($d) => !$d)->values()->toArray();
         $points = collect([
             'type'  => 'FeatureCollection',
             'name'  =>  'Bernds Segeltörn 2026',
-//            'features'  => $pointFeatures->collapse(),
             'features'  => $pointFeatures,
         ])->toJson();
 

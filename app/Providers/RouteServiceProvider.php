@@ -18,12 +18,20 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/admin/tracks';
+    private const DIGIT_KEYS = [
+        'id',
+        'modulo',
+    ];
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */
     public function boot(): void
     {
+        foreach (self::DIGIT_KEYS as $key) {
+            Route::pattern($key, '[\d]+');
+        }
+
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });

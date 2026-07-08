@@ -6,7 +6,6 @@ use App\Models\Track;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTrackRequest;
 use App\Http\Requests\UpdateTrackRequest;
-use App\Models\TrackData;
 use Dunn\GpxReader\Facades\Gpx;
 use Dunn\GpxReader\DTO\TrackPoint;
 use Illuminate\Http\UploadedFile;
