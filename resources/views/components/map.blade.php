@@ -9,80 +9,105 @@
             lng: {{ $bounds[1][1] }}
         }),
         tracks = {!! $tracks !!},
+        points = {!! $points !!},
         bounds = L.latLngBounds(nordEast, southWest),
         center = bounds.getCenter();
+/*
+        pointLatlngs = points.features.map(f => f.map(c => [
+            c.geometry.coordinates[1],   // Latitude
+            c.geometry.coordinates[0]    // Longitude
+        ]));
+*/
+    var pointLatlngs = [];
+
+    points.features.forEach(v => {
+        v.forEach(c => {
+            pointLatlngs.push([
+                c.geometry.coordinates[1],   // Latitude
+                c.geometry.coordinates[0]    // Longitude
+            ]);
+        });
+    });
 
     $(document).ready(() => {
-                const map = L.map('map', {
-                        zoom: 8,
-                        center: [center.lat, center.lng]
-                    }),
-                    getStyle = (feature) => {
-                        return {
-                            weight: 5,
-                            opacity: 1,
-                            color: 'red',
-                            dashArray: '3',
-                        };
-                    },
-                    onEachFeature = (feature,layer) => {
-                        layer.bindPopup('');
-                        layer.on('popupopen', (e) => {
-                            let found = null,
-                                popup = e.popup,
-                                latLng = popup.getLatLng(),
-                                lat = latLng.lat.toFixed(6),
-                                lng = latLng.lng.toFixed(6),
-                                id = feature.properties.id,
-                                speed = tracks.features.find((track) => {
-                                    if(id === track.properties.id) {
-                                        console.info('track_id', track.properties.id)
-                                        track.geometry.coordinates.forEach((v, i) => {
-                                            if(lng == v[0] && lat == v[1]) {
-                                                found = v;
-                                                return;
-                                            }
-                                        });
-//                                        let found = track.geometry.coordinates.find((c) => (lng == c[0] && lat == c[1])) ?? null;
-//                                        console.info('idx', idx)
-                                        console.info('found', found)
+        map = L.map('map', {
+                zoom: 8,
+                center: [center.lat, center.lng]
+            }),
+            getStyle = (feature) => {
+                return {
+                    weight: 5,
+                    opacity: 1,
+                    color: 'red',
+                    dashArray: '3',
+                };
+            },
+/*
+            pointToLayer = (feature, latlng) => {
+                L.circleMarker(latlng, {
+                    radius: 6,
+                    opacity: 0,
+                    fillOpacity: 0
+                })
+            },
+            onEachFeature = (feature,layer) => {
+                layer.on("click", () => {
+                    layer.bindPopup(
+                        `${feature.properties.datetime} Geschwindigkeit: ${feature.properties.speed} kts`
+                    ).openPopup();
+                });
+            },
+*/
+            openStreetMapLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }),
+            openSeaMapLayer = L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+                attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors'
+            }),
+            lineStringLayer = L.geoJSON(tracks, {
+                style: getStyle,
+//                pointToLayer: pointToLayer,
+//                onEachFeature: onEachFeature
+            }),
+            pointLayer = L.polyline(pointLatlngs, {
+//                color: 'green',
+                weight: 6,
+                opacity: 0,
+                fillOpacity: 0
+            })
+        ;
+        pointLayer.on("click", (e) => {
+            let nearest = null,
+                minDistance = Infinity;
 
-                                        if(found) {
-                                            return found;
-                                        }
+            points.features.forEach(items => {
+                items.forEach(feature => {
+                    const latlng = L.latLng(
+                            feature.geometry.coordinates[1],
+                            feature.geometry.coordinates[0]
+                        ),
+                        distance = e.latlng.distanceTo(latlng);
 
-                                        return null;
-                                    }
-                                }) ?? null;
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        nearest = feature;
+                    }
+                });
+            });
 
-                            console.info('lat', lat)
-                            console.info('lng', lng)
-                            console.info('speed', speed)
-                            if(speed) {
-                                popup.setContent(speed.toString());
-                            }
-                        });
-                    },
-                    // 13.860626
-                    openStreetMapLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        maxZoom: 19,
-                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    }),
-                    openSeaMapLayer = L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
-                        attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors'
-                    }),
-                    geoJsonLayer = L.geoJSON(tracks, {
-                            style: getStyle,
-                            onEachFeature: onEachFeature
-                        })
-                        .addTo(map);
+            const p = nearest.properties;
 
-                openStreetMapLayer.addTo(map);
-                openSeaMapLayer.addTo(map);
-//                geoJsonLayer.addTo(map);
+            L.popup()
+                .setLatLng(e.latlng)
+                .setContent(`<b>${p.datetime}</b><br>Geschwindigkeit: ${p.speed} kn`)
+                .openOn(map);
+        });
+        openStreetMapLayer.addTo(map);
+        openSeaMapLayer.addTo(map);
+        lineStringLayer.addTo(map);
+        pointLayer.addTo(map)
+        map.fitBounds(lineStringLayer.getBounds());
+    });
 
-                map.fitBounds(bounds);
-
-//                console.info('tracks', tracks);
-    })
 </script>

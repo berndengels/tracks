@@ -57,7 +57,9 @@ class AdminTrackController extends Controller
                                 'speed' => $p->extensions->navionics_speed,
                             ]);
 
-                            $points->chunk(1000)->each(fn(Collection $c) => $track->data()->insertOrIgnore($c->toArray()));
+                            $points
+                                ->chunk(1000)
+                                ->each(fn(Collection $c) => $track->data()->insertOrIgnore($c->toArray()));
                         }
                     }
                 }

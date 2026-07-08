@@ -4,6 +4,7 @@
     <div class="w-100">
         <x-map class="w-100"
                :tracks="$tracks"
+               :points="$points"
                :bounds="$bounds"
         />
     </div>
