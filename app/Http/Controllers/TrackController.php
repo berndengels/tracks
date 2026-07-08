@@ -11,7 +11,7 @@ class TrackController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(int $modulo = 1)
+    public function index(int $modulo = 10)
     {
         $lineFeatures = Track::orderBy('start')
             ->get()
