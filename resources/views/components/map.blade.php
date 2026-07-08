@@ -17,8 +17,6 @@
             c.geometry.coordinates[0]    // Longitude
         ]);
 
-    console.info('points', points.features.length);
-
     $(document).ready(() => {
         map = L.map('map', {
                 zoom: 8,
@@ -72,7 +70,7 @@
 
             L.popup()
                 .setLatLng(e.latlng)
-                .setContent(`<b>${p.datetime}</b><br>Speed: ${p.speed} kn`)
+                .setContent(`<b>${p.datetime}</b><br>${p.track.name}<br>Start ${p.track.start} Ende ${p.track.end}<br>Speed: ${p.speed} kn`)
                 .openOn(map);
         });
         openStreetMapLayer.addTo(map);

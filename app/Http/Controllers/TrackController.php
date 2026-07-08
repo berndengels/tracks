@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Track;
 use App\Models\TrackData;
-use Illuminate\Support\Collection;
 
 class TrackController extends Controller
 {
@@ -38,13 +37,18 @@ class TrackController extends Controller
                 ]
         ]);
 
-        $pointFeatures = TrackData::orderBy('datetime')
+        $pointFeatures = TrackData::with(['track'])->orderBy('datetime')
             ->get()
             ->map(function (TrackData $p, $idx) use ($modulo) {
                 if(0 === $idx || 0 === $idx % $modulo) {
                     return [
                         'type'  => 'Feature',
                         'properties' => [
+                            'track' => [
+                                'name'  => $p->track->name,
+                                'start' => $p->track->start->addHours(2)->format('H:i'),
+                                'end' => $p->track->end->addHours(2)->format('H:i'),
+                            ],
                             'speed'    => $p->speed,
                             'datetime'  => $p->datetime->addHours(2)->format('d.m.Y H:i:s'),
                         ],
