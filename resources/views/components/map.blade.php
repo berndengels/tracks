@@ -100,7 +100,7 @@
 
             L.popup()
                 .setLatLng(e.latlng)
-                .setContent(`<b>${p.datetime}</b><br>Geschwindigkeit: ${p.speed} kn`)
+                .setContent(`<b>${p.datetime}</b><br>Speed: ${p.speed} kn`)
                 .openOn(map);
         });
         openStreetMapLayer.addTo(map);
