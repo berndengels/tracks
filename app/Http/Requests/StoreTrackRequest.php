@@ -4,6 +4,11 @@ namespace App\Http\Requests;
 
 class StoreTrackRequest extends AdminRequest
 {
+    protected $booleanFields = ['active'];
+    protected $defaults = [
+        'active'    => true,
+    ];
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -13,6 +18,7 @@ class StoreTrackRequest extends AdminRequest
     {
         return [
             'tracks'    => 'file',
+            'active'    => 'boolean'
         ];
     }
 }
