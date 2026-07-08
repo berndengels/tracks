@@ -4,6 +4,7 @@
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import "~leaflet/dist/leaflet";
+@import 'variables';
 
 body {
     width: 100%;
@@ -12,6 +13,101 @@ body {
 .grid-container {
     width: 100%;
     height: 100%;
+}
+.white {
+    color: #fff
+}
+
+.black {
+    color: #000
+}
+
+.green {
+    color: $green
+}
+
+.red {
+    color: $red
+}
+
+.indigo {
+    color: $indigo
+}
+
+.cyan {
+    color: $cyan
+}
+
+.blue {
+    color: #009
+}
+
+.grey {
+    color: $grey
+}
+
+.dark-grey {
+    color: #6c757d
+}
+
+.dark {
+    color: $dark
+}
+
+.yellow {
+    color: $yellow
+}
+
+.orange {
+    color: $orange
+}
+
+.bg-white {
+    background-color: #fff
+}
+
+.bg-black {
+    background-color: #000
+}
+
+.bg-green {
+    background-color: $green
+}
+
+.bg-red {
+    background-color: $red
+}
+
+.bg-indigo {
+    background-color: $indigo
+}
+
+.bg-cyan {
+    background-color: $cyan
+}
+
+.bg-blue {
+    background-color: #009
+}
+
+.bg-grey {
+    background-color: $grey
+}
+
+.bg-dark-grey {
+    background-color: #6c757d
+}
+
+.bg-yellow {
+    background-color: $yellow
+}
+
+.bg-orange {
+    background-color: $orange
+}
+
+.bg-dark {
+    background-color: $bgDark
 }
 #map {
     width: 100%;

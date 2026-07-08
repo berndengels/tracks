@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Models\UseBooleanIcon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,7 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Track extends Model
 {
-    use HasFactory;
+    use HasFactory, UseBooleanIcon;
 
     protected $table = 'tracks';
     protected $guarded = ['id'];

@@ -28,7 +28,7 @@
                         <x-td field="start" dateformat="d.m.Y H:i" />
                         <x-td field="end" dateformat="d.m.Y H:i" />
                         <td>{{ $item->trackdata->count() }}</td>
-                        <x-td field="active" boolean />
+                        <x-td field="active" bool />
                         <x-action routePrefix="admin.tracks" edit delete />
                         @endBindData
                     </tr>
