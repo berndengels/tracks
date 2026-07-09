@@ -10,5 +10,5 @@ mix.autoload({
     .js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .options({processCssUrls: false})
-//    .vue({version: 3})
+    .vue({version: 3})
 ;

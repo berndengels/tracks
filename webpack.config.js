@@ -9,9 +9,19 @@ module.exports = {
         minimizer: [new TerserPlugin()],
     },
     module: {
-        rules: [
-//            { test: /\.css$/, use: 'css-loader' },
-        ]
+//        rules: [{ test: /\.css$/, use: 'css-loader' }]
+/*
+        rules: [{
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            use: {
+                loader: "babel-loader",
+                options: {
+                    presets: ["@babel/preset-react", "@babel/preset-env"],
+                },
+            },
+        }]
+*/
     },
     stats: {
         children: true,

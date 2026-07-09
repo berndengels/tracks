@@ -1,7 +1,20 @@
-try {
-    window.$ = window.jQuery = require('jquery');
-    window.axios = require('axios');
+import moment from 'moment';
+import toastr from 'toastr';
+moment.locale('de');
+import axios from "axios";
+import { createApp } from "vue"
 
+window.createApp = createApp;
+window.axios = axios;
+window.moment = moment;
+window.toastr = toastr;
+window.L = require('leaflet');
+
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+//    axios.defaults.baseURL = process.env.MIX_API_URL;
+axios.defaults.withCredentials = true;
+
+try {
     //	require('bootstrap');
 //    require('bootstrap/js/dist/carousel');
 //    require('bootstrap/js/dist/offcanvas');
@@ -15,13 +28,6 @@ try {
 // require('bootstrap/js/dist/tab');
 // require('bootstrap/js/dist/toast');
     require('bootstrap/js/dist/tooltip');
-
-    axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-//    axios.defaults.baseURL = process.env.MIX_API_URL;
-    axios.defaults.withCredentials = true;
-    window.L = require('leaflet');
-    window.axios = require('axios');
-
 } catch (e) {
     console.error(e)
 }
