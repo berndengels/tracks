@@ -26559,6 +26559,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 window.$ = window.jQuery = jQuery = $ = __webpack_require__(3486);
 $(document).ready(function () {
+  $(".delSoft,.delsoft").click(function () {
+    return confirm("Daten wirklich löschen");
+  });
   var tracks = document.getElementById('tracks');
   switch (true) {
     case $(tracks).is(":visible"):

@@ -18,6 +18,7 @@
         },
         tracks = {!! $tracks !!},
         points = {!! $points !!},
+        hasData = tracks.features.length > 0,
         openStreetMapLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -26,24 +27,14 @@
             attribution: '&copy; <a href="http://www.openseamap.org">OpenSeaMap</a>'
         });
 
-        if(tracks.features.length > 0) {
-            const bounds = L.latLngBounds(nordEast, southWest),
-                pointLatlngs = points.features.map(c => [
+            const bounds = hasData ? L.latLngBounds(nordEast, southWest) : null,
+                pointLatlngs = hasData ? points.features.map(c => [
                     c.geometry.coordinates[1],   // Latitude
                     c.geometry.coordinates[0]    // Longitude
-                ]);
-                center = bounds.getCenter();
-        } else {
-            const bounds = null,
-                pointLatlngs = null,
-                center = null;
-        }
-
-    console.info('data', tracks.features)
+                ]) : null,
+                center = hasData ? bounds.getCenter() : null;
 
     $(document).ready(() => {
-
-
             if(tracks.features.length > 0) {
                 const map = L.map('map', {
                     zoom: 12,
@@ -59,8 +50,8 @@
                 }),
                 attributeControl = L.control.attribution({
                     position: 'topright'
-                }).addAttribution(`Points: ${points.features.length}`)
-            ;
+                }).addAttribution(`Points: ${points.features.length}`);
+
             pointLayer.on("click", (e) => {
                 let nearest = null,
                     minDistance = Infinity;
@@ -88,9 +79,10 @@
             openStreetMapLayer.addTo(map);
             openSeaMapLayer.addTo(map);
             lineStringLayer.addTo(map);
-            pointLayer.addTo(map)
-            attributeControl.addTo(map)
+            pointLayer.addTo(map);
+            attributeControl.addTo(map);
             map.fitBounds(lineStringLayer.getBounds());
+
         } else {
             const map = L.map('map', {
                 zoom: 10,

@@ -12,7 +12,7 @@ class TrackController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(int $modulo = 10)
+    public function index(int $modulo = 1)
     {
         $lineFeatures = GeoJSON::getlineFeatures($modulo);
         $pointFeatures = GeoJSON::getPointFeatures($modulo);
@@ -31,6 +31,9 @@ class TrackController extends Controller
         ])->toJson();
 
 //        \Storage::disk('public')->write('geo.json', $tracks);
+        $firstPoint = TrackData::select('lat','lng')->orderBy('datetime')->first();
+        $distance = TrackData::select('lat','lng')->distance($firstPoint->lat, $firstPoint->lng)->get()->map->distance->sum();
+//        dd(round($distance));
 
         return view('tracks.index', compact('tracks','points','bounds'));
     }

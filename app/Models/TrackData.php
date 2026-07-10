@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Malhal\Geographical\Geographical;
 
 /**
  * @property int $id
@@ -26,7 +27,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class TrackData extends Model
 {
-    use HasFactory;
+    use HasFactory, Geographical;
+
+    const LATITUDE  = 'lat';
+    const LONGITUDE = 'lng';
 
     protected $table = 'track_data';
     protected $guarded = ['id'];
