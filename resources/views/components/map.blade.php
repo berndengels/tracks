@@ -25,14 +25,13 @@
         }),
         openSeaMapLayer = L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://www.openseamap.org">OpenSeaMap</a>'
-        });
-
-            const bounds = hasData ? L.latLngBounds(nordEast, southWest) : null,
-                pointLatlngs = hasData ? points.features.map(c => [
-                    c.geometry.coordinates[1],   // Latitude
-                    c.geometry.coordinates[0]    // Longitude
-                ]) : null,
-                center = hasData ? bounds.getCenter() : null;
+        }),
+        bounds = hasData ? L.latLngBounds(nordEast, southWest) : null,
+            pointLatlngs = hasData ? points.features.map(c => [
+                c.geometry.coordinates[1],   // Latitude
+                c.geometry.coordinates[0]    // Longitude
+            ]) : null,
+            center = hasData ? bounds.getCenter() : null;
 
     $(document).ready(() => {
             if(tracks.features.length > 0) {
@@ -73,7 +72,7 @@
 
                 L.popup()
                     .setLatLng(e.latlng)
-                    .setContent(`<b>${p.datetime}</b><br>${p.track.name}<br>Start ${p.track.start} Ende ${p.track.end}<br>Speed: ${p.speed} kn`)
+                    .setContent(`<b>${p.datetime}</b><br>${p.track.name}<br>Start ${p.track.start} Ende ${p.track.end}<br>Speed: ${p.speed.toString()} kn<br>ID: ${p.id}`)
                     .openOn(map);
             });
             openStreetMapLayer.addTo(map);

@@ -48,13 +48,14 @@ class AdminTrackController extends Controller
                         ]);
 
                         if($track) {
-                            $points = collect($segment->points)->map(fn(TrackPoint $p) => [
-                                'track_id'  => $track->id,
-                                'lat'   => $p->latitude,
-                                'lng'   => $p->longitude,
-                                'datetime'  => $p->time,
-                                'speed' => $p->extensions->navionics_speed,
-                            ]);
+                            $points = collect($segment->points)
+                                ->map(fn(TrackPoint $p) => $p->extensions->navionics_speed > 0 && $p->latitude && $p->longitude ? [
+                                    'track_id'  => $track->id,
+                                    'lat'   => $p->latitude,
+                                    'lng'   => $p->longitude,
+                                    'datetime'  => $p->time,
+                                    'speed' => $p->extensions->navionics_speed,
+                                ] : null)->reject(fn($p) => !$p);
 
                             $points
                                 ->chunk(1000)
