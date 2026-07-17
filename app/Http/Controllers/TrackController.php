@@ -9,11 +9,16 @@ use Illuminate\Database\Eloquent\Builder;
 
 class TrackController extends Controller
 {
+    private $limit = 100;
     /**
      * Display a listing of the resource.
      */
-    public function index(int $modulo = 1)
+    public function index(int $modulo = null)
     {
+        if(! $modulo) {
+            $modulo = $this->limit;
+        }
+
         $lineFeatures = GeoJSON::getlineFeatures($modulo);
         $pointFeatures = GeoJSON::getPointFeatures($modulo);
         $bounds     = GeoJSON::getBounds();
