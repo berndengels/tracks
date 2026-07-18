@@ -54,7 +54,7 @@ class GeoJSON
                                 'end' => $p->track->end->addHours(2)->format('H:i'),
                             ],
                             'id'        => $p->id,
-                            'speed'     => $p->speed,
+                            'speed'     => $p->speed * 2,
                             'datetime'  => $p->datetime->addHours(2)->format('d.m.Y H:i:s'),
                         ],
                         'geometry'  => [
@@ -68,10 +68,20 @@ class GeoJSON
             })->reject(fn($d) => !$d)->values()->toArray();
     }
 
-    public static function getlineFeaturesFromTrack(Track $track, $modulo)
+    public static function getlineFeaturesFromBound(array $southWest, array $northEast, $modulo)
     {
         return Track::with(['trackdata'])
             ->whereActive(true)
+            ->whereHas('trackdata', fn(Builder $q) => $q
+//                ->whereBetween('lat', [$southWest['lat'], $northEast['lat']])
+//                ->whereBetween('lng', [$southWest['lng'], $northEast['lng']])
+/*
+                ->whereLat('>=', $southWest['lat'])
+                ->whereLat('<=', $northEast['lat'])
+                ->whereLng('>=', $southWest['lng'])
+                ->whereLng('<=', $northEast['lng'])
+*/
+            )
             ->orderBy('start')
             ->get()
             ->map(fn(Track $t) => [
@@ -86,21 +96,41 @@ class GeoJSON
 
                 'geometry' => [
                     'type'  => 'LineString',
-                    'coordinates'   => $t->trackdata()->orderBy('datetime')->get()->map(function (TrackData $p, $idx) use ($modulo) {
-                        if(0 === $idx || 0 === $idx % $modulo) {
-                            return [(float) $p->lng,(float) $p->lat];
-                        } else {
-                            return null;
-                        }
+                    'coordinates'   => $t->trackdata()
+                        ->whereBetween('lat', [$southWest['lat'], $northEast['lat']])
+                        ->whereBetween('lng', [$southWest['lng'], $northEast['lng']])
+/*
+                        ->whereLat('>=', $southWest['lat'])
+                        ->whereLat('<=', $northEast['lat'])
+                        ->whereLng('>=', $southWest['lng'])
+                        ->whereLng('<=', $northEast['lng'])
+*/
+                        ->orderBy('datetime')
+                        ->get()
+                        ->map(function (TrackData $p, $idx) use ($modulo) {
+                            if(0 === $idx || 0 === $idx % $modulo) {
+                                return [(float) $p->lng,(float) $p->lat];
+                            } else {
+                                return null;
+                            }
                     })->reject(fn($d) => !$d)->values()->toArray(),
                 ]
             ]);
     }
 
-    public static function getPointFeaturesFromTrack(Track $track, $modulo)
-    {   $track->load(['track ']);
-
-        return $track
+    public static function getPointFeaturesFromBound(array $southWest, array $northEast, $modulo)
+    {
+        return TrackData::with(['track'])
+//            ->whereBetween('lat', [$southWest['lat'], $northEast['lat']])
+//            ->whereBetween('lng', [$southWest['lng'], $northEast['lng']])
+            ->whereBetween('lat', [$southWest['lat'], $northEast['lat']])
+            ->whereBetween('lng', [$southWest['lng'], $northEast['lng']])
+/*
+            ->whereLat('>=', $southWest['lat'])
+            ->whereLat('<=', $northEast['lat'])
+            ->whereLng('>=', $southWest['lng'])
+            ->whereLng('<=', $northEast['lng'])
+*/
             ->orderBy('datetime')
             ->get()
             ->map(function (TrackData $p, $idx) use ($modulo) {

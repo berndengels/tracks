@@ -1,6 +1,7 @@
 <div id="map"></div>
 <script>
-    const nordEast = L.latLng({
+    const fallbackLatLng = L.latLng([54.35, 13.51]),
+        nordEast = L.latLng({
             lat: {{ $bounds[0][0] }},
             lng: {{ $bounds[0][1] }}
         }),
@@ -18,6 +19,7 @@
         },
         tracks = {!! $tracks !!},
         points = {!! $points !!},
+        duration = {!! $duration !!},
         hasData = tracks.features.length > 0,
         openStreetMapLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -27,21 +29,21 @@
             attribution: '&copy; <a href="http://www.openseamap.org">OpenSeaMap</a>'
         }),
         bounds = hasData ? L.latLngBounds(nordEast, southWest) : null,
-            pointLatlngs = hasData ? points.features.map(c => [
-                c.geometry.coordinates[1],   // Latitude
-                c.geometry.coordinates[0]    // Longitude
-            ]) : null,
-            center = hasData ? bounds.getCenter() : null;
+        pointLatlngs = hasData ? points.features.map(c => [
+            c.geometry.coordinates[1],   // Latitude
+            c.geometry.coordinates[0]    // Longitude
+        ]) : null,
+        center = hasData ? bounds.getCenter() : fallbackLatLng;
 
     $(document).ready(() => {
-            if(tracks.features.length > 0) {
+        if(tracks.features.length > 0) {
                 const map = L.map('map', {
                     zoom: 12,
                     center: [center.lat, center.lng]
                 }),
-                lineStringLayer = L.geoJSON(tracks, {
+                lineStringLayer = tracks.features.length > 0 ? L.geoJSON(tracks, {
                     style: getStyle
-                }),
+                }) : null,
                 pointLayer = L.polyline(pointLatlngs, {
                     weight: 6,
                     opacity: 0,
@@ -49,7 +51,7 @@
                 }),
                 attributeControl = L.control.attribution({
                     position: 'topright'
-                }).addAttribution(`Points: ${points.features.length}`);
+                }).addAttribution(`Points: ${points.features.length}, Time: ${duration} sec`);
 
             pointLayer.on("click", (e) => {
                 let nearest = null,
@@ -81,15 +83,13 @@
             pointLayer.addTo(map);
             attributeControl.addTo(map);
             map.fitBounds(lineStringLayer.getBounds());
-
         } else {
             const map = L.map('map', {
                 zoom: 10,
-                center: [54.35, 13.51]
+                center: fallbackLatLng
             });
             openStreetMapLayer.addTo(map);
             openSeaMapLayer.addTo(map);
         }
     });
-
 </script>

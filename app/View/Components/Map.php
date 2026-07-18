@@ -16,7 +16,8 @@ class Map extends Component
     public function __construct(
         public string $tracks,
         public string $points,
-        public array $bounds
+        public array $bounds,
+        public ?int $duration = null
     ) {}
 
     /**

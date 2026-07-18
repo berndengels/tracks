@@ -18,4 +18,5 @@ use App\Http\Controllers\Api\ApiTrackController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::resource('tracks', ApiTrackController::class);
+//Route::resource('tracks', ApiTrackController::class);
+Route::post('tracks/data/{modulo?}', [ApiTrackController::class, 'getData']);

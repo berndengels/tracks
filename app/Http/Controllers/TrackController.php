@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Track;
 use App\Models\TrackData;
 use App\Repositories\GeoJSON;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 
 class TrackController extends Controller
 {
@@ -15,13 +15,23 @@ class TrackController extends Controller
      */
     public function index(int $modulo = null)
     {
+        $startTime = Carbon::now(config('app.timezone'));
+
         if(! $modulo) {
             $modulo = $this->limit;
         }
 
+        $bounds     = GeoJSON::getBounds();
+//        $northEast = ['lat' => $bounds[0][0], 'lng' => $bounds[0][1]];
+//        $southWest = ['lat' => $bounds[1][0], 'lng'  => $bounds[1][1]];
+//        $bounds = json_encode($bounds);
+//        $northEast = json_encode($northEast);
+//        $southWest = json_encode($southWest);
+
         $lineFeatures = GeoJSON::getlineFeatures($modulo);
         $pointFeatures = GeoJSON::getPointFeatures($modulo);
-        $bounds     = GeoJSON::getBounds();
+//        $lineFeatures = [];
+//        $pointFeatures = [];
 
         $points = collect([
             'type'  => 'FeatureCollection',
@@ -36,10 +46,13 @@ class TrackController extends Controller
         ])->toJson();
 
 //        \Storage::disk('public')->write('geo.json', $tracks);
-        $firstPoint = TrackData::select('lat','lng')->orderBy('datetime')->first();
-        $distance = TrackData::select('lat','lng')->distance($firstPoint->lat, $firstPoint->lng)->get()->map->distance->sum();
-//        dd(round($distance));
+//        $firstPoint = TrackData::select('lat','lng')->orderBy('datetime')->first();
+//        $distance = TrackData::select('lat','lng')->distance($firstPoint->lat, $firstPoint->lng)->get()->map->distance->sum();
 
-        return view('tracks.index', compact('tracks','points','bounds'));
+        $endTime = Carbon::now(config('app.timezone'));
+        $duration = $endTime->diffInSeconds($startTime);
+
+        return view('tracks.index', compact('tracks','points','bounds','duration'));
+//        return view('tracks.index', compact('northEast','southWest', 'bounds'));
     }
 }

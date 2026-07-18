@@ -1,6 +1,4 @@
 const path = require('path'),
-//    webpack = require('webpack'),
-//    supportedLocales = ['de'],
     TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
@@ -9,19 +7,6 @@ module.exports = {
         minimizer: [new TerserPlugin()],
     },
     module: {
-//        rules: [{ test: /\.css$/, use: 'css-loader' }]
-/*
-        rules: [{
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            use: {
-                loader: "babel-loader",
-                options: {
-                    presets: ["@babel/preset-react", "@babel/preset-env"],
-                },
-            },
-        }]
-*/
     },
     stats: {
         children: true,
