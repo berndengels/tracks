@@ -17,6 +17,9 @@
                 dashArray: '3',
             };
         },
+        getSpeed = (meters, seconds) => {
+            return (meters / seconds * 1.944).toFixed(1);
+        },
         tracks = {!! $tracks !!},
         points = {!! $points !!},
         duration = {!! $duration !!},
@@ -54,27 +57,50 @@
                 }).addAttribution(`Points: ${points.features.length}, Time: ${duration} sec`);
 
             pointLayer.on("click", (e) => {
-                let nearest = null,
-                    minDistance = Infinity;
+                var nearest = null,
+                    minDistance = Infinity,
+                    prevDateTime = null,
+                    prevLatLng = null,
+                    speed = 0;
 
-                points.features.forEach(feature => {
+                points.features.forEach((feature, idx) => {
+                    if(idx > 0) {
+                        const prev = points.features[idx - 1];
+                        prevDateTime = moment(prev.properties.datetime);
+                        prevLatLng = L.latLng(
+                            prev.geometry.coordinates[1],
+                            prev.geometry.coordinates[0]
+                        );
+                    }
+
                     const latlng = L.latLng(
                             feature.geometry.coordinates[1],
                             feature.geometry.coordinates[0]
                         ),
+                        deateTime = moment(feature.properties.datetime),
                         distance = e.latlng.distanceTo(latlng);
+
+                    if(prevDateTime && prevLatLng) {
+                        const myDistance = prevLatLng.distanceTo(latlng),
+                            duration = moment.duration(deateTime.diff(prevDateTime)),
+                            seconds = duration.asSeconds();
+
+                        speed = getSpeed(myDistance, seconds);
+                    }
 
                     if (distance < minDistance) {
                         minDistance = distance;
+                        feature.properties.speed = speed;
                         nearest = feature;
                     }
                 });
 
                 const p = nearest.properties;
 
+//                console.info('p', p)
                 L.popup()
                     .setLatLng(e.latlng)
-                    .setContent(`<b>${p.datetime}</b><br>${p.track.name}<br>Start ${p.track.start} Ende ${p.track.end}<br>Speed: ${p.speed.toString()} kn<br>ID: ${p.id}`)
+                    .setContent(`<b>${moment(p.datetime).format("dd DD.MM.YYYY HH:mm")}</b><br>${p.track.name}<br>Start ${p.track.start} Ende ${p.track.end}<br>Speed: ${p.speed} kn<br>ID: ${p.id}`)
                     .openOn(map);
             });
             openStreetMapLayer.addTo(map);

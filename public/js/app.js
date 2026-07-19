@@ -23857,8 +23857,7 @@ window.createApp = vue__WEBPACK_IMPORTED_MODULE_2__.createApp;
 window.axios = axios__WEBPACK_IMPORTED_MODULE_3__["default"];
 window.moment = (moment__WEBPACK_IMPORTED_MODULE_0___default());
 window.toastr = (toastr__WEBPACK_IMPORTED_MODULE_1___default());
-//window.L = require('leaflet');
-
+moment__WEBPACK_IMPORTED_MODULE_0___default().locale('de_DE');
 axios__WEBPACK_IMPORTED_MODULE_3__["default"].defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //    axios.defaults.baseURL = process.env.MIX_API_URL;
 axios__WEBPACK_IMPORTED_MODULE_3__["default"].defaults.withCredentials = true;

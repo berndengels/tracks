@@ -6,10 +6,14 @@ use App\Models\Track;
 use App\Models\TrackData;
 use App\Repositories\GeoJSON;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 class TrackController extends Controller
 {
     private $limit = 100;
+    private $ttl = 3600 * 6;
+    private $useCache = true;
+
     /**
      * Display a listing of the resource.
      */
@@ -20,18 +24,20 @@ class TrackController extends Controller
         if(! $modulo) {
             $modulo = $this->limit;
         }
-
-        $bounds     = GeoJSON::getBounds();
+        $bounds = Cache::remember('bounds', $this->ttl, fn() => GeoJSON::getBounds());
+//        $bounds     = GeoJSON::getBounds();
 //        $northEast = ['lat' => $bounds[0][0], 'lng' => $bounds[0][1]];
 //        $southWest = ['lat' => $bounds[1][0], 'lng'  => $bounds[1][1]];
 //        $bounds = json_encode($bounds);
 //        $northEast = json_encode($northEast);
 //        $southWest = json_encode($southWest);
-
-        $lineFeatures = GeoJSON::getlineFeatures($modulo);
-        $pointFeatures = GeoJSON::getPointFeatures($modulo);
-//        $lineFeatures = [];
-//        $pointFeatures = [];
+        if($this->useCache) {
+            $lineFeatures = Cache::remember('lineFeatures', $this->ttl, fn() => GeoJSON::getlineFeatures($modulo));
+            $pointFeatures = Cache::remember('pointFeatures', $this->ttl, fn() => GeoJSON::getPointFeatures($modulo));
+        } else {
+            $lineFeatures = GeoJSON::getlineFeatures($modulo);
+            $pointFeatures = GeoJSON::getPointFeatures($modulo);
+        }
 
         $points = collect([
             'type'  => 'FeatureCollection',

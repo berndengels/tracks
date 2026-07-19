@@ -8,7 +8,8 @@ window.createApp = createApp;
 window.axios = axios;
 window.moment = moment;
 window.toastr = toastr;
-//window.L = require('leaflet');
+
+moment.locale('de_DE');
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //    axios.defaults.baseURL = process.env.MIX_API_URL;
