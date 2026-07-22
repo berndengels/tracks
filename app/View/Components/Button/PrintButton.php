@@ -13,7 +13,7 @@ class PrintButton extends Button
      * @return void
      */
     public function __construct(
-        public string $route,
+        public ?string $route,
         public ?string $target = '_blank',
     )
     {

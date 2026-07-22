@@ -2,16 +2,18 @@
 
 @section('main')
     <div class="row">
-        <x-form class="form-floating w-50 m-3" method="post" action="{{ route('admin.tracks.store') }}" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col">
-                    <x-form-input type="file" name="tracks" />
+        <div class="col">
+            <x-form class="form-floating w-50 m-3" method="post" action="{{ route('admin.tracks.store') }}" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col">
+                        <x-form-input type="file" name="tracks" label="Tracks" />
+                    </div>
+                    <div class="col">
+                        <x-form-submit label="Speichern" />
+                    </div>
                 </div>
-                <div class="col">
-                    <x-form-submit label="Speichern" />
-                </div>
-            </div>
-        </x-form>
+            </x-form>
+        </div>
     </div>
     <div class="m-3">
         @if($data->total() > 0)

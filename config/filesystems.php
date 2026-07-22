@@ -38,6 +38,27 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'media' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/media'),
+            'url' => env('APP_URL').'/storage/media',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/media/images'),
+            'url' => env('APP_URL').'/storage/media/images',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'videos' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/media/videos'),
+            'url' => env('APP_URL').'/storage/media/videos',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

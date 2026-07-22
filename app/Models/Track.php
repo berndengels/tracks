@@ -23,6 +23,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Track whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Track whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Track whereYear($value)
+ * @property \Illuminate\Support\Carbon $start
+ * @property \Illuminate\Support\Carbon $end
+ * @property bool $active
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TrackData> $trackdata
+ * @property-read int|null $trackdata_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Track whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Track whereEnd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Track whereStart($value)
  * @mixin \Eloquent
  */
 class Track extends Model

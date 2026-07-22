@@ -23,6 +23,10 @@ use Malhal\Geographical\Geographical;
  * @method static \Illuminate\Database\Eloquent\Builder|TrackData whereLon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TrackData whereSpeed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TrackData whereTrackId($value)
+ * @property string $lng
+ * @method static \Illuminate\Database\Eloquent\Builder|TrackData distance(float $latitude, float $longitude, $options = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|TrackData geofence(float $latitude, float $longitude, float $inner_radius, float $outer_radius)
+ * @method static \Illuminate\Database\Eloquent\Builder|TrackData whereLng($value)
  * @mixin \Eloquent
  */
 class TrackData extends Model

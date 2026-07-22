@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Media;
 use App\Models\Track;
 use App\Models\TrackData;
 use Illuminate\Database\Eloquent\Builder;
@@ -66,6 +67,25 @@ class GeoJSON
                     return null;
                 }
             })->reject(fn($d) => !$d)->values()->toArray();
+    }
+
+    public static function getMedia()
+    {
+        return Media::orderBy('created_at')
+            ->get()
+            ->map(fn(Media $m) => [
+                'type'  => 'Feature',
+                'properties' => [
+                    'name'  => $m->name,
+                    'filename' => $m->filename,
+                    'type'  => $m->type,
+                    'created'   => $m->created,
+                ],
+                'geometry'  => [
+                    'type'  => 'Point',
+                    'coordinates'  => [(float) $m->lng,(float) $m->lat],
+                ],
+            ])->toArray();
     }
 
     public static function getlineFeaturesFromBound(array $southWest, array $northEast, $modulo)

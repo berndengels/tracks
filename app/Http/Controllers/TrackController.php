@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Track;
 use App\Models\TrackData;
 use App\Repositories\GeoJSON;
+use App\Repositories\Gis;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Plutuss\Facades\MediaAnalyzer;
 
 class TrackController extends Controller
 {
@@ -24,6 +29,7 @@ class TrackController extends Controller
         if(! $modulo) {
             $modulo = $this->limit;
         }
+
         $bounds = Cache::remember('bounds', $this->ttl, fn() => GeoJSON::getBounds());
 //        $bounds     = GeoJSON::getBounds();
 //        $northEast = ['lat' => $bounds[0][0], 'lng' => $bounds[0][1]];
@@ -37,6 +43,7 @@ class TrackController extends Controller
         } else {
             $lineFeatures = GeoJSON::getlineFeatures($modulo);
             $pointFeatures = GeoJSON::getPointFeatures($modulo);
+            $mediaFeatures = GeoJSON::getMedia();
         }
 
         $points = collect([
@@ -51,6 +58,12 @@ class TrackController extends Controller
             'features'  => $lineFeatures,
         ])->toJson();
 
+        $media = collect([
+            'type'  => 'FeatureCollection',
+            'name'  =>  'Bernds Segeltörn 2026',
+            'features'  => $mediaFeatures,
+        ])->toJson();
+
 //        \Storage::disk('public')->write('geo.json', $tracks);
 //        $firstPoint = TrackData::select('lat','lng')->orderBy('datetime')->first();
 //        $distance = TrackData::select('lat','lng')->distance($firstPoint->lat, $firstPoint->lng)->get()->map->distance->sum();
@@ -58,7 +71,7 @@ class TrackController extends Controller
         $endTime = Carbon::now(config('app.timezone'));
         $duration = $endTime->diffInSeconds($startTime);
 
-        return view('tracks.index', compact('tracks','points','bounds','duration'));
+        return view('tracks.index', compact('tracks','points','bounds','duration','media'));
 //        return view('tracks.index', compact('northEast','southWest', 'bounds'));
     }
 }

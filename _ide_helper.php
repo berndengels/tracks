@@ -17140,6 +17140,32 @@ namespace Illuminate\Support\Facades {
             }
     }
 
+namespace ProtoneMedia\LaravelFFMpeg\Support {
+            /**
+     * @method static \ProtoneMedia\LaravelFFMpeg\MediaOpener fromDisk($disk)
+     * @method static \ProtoneMedia\LaravelFFMpeg\MediaOpener fromFilesystem(\Illuminate\Contracts\Filesystem\Filesystem $filesystem)
+     * @method static \ProtoneMedia\LaravelFFMpeg\MediaOpener open($path)
+     * @method static \ProtoneMedia\LaravelFFMpeg\MediaOpener openUrl($path, array $headers = [])
+     * @method static \ProtoneMedia\LaravelFFMpeg\MediaOpener cleanupTemporaryFiles()
+     * @see \ProtoneMedia\LaravelFFMpeg\MediaOpener
+     */        class FFMpeg {
+                    /**
+         * @static
+         */        public static function new()
+        {
+                        /** @var \ProtoneMedia\LaravelFFMpeg\Support\MediaOpenerFactory $instance */
+                        return $instance->new();
+        }
+                    /**
+         * @static
+         */        public static function dynamicHLSPlaylist()
+        {
+                        /** @var \ProtoneMedia\LaravelFFMpeg\Support\MediaOpenerFactory $instance */
+                        return $instance->dynamicHLSPlaylist();
+        }
+            }
+    }
+
 namespace Dunn\GpxReader\Facades {
             /**
      * @see \Dunn\GpxReader\GpxParser
@@ -21514,6 +21540,7 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
+            class FFMpeg extends \ProtoneMedia\LaravelFFMpeg\Support\FFMpeg {}
             class Gpx extends \Dunn\GpxReader\Facades\Gpx {}
             class Agent extends \Jenssegers\Agent\Facades\Agent {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
