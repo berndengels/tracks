@@ -69,7 +69,7 @@ class GeoJSON
             })->reject(fn($d) => !$d)->values()->toArray();
     }
 
-    public static function getMedia()
+    public static function getMediaFeatures()
     {
         return Media::orderBy('created_at')
             ->get()

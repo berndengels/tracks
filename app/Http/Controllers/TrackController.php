@@ -40,10 +40,11 @@ class TrackController extends Controller
         if($this->useCache) {
             $lineFeatures = Cache::remember('lineFeatures', $this->ttl, fn() => GeoJSON::getlineFeatures($modulo));
             $pointFeatures = Cache::remember('pointFeatures', $this->ttl, fn() => GeoJSON::getPointFeatures($modulo));
+            $mediaFeatures = Cache::remember('mediaFeatures', $this->ttl, fn() => GeoJSON::getMediaFeatures());
         } else {
             $lineFeatures = GeoJSON::getlineFeatures($modulo);
             $pointFeatures = GeoJSON::getPointFeatures($modulo);
-            $mediaFeatures = GeoJSON::getMedia();
+            $mediaFeatures = GeoJSON::getMediaFeatures();
         }
 
         $points = collect([
