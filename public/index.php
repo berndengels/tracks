@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL ^ E_DEPRECATED);
-phpinfo();
-exit;
+//phpinfo();
+//exit;
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
