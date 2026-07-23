@@ -41,7 +41,6 @@ class StoreMediaRequest extends AdminRequest
                     $type = 'image';
                     $file->move($imageDisk->path(''), $filename);
                     $manager = new ImageManager(new Driver());
-
                     $image = $manager->read($imageDisk->path($filename));
                     $gps = $image->exif('GPS');
                     $exif = $image->exif('EXIF');
