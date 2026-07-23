@@ -80,6 +80,7 @@ class Gis
         if($comments) {
             return $comments;
         }
+
         return null;
     }
 
