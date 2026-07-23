@@ -74,8 +74,6 @@ class Gis
             path: $filename,
             disk: 'videos',
         );
-        dd($media->getNestedValue('comments'));
-
         $comments = $media->getNestedValue('comments');
 
         if($comments) {
