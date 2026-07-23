@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
+use MatanYadaev\EloquentSpatial\Objects\Point;
 
 /**
  * @property int $id
@@ -30,6 +32,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Media extends Model
 {
+    use HasSpatial;
+
     protected $table = 'media';
     protected $guarded = ['id'];
     public $timestamps = true;
@@ -37,6 +41,7 @@ class Media extends Model
     protected $casts = [
         'created'   => 'datetime',
         'lat'   => 'decimal:6',
-        'lng'   => 'decimal:6'
+        'lng'   => 'decimal:6',
+        'pos'   => Point::class,
     ];
 }

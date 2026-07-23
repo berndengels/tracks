@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Malhal\Geographical\Geographical;
+use MatanYadaev\EloquentSpatial\Objects\Point;
+use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
 
 /**
  * @property int $id
@@ -31,7 +33,7 @@ use Malhal\Geographical\Geographical;
  */
 class TrackData extends Model
 {
-    use HasFactory, Geographical;
+    use HasFactory, Geographical, HasSpatial;
 
     const LATITUDE  = 'lat';
     const LONGITUDE = 'lng';
@@ -42,7 +44,8 @@ class TrackData extends Model
     protected $casts = [
         'datetime'  => 'datetime',
         'lat'   => 'decimal:6',
-        'lng'   => 'decimal:6'
+        'lng'   => 'decimal:6',
+        'pos'   => Point::class,
     ];
     public function track()
     {

@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.6",
         "malhal/laravel-geographical": "^1.0",
+        "matanyadaev/laravel-eloquent-spatial": "^4.8",
         "pbmedia/laravel-ffmpeg": "^8.7",
         "plutuss/getid3-laravel": "^1.1",
         "protonemedia/laravel-form-components": "^3.8"

@@ -6,6 +6,7 @@ use App\Repositories\Gis;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use MatanYadaev\EloquentSpatial\Objects\Point;
 
 class StoreMediaRequest extends AdminRequest
 {
@@ -33,6 +34,7 @@ class StoreMediaRequest extends AdminRequest
                     $this->request->set('lat', $lat);
                     $this->request->set('lng', $lng);
                     $this->request->set('created', $created);
+                    $this->request->set('pos', new Point($lat, $lng));
                     break;
                 case 'image/jpeg':
                 case 'image/png':
@@ -48,6 +50,7 @@ class StoreMediaRequest extends AdminRequest
                     $lng = Gis::getLngDecimal($gps['GPSLongitude'], $gps['GPSLongitudeRef']);
                     $this->request->set('lat', $lat);
                     $this->request->set('lng', $lng);
+                    $this->request->set('pos', new Point($lat, $lng));
                     $this->request->set('created', $created);
                     break;
             }
@@ -71,6 +74,7 @@ class StoreMediaRequest extends AdminRequest
             'created' => '',
             'lat'  => '',
             'lng'  => '',
+            'pos'   => '',
             'medium' => '',
         ];
     }

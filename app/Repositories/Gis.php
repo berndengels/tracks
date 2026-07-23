@@ -39,7 +39,6 @@ class Gis
     public static function getVideoLat($filename)
     {
         $info = self::getGpsInfo($filename);
-
         if(isset($info['gps_latitude'])) {
             return  $info['gps_latitude'][0];
         }

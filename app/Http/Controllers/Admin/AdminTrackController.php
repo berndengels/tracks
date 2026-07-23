@@ -11,6 +11,7 @@ use Dunn\GpxReader\DTO\TrackPoint;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use MatanYadaev\EloquentSpatial\Objects\Point;
 
 class AdminTrackController extends Controller
 {
@@ -54,6 +55,7 @@ class AdminTrackController extends Controller
                                     'track_id'  => $track->id,
                                     'lat'   => $p->latitude,
                                     'lng'   => $p->longitude,
+                                    'pos'   => new Point($p->latitude, $p->longitude),
                                     'datetime'  => $p->time,
                                     'speed' => $p->extensions->navionics_speed,
                                 ] : null)->reject(fn($p) => !$p);
