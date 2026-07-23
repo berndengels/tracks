@@ -76,6 +76,7 @@ class Gis
         );
 
         $comments = $media->getNestedValue('comments');
+        dd($comments);
 
         if($comments) {
             return $comments;
