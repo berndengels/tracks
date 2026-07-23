@@ -83,7 +83,7 @@ class GeoJSON
                 ],
                 'geometry'  => [
                     'type'  => 'Point',
-                    'coordinates'  => [(float) $m->lng,(float) $m->lat],
+                    'coordinates'  => [(float) $m->lat, (float) $m->lng],
                 ],
             ])->toArray();
     }

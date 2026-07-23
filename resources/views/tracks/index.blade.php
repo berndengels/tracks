@@ -22,6 +22,7 @@
                :tracks="$tracks"
                :points="$points"
                :bounds="$bounds"
+               :media="$media"
                :duration="$duration"
         />
         {{--

@@ -10,6 +10,7 @@ use Dunn\GpxReader\Facades\Gpx;
 use Dunn\GpxReader\DTO\TrackPoint;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 
 class AdminTrackController extends Controller
 {
@@ -63,6 +64,7 @@ class AdminTrackController extends Controller
                         }
                     }
                 }
+                Cache::clear();
             }
         }
 
@@ -76,6 +78,7 @@ class AdminTrackController extends Controller
     public function update(UpdateTrackRequest $request, Track $track)
     {
         $track->update($request->validated());
+        Cache::clear();
 
         return redirect()->route('admin.tracks.index')->with('success', 'Daten erfolgreich bearbeitet!');
     }
@@ -86,6 +89,7 @@ class AdminTrackController extends Controller
     public function destroy(Track $track)
     {
         $track->delete();
+        Cache::clear();
 
         return redirect()->route('admin.tracks.index')->with('success', 'Daten erfolgreich gelöscht!');
     }

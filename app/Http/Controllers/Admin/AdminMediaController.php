@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMediaRequest;
 use App\Http\Requests\UpdateMediaRequest;
 use App\Models\Media;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class AdminMediaController extends Controller
@@ -35,6 +36,7 @@ class AdminMediaController extends Controller
     {
         if($request->file('medium')) {
             Media::create($request->validated());
+            Cache::clear();
         }
 
         return redirect()->route('admin.media.index')->with('success', 'Daten erfolgreich angelegt!');
@@ -54,6 +56,7 @@ class AdminMediaController extends Controller
     public function update(UpdateMediaRequest $request, Media $medium)
     {
         $medium->update($request->validated());
+        Cache::clear();
 
         return redirect()->route('admin.media.index')->with('success', 'Daten erfolgreich bearbeitet!');
     }
@@ -77,6 +80,7 @@ class AdminMediaController extends Controller
         }
 
         $medium->delete();
+        Cache::clear();
 
         return redirect()->route('admin.media.index')->with('success', 'Daten erfolgreich gelöscht!');
     }

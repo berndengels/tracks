@@ -1,4 +1,17 @@
+@php
+    use Illuminate\Support\Facades\Storage;
+@endphp
+
 <div id="map"></div>
+<div id="image" class="d-none">
+    <img src="" width="800" alt="" />
+</div>
+<div id="video" class="d-none">
+    <video width="800" name="" controls autoplay>
+        <source src="" />
+        Ihr Browser unterstützt dieses Videoformat nicht.
+    </video>
+</div>
 <script>
     const fallbackLatLng = L.latLng([54.35, 13.51]),
         nordEast = L.latLng({
@@ -9,7 +22,7 @@
             lat: {{ $bounds[1][0] }},
             lng: {{ $bounds[1][1] }}
         }),
-        getStyle = (feature) => {
+        getStyle = () => {
             return {
                 weight: 5,
                 opacity: 1,
@@ -22,6 +35,7 @@
         },
         tracks = {!! $tracks !!},
         points = {!! $points !!},
+        media = {!! $media !!},
         duration = {!! $duration !!},
         hasData = tracks.features.length > 0,
         openStreetMapLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -55,6 +69,37 @@
                 attributeControl = L.control.attribution({
                     position: 'topright'
                 }).addAttribution(`Points: ${points.features.length}, Time: ${duration} sec`);
+
+            if(media.features.length > 0) {
+                var src,content;
+                media.features.forEach(m => {
+//                    console.info('latLng', m.geometry.coordinates)
+                    var marker = L.marker(m.geometry.coordinates).addTo(map);
+                    switch (m.properties.type) {
+                        case 'video':
+                            src = '/storage/media/videos/' + m.properties.filename;
+                            $el = $('#video').clone()
+                            $('video', $el).attr({name: m.properties.name})
+                            $('video source', $el).attr({src: src})
+                            content = $el.html()
+                            break
+                        case 'image':
+                        default:
+                            src = '/storage/media/images/' + m.properties.filename;
+                            $el = $('#image').clone()
+                            $('img', $el).attr({alt: m.properties.name, src: src})
+                            content = $el.html()
+                            break;
+                    }
+                    var popup = L.popup({minWidth: 800})
+                        .setLatLng(m.geometry.coordinates)
+                        .setContent(content);
+
+                    marker.on('click', () => {
+                        popup.openOn(map)
+                    })
+                });
+            }
 
             pointLayer.on("click", (e) => {
                 var nearest = null,

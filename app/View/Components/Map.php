@@ -3,10 +3,8 @@
 namespace App\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Casts\Json;
-use Illuminate\Support\Collection;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class Map extends Component
 {
@@ -14,9 +12,10 @@ class Map extends Component
      * Create a new component instance.
      */
     public function __construct(
+        public array $bounds,
         public string $tracks,
         public string $points,
-        public array $bounds,
+        public string $media,
         public ?int $duration = null
     ) {}
 
