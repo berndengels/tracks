@@ -4,10 +4,12 @@
 
 <div id="map"></div>
 <div id="image" class="d-none">
-    <img src="" width="800" alt="" />
+    <h4></h4>
+    <img src="" width="600" alt="" />
 </div>
 <div id="video" class="d-none">
-    <video width="800" name="" controls autoplay>
+    <h4></h4>
+    <video width="600" name="" controls autoplay>
         <source src="" />
         Ihr Browser unterstützt dieses Videoformat nicht.
     </video>
@@ -79,6 +81,7 @@
                         case 'video':
                             src = '/storage/media/videos/' + m.properties.filename;
                             $el = $('#video').clone()
+                            $('h4', $el).text(m.properties.name)
                             $('video', $el).attr({name: m.properties.name})
                             $('video source', $el).attr({src: src})
                             content = $el.html()
@@ -87,11 +90,12 @@
                         default:
                             src = '/storage/media/images/' + m.properties.filename;
                             $el = $('#image').clone()
+                            $('h4', $el).text(m.properties.name)
                             $('img', $el).attr({alt: m.properties.name, src: src})
                             content = $el.html()
                             break;
                     }
-                    var popup = L.popup({minWidth: 800})
+                    var popup = L.popup({minWidth: 600, keepInView: true})
                         .setLatLng(m.geometry.coordinates)
                         .setContent(content);
 
