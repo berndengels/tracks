@@ -11,6 +11,9 @@
                 <div class="col">
                     <x-form-submit>Speichern</x-form-submit>
                 </div>
+                <div class="col">
+                    <a class="link-danger" href="{{ route('admin.media.sanitize') }}">Media Files bereinigen</a>
+                </div>
             </div>
         </x-form>
     </div>

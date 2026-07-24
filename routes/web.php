@@ -21,6 +21,7 @@ Route::group([
     Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('tracks', AdminTrackController::class)->except(['show','create']);
     Route::resource('media', AdminMediaController::class)->except(['show','create']);
+    Route::get('media/sanitize', [AdminMediaController::class, 'sanitize'])->name('media.sanitize');
 });
 
 require __DIR__.'/auth.php';

@@ -84,4 +84,21 @@ class AdminMediaController extends Controller
 
         return redirect()->route('admin.media.index')->with('success', 'Daten erfolgreich gelöscht!');
     }
+
+    public function sanitize()
+    {
+        $disk = Storage::disk('images');
+        $files = collect($disk->files())->map(fn($f) => $f !== '.gitignore' ? $f : null)->reject(fn($f) => !$f);
+        $dbEntries = Media::select('filename')->whereType('image')->pluck('filename');
+        $toRemove = $files->diff($dbEntries);
+        $toRemove->each(fn($filename) => $disk->delete($filename));
+
+        $disk = Storage::disk('videos');
+        $files = collect($disk->files())->map(fn($f) => $f !== '.gitignore' ? $f : null)->reject(fn($f) => !$f);
+        $dbEntries = Media::select('filename')->whereType('video')->pluck('filename');
+        $toRemove = $files->diff($dbEntries);
+        $toRemove->each(fn($filename) => $disk->delete($filename));
+
+        return redirect()->route('admin.media.index')->with('success', 'Daten erfolgreich bereinigt!');
+    }
 }
