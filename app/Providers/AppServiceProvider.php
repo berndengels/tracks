@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use MatanYadaev\EloquentSpatial\EloquentSpatial;
+use MatanYadaev\EloquentSpatial\Enums\Srid;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -42,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
         URL::forceScheme(env('FORCE_SCHEME', 'https'));
         Schema::defaultStringLength(191);
         Paginator::useBootstrapFive();
+        EloquentSpatial::setDefaultSrid(Srid::WGS84);
 
         Blade::components([
             'table' => Table::class,

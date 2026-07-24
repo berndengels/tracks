@@ -30,47 +30,52 @@ class AdminTrackController extends Controller
      */
     public function store(StoreTrackRequest $request)
     {
-        /**
-         * @var $file UploadedFile
-         */
-        $file = $request->validated('tracks');
-        setlocale(LC_CTYPE, 'de_DE');
+        try {
+            /**
+             * @var $file UploadedFile
+             */
+            $file = $request->validated('tracks');
+            setlocale(LC_CTYPE, 'de_DE');
 
-        if($file) {
-            $content = trim($file->getContent());
-            $gpx = Gpx::parseFromString($content);
+            if($file) {
+                $content = trim($file->getContent());
+                $gpx = Gpx::parseFromString($content);
 
-            if($gpx->tracks) {
-                foreach ($gpx->tracks as $item) {
-                    foreach($item->segments as $segment) {
-                        $track = Track::create([
-                            'name'  => $item->name,
-                            'start' => $segment->extensions->navionics_start_time,
-                            'end'   => $segment->extensions->navionics_end_time,
-                        ]);
+                if($gpx->tracks) {
+                    foreach ($gpx->tracks as $item) {
+                        foreach($item->segments as $segment) {
+                            $track = Track::create([
+                                'name'  => $item->name,
+                                'start' => $segment->extensions->navionics_start_time,
+                                'end'   => $segment->extensions->navionics_end_time,
+                            ]);
 
-                        if($track) {
-                            $points = collect($segment->points)
-                                ->map(fn(TrackPoint $p) => $p->extensions->navionics_speed > 0 && $p->latitude && $p->longitude ? [
-                                    'track_id'  => $track->id,
-                                    'lat'   => $p->latitude,
-                                    'lng'   => $p->longitude,
-                                    'pos'   => new Point($p->latitude, $p->longitude),
-                                    'datetime'  => $p->time,
-                                    'speed' => $p->extensions->navionics_speed,
-                                ] : null)->reject(fn($p) => !$p);
+                            if($track) {
+                                $points = collect($segment->points)
+                                    ->map(fn(TrackPoint $p) => $p->extensions->navionics_speed > 0 && $p->latitude && $p->longitude ? [
+                                        'track_id'  => $track->id,
+                                        'lat'   => $p->latitude,
+                                        'lng'   => $p->longitude,
+                                        'pos'   => new Point($p->latitude, $p->longitude),
+                                        'datetime'  => $p->time->format('Y-m-d H:i:s'),
+                                        'speed' => $p->extensions->navionics_speed,
+                                    ] : null)->reject(fn($p) => !$p);
 
-                            $points
-                                ->chunk(1000)
-                                ->each(fn(Collection $c) => $track->trackdata()->insertOrIgnore($c->toArray()));
+                                $points
+//                                    ->chunk(1000)
+//                                    ->each(fn(Collection $c) => $track->trackdata()->insertOrIgnore($c->toArray()));
+                                    ->each(fn(array $c) => $track->trackdata()->create($c));
+                            }
                         }
                     }
+                    Cache::clear();
                 }
-                Cache::clear();
             }
-        }
 
-        return redirect()->route('admin.tracks.index')->with('success', 'Daten erfolgreich angelegt!');
+            return redirect()->route('admin.tracks.index')->with('success', 'Daten erfolgreich angelegt!');
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
     }
 
     public function edit(Track $track) {
