@@ -7,14 +7,15 @@
     <h4></h4>
     <img src="" width="600" alt="" />
 </div>
-<div id="video" class="d-none">
+<div id="videoWrapper" class="d-none">
     <h4></h4>
-    <video width="600" name="" controls autoplay>
-        <source src="" />
+    <video id="video" width="600" name="" controls autoplay>
+        <source src="" type="video/mp4" />
         Ihr Browser unterstützt dieses Videoformat nicht.
     </video>
 </div>
 <script>
+    var $currentVideo = null;
     const fallbackLatLng = L.latLng([54.35, 13.51]),
         nordEast = L.latLng({
             lat: {{ $bounds[0][0] }},
@@ -73,18 +74,19 @@
                 }).addAttribution(`Points: ${points.features.length}, Time: ${duration} sec`);
 
             if(media.features.length > 0) {
-                var src,content;
+                var src, content;
+
                 media.features.forEach(m => {
-//                    console.info('latLng', m.geometry.coordinates)
                     var marker = L.marker(m.geometry.coordinates).addTo(map);
                     switch (m.properties.type) {
                         case 'video':
                             src = '/storage/media/videos/' + m.properties.filename;
-                            $el = $('#video').clone()
-                            $('h4', $el).text(m.properties.name)
-                            $('video', $el).attr({name: m.properties.name})
-                            $('video source', $el).attr({src: src})
-                            content = $el.html()
+                            $el = $('#videoWrapper').clone();
+                            $('h4', $el).text(m.properties.name);
+                            $currentVideo = $('#video', $el);
+                            $currentVideo.attr({name: m.properties.name});
+                            $currentVideo.find('source').attr({src: src});
+                            content = $el.html();
                             break
                         case 'image':
                         default:
@@ -95,9 +97,18 @@
                             content = $el.html()
                             break;
                     }
-                    var popup = L.popup({minWidth: 600, keepInView: true})
+
+                    const popup = L.popup({minWidth: 600, keepInView: true})
                         .setLatLng(m.geometry.coordinates)
                         .setContent(content);
+
+                    if('video' === m.properties.type) {
+                        popup.on('popupclose', (e) => {
+                            console.info('popupclose', e)
+                            $currentVideo.pause();
+                            $currentVideo = null;
+                        });
+                    }
 
                     marker.on('click', () => {
                         popup.openOn(map)
