@@ -103,10 +103,10 @@
                         .setContent(content);
 
                     if('video' === m.properties.type) {
-                        popup.on('popupclose', (e) => {
-                            console.info('popupclose', e)
-                            $currentVideo.pause();
-                            $currentVideo = null;
+                        map.on('popupclose', (e) => {
+                            var video = document.getElementById('video');
+                            video.pause();
+                            console.info('video', video)
                         });
                     }
 
