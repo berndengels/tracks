@@ -31,12 +31,7 @@ class TrackController extends Controller
         }
 
         $bounds = Cache::remember('bounds', $this->ttl, fn() => GeoJSON::getBounds());
-//        $bounds     = GeoJSON::getBounds();
-//        $northEast = ['lat' => $bounds[0][0], 'lng' => $bounds[0][1]];
-//        $southWest = ['lat' => $bounds[1][0], 'lng'  => $bounds[1][1]];
-//        $bounds = json_encode($bounds);
-//        $northEast = json_encode($northEast);
-//        $southWest = json_encode($southWest);
+
         if($this->useCache) {
             $lineFeatures = Cache::remember('lineFeatures', $this->ttl, fn() => GeoJSON::getlineFeatures($modulo));
             $pointFeatures = Cache::remember('pointFeatures', $this->ttl, fn() => GeoJSON::getPointFeatures($modulo));
@@ -65,14 +60,13 @@ class TrackController extends Controller
             'features'  => $mediaFeatures,
         ])->toJson();
 
-//        \Storage::disk('public')->write('geo.json', $tracks);
-//        $firstPoint = TrackData::select('lat','lng')->orderBy('datetime')->first();
-//        $distance = TrackData::select('lat','lng')->distance($firstPoint->lat, $firstPoint->lng)->get()->map->distance->sum();
+        $km = Track::select('km')->get('km')->pluck('km')->sum();
+        $nm = Track::select('nm')->get('nm')->pluck('nm')->sum();
 
         $endTime = Carbon::now(config('app.timezone'));
         $duration = $endTime->diffInSeconds($startTime);
 
-        return view('tracks.index', compact('tracks','points','bounds','duration','media'));
+        return view('tracks.index', compact('tracks','points','bounds','duration','media','km','nm'));
 //        return view('tracks.index', compact('northEast','southWest', 'bounds'));
     }
 }

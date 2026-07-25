@@ -38,6 +38,7 @@ class TrackData extends Model
     const LATITUDE  = 'lat';
     const LONGITUDE = 'lng';
 
+    protected static $kilometers = true;
     protected $table = 'track_data';
     protected $guarded = ['id'];
     public $timestamps = false;
@@ -45,6 +46,8 @@ class TrackData extends Model
         'datetime'  => 'datetime',
         'lat'   => 'decimal:6',
         'lng'   => 'decimal:6',
+        'km'   => 'decimal:1',
+        'nm'   => 'decimal:1',
         'pos'   => Point::class,
     ];
     public function track()

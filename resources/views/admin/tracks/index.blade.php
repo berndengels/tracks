@@ -11,6 +11,7 @@
                     <div class="col">
                         <x-form-submit label="Speichern" />
                     </div>
+                    <div class="col text-primary float-end">insgesamt: {{ $totalKM }} KM {{ $totalNM }} NM</div>
                 </div>
             </x-form>
         </div>
@@ -19,7 +20,7 @@
         @if($data->total() > 0)
             {{ $data->links() }}
             <x-table :items="$data"
-                     :fields="['ID','Name','Start', 'Ende', 'Points', 'Aktiv']"
+                     :fields="['ID','Name','Start', 'Ende', 'Points', 'KM', 'NM', 'Aktiv']"
                      hasActions isSmall
             >
                 @foreach($data as $item)
@@ -30,6 +31,8 @@
                         <x-td field="start" dateformat="d.m.Y H:i" />
                         <x-td field="end" dateformat="d.m.Y H:i" />
                         <td>{{ $item->trackdata->count() }}</td>
+                        <x-td field="km" />
+                        <x-td field="nm" />
                         <x-td field="active" bool />
                         <x-action routePrefix="admin.tracks" edit delete />
                         @endBindData

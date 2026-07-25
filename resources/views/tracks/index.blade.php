@@ -23,6 +23,8 @@
                :points="$points"
                :bounds="$bounds"
                :media="$media"
+               :km="$km"
+               :nm="$nm"
                :duration="$duration"
         />
         {{--

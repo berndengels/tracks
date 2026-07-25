@@ -37,6 +37,8 @@
             return (meters / seconds * 1.944).toFixed(1);
         },
         tracks = {!! $tracks !!},
+        km = {!! $km !!},
+        nm = {!! $nm !!},
         points = {!! $points !!},
         media = {!! $media !!},
         duration = {!! $duration !!},
@@ -71,7 +73,7 @@
                 }),
                 attributeControl = L.control.attribution({
                     position: 'topright'
-                }).addAttribution(`Points: ${points.features.length}, Time: ${duration} sec`);
+                }).addAttribution(`Insgesamt ${km} km, ${nm} nm, Points: ${points.features.length}, Time: ${duration} sec`);
 
             if(media.features.length > 0) {
                 var src, content;

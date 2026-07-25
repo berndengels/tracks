@@ -6,6 +6,8 @@ use App\Models\Track;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTrackRequest;
 use App\Http\Requests\UpdateTrackRequest;
+use App\Models\TrackData;
+use App\Repositories\Gis;
 use Dunn\GpxReader\Facades\Gpx;
 use Dunn\GpxReader\DTO\TrackPoint;
 use Illuminate\Http\UploadedFile;
@@ -20,9 +22,39 @@ class AdminTrackController extends Controller
      */
     public function index()
     {
-        $data = Track::orderBy('start')->paginate($this->paginationLimit);
+        $query = Track::orderBy('start');
+        $totalKM = with(clone $query)->get('km')->pluck('km')->sum();
+        $totalNM = with(clone $query)->get('nm')->pluck('nm')->sum();
+        $data = $query->paginate($this->paginationLimit);
 
-        return view('admin.tracks.index', compact('data'));
+        $query->get()->each(function (Track $t) {
+            if(!$t->km || !$t->nm) {
+                $points = TrackData::whereTrackId($t->id)
+                    ->orderBy('datetime')
+                    ->get();
+
+                $total = 0;
+
+                for ($i = 1; $i < count($points); $i++) {
+                    $total += Gis::distance(
+                        $points[$i-1]->lat,
+                        $points[$i-1]->lng,
+                        $points[$i]->lat,
+                        $points[$i]->lng,
+                    );
+                }
+
+                $km = round($total / 1000, 1);
+                $nm = round($total / 1852, 1);
+
+                $t->update([
+                    'km'    => $km,
+                    'nm'    => $nm,
+                ]);
+            }
+        });
+
+        return view('admin.tracks.index', compact('data','totalKM', 'totalNM'));
     }
 
     /**

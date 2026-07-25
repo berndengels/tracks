@@ -16,6 +16,8 @@ class Map extends Component
         public string $tracks,
         public string $points,
         public string $media,
+        public float $km,
+        public float $nm,
         public ?int $duration = null
     ) {}
 
