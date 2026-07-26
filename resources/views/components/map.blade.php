@@ -162,7 +162,12 @@
 //                console.info('p', p)
                 L.popup()
                     .setLatLng(e.latlng)
-                    .setContent(`<b>${moment(p.datetime).format("dd DD.MM.YYYY HH:mm")}</b><br>${p.track.name}<br>Start ${p.track.start} Ende ${p.track.end}<br>Speed: ${p.speed} kn`)
+                    .setContent(`<b>${moment(p.datetime).format("dd DD.MM.YYYY HH:mm")}</b><br>
+                        ${p.track.name}<br>
+                        Start ${p.track.start} Ende ${p.track.end}<br>
+                        Speed: ${p.speed} kn<br>
+                        Turnlänge insgesamt:<br>
+                        ${p.track.km} km, ${p.track.nm} nm`)
                     .openOn(map);
             });
             openStreetMapLayer.addTo(map);

@@ -53,6 +53,8 @@ class GeoJSON
                                 'name'  => $p->track->name,
                                 'start' => $p->track->start->addHours(2)->format('H:i'),
                                 'end' => $p->track->end->addHours(2)->format('H:i'),
+                                'km'    => $p->track->km,
+                                'nm'    => $p->track->nm,
                             ],
                             'id'        => $p->id,
                             // speed
