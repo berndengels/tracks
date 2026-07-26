@@ -1,5 +1,6 @@
 <?php
 error_reporting(E_ALL ^ E_DEPRECATED);
+set_time_limit(0);
 //phpinfo();
 //exit;
 
