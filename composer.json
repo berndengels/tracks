@@ -18,6 +18,7 @@
         "malhal/laravel-geographical": "^1.0",
         "matanyadaev/laravel-eloquent-spatial": "^4.8",
         "pbmedia/laravel-ffmpeg": "^8.7",
+        "php-ffmpeg/php-ffmpeg": "^1.4",
         "plutuss/getid3-laravel": "^1.1",
         "protonemedia/laravel-form-components": "^3.8"
     },
