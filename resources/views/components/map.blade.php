@@ -3,20 +3,12 @@
 @endphp
 
 <div id="map"></div>
-<div id="image" class="d-none">
-    <h4></h4>
-    <img src="" width="600" alt="" />
-</div>
-<div id="videoWrapper" class="d-none">
-    <h4></h4>
-    <video id="video" width="600" name="" controls autoplay>
-        <source src="" type="video/mp4" />
-        Ihr Browser unterstützt dieses Videoformat nicht.
-    </video>
-</div>
+
 <script>
-    var $currentVideo = null;
+    var $media, $wrapper;
     const fallbackLatLng = L.latLng([54.35, 13.51]),
+        $h = $('<h4>'),
+        mediaWidth = '600',
         nordEast = L.latLng({
             lat: {{ $bounds[0][0] }},
             lng: {{ $bounds[0][1] }}
@@ -35,6 +27,44 @@
         },
         getSpeed = (meters, seconds) => {
             return (meters / seconds * 1.944).toFixed(1);
+        },
+        contentDiv = (filename, title, type = 'image') => {
+            var src;
+            $wrapper = $('<div>');
+            $wrapper.css({
+                width: mediaWidth + 'px',
+                margin: 0,
+                padding: 0,
+            });
+            $h.text(title)
+            if('image' === type) {
+                src = '/storage/media/images/' + filename;
+                $media = $('<img>');
+                $media.attr({
+                    src: src,
+                    alt: title,
+                    width: mediaWidth,
+                });
+            } else {
+                src = '/storage/media/videos/' + filename;
+                $media = $('<video>'), $source = $('<source>');
+                $media.attr({
+                    id: 'video',
+                    with: mediaWidth,
+                    controls: true,
+                    autoplay: true
+                });
+                $source.attr({
+                    type: 'video/mp4',
+                    src: src,
+                })
+                $source.appendTo($media)
+            }
+
+            $h.appendTo($wrapper);
+            $media.appendTo($wrapper);
+
+            return $wrapper.html();
         },
         tracks = {!! $tracks !!},
         km = {!! $km !!},
@@ -76,45 +106,28 @@
                 }).addAttribution(`Insgesamt ${km} km, ${nm} nm, Points: ${points.features.length}, Time: ${duration} sec`);
 
             if(media.features.length > 0) {
-                var src, content;
+                var src, title, type, content;
 
                 media.features.forEach(m => {
                     var marker = L.marker(m.geometry.coordinates).addTo(map);
-                    switch (m.properties.type) {
-                        case 'video':
-                            src = '/storage/media/videos/' + m.properties.filename;
-                            $el = $('#videoWrapper').clone();
-                            $('h4', $el).text(m.properties.name);
-                            $currentVideo = $('#video', $el);
-                            $currentVideo.attr({name: m.properties.name});
-                            $currentVideo.find('source').attr({src: src});
-                            content = $el.html();
-                            break
-                        case 'image':
-                        default:
-                            src = '/storage/media/images/' + m.properties.filename;
-                            $el = $('#image').clone()
-                            $('h4', $el).text(m.properties.name)
-                            $('img', $el).attr({alt: m.properties.name, src: src})
-                            content = $el.html()
-                            break;
-                    }
-
-                    const popup = L.popup({minWidth: 600, keepInView: true})
+                    content = contentDiv(m.properties.filename, m.properties.name, m.properties.type);
+                    const popup = L.popup({minWidth: 640, keepInView: true, className: 'myPopup'})
                         .setLatLng(m.geometry.coordinates)
                         .setContent(content);
-
-                    if('video' === m.properties.type) {
-                        map.on('popupclose', (e) => {
-                            var video = document.getElementById('video');
-                            video.pause();
-                            console.info('video', video)
-                        });
-                    }
 
                     marker.on('click', () => {
                         popup.openOn(map)
                     })
+
+                    map.on('popupclose', (e) => {
+                        var video = document.getElementById('video');
+                        if(video) {
+                            video.pause();
+                            console.info('video', video)
+                        }
+//                        $wrapper.hide();
+                        $wrapper = null;
+                    });
                 });
             }
 

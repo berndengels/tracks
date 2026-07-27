@@ -118,3 +118,13 @@ body {
     height: 100vh;
     border: 1px solid grey;
 }
+.myPopup {
+    width: auto;
+    padding: 0;
+    img {
+        width: 640px;
+    }
+    video {
+        width: 640px;
+    }
+}
