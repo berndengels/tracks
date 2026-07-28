@@ -125,7 +125,6 @@
                             video.pause();
                             console.info('video', video)
                         }
-//                        $wrapper.hide();
                         $wrapper = null;
                     });
                 });
@@ -175,7 +174,7 @@
 //                console.info('p', p)
                 L.popup()
                     .setLatLng(e.latlng)
-                    .setContent(`<b>${moment(p.datetime).format("dd DD.MM.YYYY HH:mm")}</b><br>
+                    .setContent(`<b>${moment(p.datetime).format("dddd DD.MM.YYYY HH:mm")}</b><br>
                         ${p.track.name}<br>
                         Start ${p.track.start} Ende ${p.track.end}<br>
                         Speed: ${p.speed} kn<br>
