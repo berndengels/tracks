@@ -20,7 +20,8 @@
         "pbmedia/laravel-ffmpeg": "^8.7",
         "php-ffmpeg/php-ffmpeg": "^1.4",
         "plutuss/getid3-laravel": "^1.1",
-        "protonemedia/laravel-form-components": "^3.8"
+        "protonemedia/laravel-form-components": "^3.8",
+        "spatie/laravel-medialibrary": "^11.23"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.1",

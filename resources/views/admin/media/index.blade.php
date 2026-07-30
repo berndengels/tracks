@@ -4,14 +4,14 @@
     <div class="row">
         <x-form class="form-floating w-50 m-3" method="post" action="{{ route('admin.media.store') }}" enctype="multipart/form-data">
             <div class="row">
-                <div class="col">
+                <div class="col-sm-12 col-lg-6">
                     <x-form-input type="text" name="name" label="Name" />
                     <x-form-input type="file" name="medium" label="Upload" />
                 </div>
-                <div class="col">
+                <div class="col-sm-12 col-lg-6">
                     <x-form-submit>Speichern</x-form-submit>
                 </div>
-                <div class="col">
+                <div class="col-sm-12 col-lg-6">
                     <a class="link-danger" href="{{ route('admin.media.sanitize') }}">Media Files bereinigen</a>
                 </div>
             </div>
