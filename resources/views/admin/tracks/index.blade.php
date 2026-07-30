@@ -5,13 +5,13 @@
         <div class="col">
             <x-form class="form-floating w-50 m-3" method="post" action="{{ route('admin.tracks.store') }}" enctype="multipart/form-data">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-sm-12 col-lg-6">
                         <x-form-input type="file" name="tracks" label="Tracks" />
                     </div>
-                    <div class="col">
+                    <div class="col-sm-12 col-lg-6">
                         <x-form-submit label="Speichern" />
                     </div>
-                    <div class="col text-primary float-end">insgesamt: {{ $totalKM }} KM {{ $totalNM }} NM</div>
+                    <div class="col-sm-12 col-lg-6 text-primary float-end">insgesamt: {{ $totalKM }} KM {{ $totalNM }} NM</div>
                 </div>
             </x-form>
         </div>
