@@ -5,9 +5,10 @@
 <div id="map"></div>
 
 <script>
-    var $media, $wrapper;
+    var $media, $wrapper, marker = {};
     const fallbackLatLng = L.latLng([54.35, 13.51]),
-        $h = $('<h4>'),
+        $h = $('<h6>'),
+        $span = $('<span class="float-end pos">'),
         mediaWidth = '600',
         nordEast = L.latLng({
             lat: {{ $bounds[0][0] }},
@@ -28,7 +29,7 @@
         getSpeed = (meters, seconds) => {
             return (meters / seconds * 1.944).toFixed(1);
         },
-        contentDiv = (filename, title, type = 'image') => {
+        contentDiv = (filename, title, pos, type = 'image') => {
             var src;
             $wrapper = $('<div>');
             $wrapper.css({
@@ -37,6 +38,7 @@
                 padding: 0,
             });
             $h.text(title)
+            $span.text(pos[0] +" N "+ pos[1] + " E").appendTo($h)
             if('image' === type) {
                 src = '/storage/media/images/' + filename;
                 $media = $('<img>');
@@ -87,6 +89,7 @@
         ]) : null,
         center = hasData ? bounds.getCenter() : fallbackLatLng;
 
+
     $(document).ready(() => {
         if(tracks.features.length > 0) {
                 const map = L.map('map', {
@@ -110,7 +113,7 @@
 
                 media.features.forEach(m => {
                     var marker = L.marker(m.geometry.coordinates).addTo(map);
-                    content = contentDiv(m.properties.filename, m.properties.name, m.properties.type);
+                    content = contentDiv(m.properties.filename, m.properties.name, m.geometry.coordinates, m.properties.type);
                     const popup = L.popup({minWidth: 640, keepInView: true, className: 'myPopup'})
                         .setLatLng(m.geometry.coordinates)
                         .setContent(content);

@@ -136,6 +136,16 @@ body {
     video {
         width: 640px;
     }
+    h6 {
+        white-space: nowrap;
+        span {
+            &.pos {
+                color: blue;
+                font-size: 12px;
+                font-weight: normal;
+            }
+        }
+    }
 }
 
 @include media('<tablet') {

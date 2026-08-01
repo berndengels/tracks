@@ -78,6 +78,7 @@ class GeoJSON
             ->map(fn(Media $m) => [
                 'type'  => 'Feature',
                 'properties' => [
+                    'id'  => $m->id,
                     'name'  => $m->name,
                     'filename' => $m->filename,
                     'type'  => $m->type,
