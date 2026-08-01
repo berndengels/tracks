@@ -122,7 +122,7 @@
                         .setLatLng(m.geometry.coordinates)
                         .setContent(content);
 
-                    markers.on('click', () => {
+                    marker.on('click', () => {
                         popup.openOn(map)
                     })
 
