@@ -7,6 +7,7 @@
 <script>
     var $media, $wrapper, marker = {};
     const fallbackLatLng = L.latLng([54.35, 13.51]),
+        isMobile = WURFL.is_mobile,
         $h = $('<h6>'),
         $span = $('<span class="float-end pos">'),
         mediaWidth = '600',
@@ -117,7 +118,7 @@
                     markers.addLayer(marker);
 
                     content = contentDiv(m.properties.filename, m.properties.name, m.geometry.coordinates, m.properties.type);
-                    const popup = L.popup({minWidth: 640, keepInView: true, className: 'myPopup'})
+                    const popup = L.popup({minWidth: isMobile ? '100%' : 640, keepInView: true, className: 'myPopup'})
                         .setLatLng(m.geometry.coordinates)
                         .setContent(content);
 

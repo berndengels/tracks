@@ -9,6 +9,7 @@
 @push('scripts')
     <script src="leaflet/leaflet.js"></script>
     <script src="leaflet.markercluster/leaflet.markercluster.js"></script>
+    <script src="https://wurfl.io/wurfl.js"></script>
 @endpush
 
 @section('main')
