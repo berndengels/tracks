@@ -94,6 +94,7 @@
         if(tracks.features.length > 0) {
                 const map = L.map('map', {
                     zoom: 12,
+                    maxZoom: 19,
                     center: [center.lat, center.lng]
                 }),
                 lineStringLayer = tracks.features.length > 0 ? L.geoJSON(tracks, {
@@ -109,16 +110,18 @@
                 }).addAttribution(`Insgesamt ${km} km, ${nm} nm, Points: ${points.features.length}, Time: ${duration} sec`);
 
             if(media.features.length > 0) {
-                var src, title, type, content;
+                var src, title, type, content, markers = L.markerClusterGroup();
 
                 media.features.forEach(m => {
-                    var marker = L.marker(m.geometry.coordinates).addTo(map);
+                    var marker = L.marker(m.geometry.coordinates);
+                    markers.addLayer(marker);
+
                     content = contentDiv(m.properties.filename, m.properties.name, m.geometry.coordinates, m.properties.type);
                     const popup = L.popup({minWidth: 640, keepInView: true, className: 'myPopup'})
                         .setLatLng(m.geometry.coordinates)
                         .setContent(content);
 
-                    marker.on('click', () => {
+                    markers.on('click', () => {
                         popup.openOn(map)
                     })
 
@@ -131,6 +134,7 @@
                         $wrapper = null;
                     });
                 });
+                map.addLayer(markers);
             }
 
             pointLayer.on("click", (e) => {

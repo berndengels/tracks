@@ -1,5 +1,16 @@
 @extends('layouts.default')
 
+@push('styles')
+    <link rel="stylesheet" href="leaflet/leaflet.css" />
+    <link rel="stylesheet" href="leaflet.markercluster/MarkerCluster.css" />
+    <link rel="stylesheet" href="leaflet.markercluster/MarkerCluster.Default.css" />
+@endpush
+
+@push('scripts')
+    <script src="leaflet/leaflet.js"></script>
+    <script src="leaflet.markercluster/leaflet.markercluster.js"></script>
+@endpush
+
 @section('main')
     <div class="w-100">
         <x-map class="w-100"

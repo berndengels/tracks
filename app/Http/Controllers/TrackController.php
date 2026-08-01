@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Track;
 use App\Repositories\GeoJSON;
+use App\Repositories\Gis;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 

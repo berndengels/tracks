@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\Models\UseBooleanIcon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\JoinClause;
 
 /**
  * @property int $id
@@ -48,6 +49,7 @@ class Track extends Model
 
     public function trackdata()
     {
-        return $this->hasMany(TrackData::class)->orderBy('datetime');
+        return $this->hasMany(TrackData::class,'track_id', 'id')
+            ->orderBy('track_data.datetime');
     }
 }

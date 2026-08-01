@@ -2,7 +2,7 @@ import moment from 'moment';
 import toastr from 'toastr';
 moment.locale('de');
 import axios from "axios";
-import { createApp } from "vue"
+import { createApp } from "vue";
 
 window.createApp = createApp;
 window.axios = axios;

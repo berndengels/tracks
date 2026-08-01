@@ -2,6 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Models\Track;
+//use Illuminate\Database\PDO;
+use PDO;
+use Illuminate\Support\Facades\DB;
 use Plutuss\Facades\MediaAnalyzer;
 
 class Gis
@@ -108,5 +112,37 @@ class Gis
         $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
 
         return $earthRadius * $c;
+    }
+
+    public static function trackDistance(Track $track, $type = 'nm')
+    {
+        $id = $track->id;
+        $multiplicator = 'nm' === $type ? 1854 : 1000;
+
+        $query = <<< SQL
+            SELECT ROUND(SUM(ST_Distance_Sphere(
+                t1.pos,
+                t2.pos
+            )) / $multiplicator, 1) AS distance
+            FROM track_data t1
+            JOIN track_data t2 ON t2.id = t1.id - 1
+            WHERE t1.track_id = $id AND t2.track_id = $id
+            GROUP BY t1.track_id
+SQL;
+        $result = DB::connection('mysql')
+            ->getPdo()
+            ->query($query)
+//            ->prepare($query)
+            ->fetch(PDO::FETCH_NUM)
+/*
+            ->execute([
+                'multiplicator' => 'nm' === $type ? 1854 : 1000,
+                'track_id_1'  => $id,
+                'track_id_2'  => $id,
+            ])
+*/
+        ;
+
+        return $result[0];
     }
 }
