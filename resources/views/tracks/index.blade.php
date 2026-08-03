@@ -4,6 +4,15 @@
     <link rel="stylesheet" href="leaflet/leaflet.css" />
     <link rel="stylesheet" href="leaflet.markercluster/MarkerCluster.css" />
     <link rel="stylesheet" href="leaflet.markercluster/MarkerCluster.Default.css" />
+    <style>
+        marker-cluster-small {
+            background-color: rgba(255, 226, 140, 0.6);
+        }
+        .marker-cluster-small div {
+            background-color: rgba(255, 0, 0, 0.8);
+            color: #fff;
+        }
+    </style>
 @endpush
 
 @push('scripts')
