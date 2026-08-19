@@ -10,31 +10,42 @@ use Illuminate\Support\Facades\Cache;
 
 class TrackController extends Controller
 {
-    private $limit = 100;
+    private $limit = 1000;
     private $ttl = 3600 * 6;
     private $useCache = true;
+    private $year;
+
+    public function __construct()
+    {
+        $this->year = Carbon::today(config('app.timezone'))->year;
+    }
+
 
     /**
      * Display a listing of the resource.
      */
-    public function index(int $modulo = null)
+    public function index(string $year = null)
     {
         $startTime = Carbon::now(config('app.timezone'));
 
-        if(! $modulo) {
-            $modulo = $this->limit;
+        if(! $year) {
+            $year = $this->year;
+        } elseif ( $this->year !== $year) {
+            Cache::clear();
         }
 
-        $bounds = Cache::remember('bounds', $this->ttl, fn() => GeoJSON::getBounds());
+        $modulo = $this->limit;
+
+        $bounds = Cache::remember('bounds', $this->ttl, fn() => GeoJSON::getBounds($year));
 
         if($this->useCache) {
-            $lineFeatures = Cache::remember('lineFeatures', $this->ttl, fn() => GeoJSON::getlineFeatures($modulo));
-            $pointFeatures = Cache::remember('pointFeatures', $this->ttl, fn() => GeoJSON::getPointFeatures($modulo));
-            $mediaFeatures = Cache::remember('mediaFeatures', $this->ttl, fn() => GeoJSON::getMediaFeatures());
+            $lineFeatures = Cache::remember('lineFeatures', $this->ttl, fn() => GeoJSON::getlineFeatures($modulo, $year));
+            $pointFeatures = Cache::remember('pointFeatures', $this->ttl, fn() => GeoJSON::getPointFeatures($modulo, $year));
+            $mediaFeatures = Cache::remember('mediaFeatures', $this->ttl, fn() => GeoJSON::getMediaFeatures($year));
         } else {
-            $lineFeatures = GeoJSON::getlineFeatures($modulo);
-            $pointFeatures = GeoJSON::getPointFeatures($modulo);
-            $mediaFeatures = GeoJSON::getMediaFeatures();
+            $lineFeatures = GeoJSON::getlineFeatures($modulo, $year);
+            $pointFeatures = GeoJSON::getPointFeatures($modulo, $year);
+            $mediaFeatures = GeoJSON::getMediaFeatures($year);
         }
 
         $points = collect([

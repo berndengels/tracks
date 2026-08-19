@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Builder;
 
 class GeoJSON
 {
-    public static function getlineFeatures($modulo)
+    public static function getlineFeatures($modulo, $year)
     {
         return Track::with(['trackdata'])
             ->whereActive(true)
+            ->whereRaw("YEAR(start) = $year")
             ->orderBy('start')
             ->get()
             ->map(fn(Track $t) => [
@@ -38,10 +39,10 @@ class GeoJSON
             ]);
     }
 
-    public static function getPointFeatures($modulo)
+    public static function getPointFeatures($modulo, $year)
     {
         return TrackData::with(['track'])
-            ->whereHas('track', fn(Builder $q) => $q->whereActive(true))
+            ->whereHas('track', fn(Builder $q) => $q->whereActive(true)->whereRaw("YEAR(start) = $year"))
             ->orderBy('datetime')
             ->get()
             ->map(function (TrackData $p, $idx) use ($modulo) {
@@ -71,9 +72,10 @@ class GeoJSON
             })->reject(fn($d) => !$d)->values()->toArray();
     }
 
-    public static function getMediaFeatures()
+    public static function getMediaFeatures($year)
     {
         return Media::orderBy('created_at')
+            ->whereRaw("YEAR(created_at) = $year")
             ->get()
             ->map(fn(Media $m) => [
                 'type'  => 'Feature',
@@ -91,10 +93,11 @@ class GeoJSON
             ])->toArray();
     }
 
-    public static function getlineFeaturesFromBound(array $southWest, array $northEast, $modulo)
+    public static function getlineFeaturesFromBound(array $southWest, array $northEast, $modulo, $year)
     {
         return Track::with(['trackdata'])
             ->whereActive(true)
+            ->whereRaw("YEAR(start) = $year")
             ->whereHas('trackdata', fn(Builder $q) => $q
 //                ->whereBetween('lat', [$southWest['lat'], $northEast['lat']])
 //                ->whereBetween('lng', [$southWest['lng'], $northEast['lng']])
@@ -141,9 +144,10 @@ class GeoJSON
             ]);
     }
 
-    public static function getPointFeaturesFromBound(array $southWest, array $northEast, $modulo)
+    public static function getPointFeaturesFromBound(array $southWest, array $northEast, $modulo, $year)
     {
         return TrackData::with(['track'])
+            ->whereHas('track', fn(Builder $q) => $q->whereActive(true)->whereRaw("YEAR(start) = $year"))
 //            ->whereBetween('lat', [$southWest['lat'], $northEast['lat']])
 //            ->whereBetween('lng', [$southWest['lng'], $northEast['lng']])
             ->whereBetween('lat', [$southWest['lat'], $northEast['lat']])
@@ -180,12 +184,12 @@ class GeoJSON
             })->reject(fn($d) => !$d)->values()->toArray();
     }
 
-    public static function getBounds()
+    public static function getBounds($year)
     {
-        $minLat = (float) TrackData::selectRaw('MIN(lat) AS val')->first()->val;
-        $maxLat = (float) TrackData::selectRaw('MAX(lat) AS val')->first()->val;
-        $minLng = (float) TrackData::selectRaw('MIN(lng) AS val')->first()->val;
-        $maxLng = (float) TrackData::selectRaw('MAX(lng) AS val')->first()->val;
+        $minLat = (float) TrackData::selectRaw('MIN(lat) AS val')->whereRaw("YEAR(datetime) = $year")->first()->val;
+        $maxLat = (float) TrackData::selectRaw('MAX(lat) AS val')->whereRaw("YEAR(datetime) = $year")->first()->val;
+        $minLng = (float) TrackData::selectRaw('MIN(lng) AS val')->whereRaw("YEAR(datetime) = $year")->first()->val;
+        $maxLng = (float) TrackData::selectRaw('MAX(lng) AS val')->whereRaw("YEAR(datetime) = $year")->first()->val;
 
         $nordEast   = [$maxLat, $maxLng];
         $southWest  = [$minLat, $minLng];

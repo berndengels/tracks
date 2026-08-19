@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\AdminMediaController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Route::get('/{modulo?}', [TrackController::class, 'index'])->name('tracks');
+    Route::get('/{year?}', [TrackController::class, 'index'])->name('tracks');
 });
 
 Route::group([
