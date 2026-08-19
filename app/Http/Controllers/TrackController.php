@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Cache;
 
 class TrackController extends Controller
 {
-    private $limit = 1000;
+    private $limit = 100;
     private $ttl = 3600 * 6;
     private $useCache = true;
     private $year;
