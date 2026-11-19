@@ -117,7 +117,6 @@ const props = defineProps([
     mediaPaneName = 'mediaPane',
     trackPaneName = 'trackPane';
 
-
 let map = null,
     geoJsonTrackLayer = null,
     geoJsonMediaLayer = null;
@@ -237,6 +236,7 @@ const yearlyTracks = computed(() => {
 var selectedTrackDetails = computed(() => {
     console.info('selectedTrackId', selectedTrackId.value)
     if (selectedTrackId.value === null) return null
+
     return yearlyTracks.value.find((t) => t.feature.properties.id === selectedTrackId.value) || null
 })
 
@@ -361,23 +361,33 @@ function updateLayerStyles() {
     })
 }
 
-function selectTrack(id, zoomToTrack = false) {
+function selectTrack(id, zoomToTrack = false, moveToCenter = true) {
     selectedTrackId.value = selectedTrackId.value === id ? null : id
 
-    if (zoomToTrack && selectedTrackId.value !== null && geoJsonTrackLayer) {
-        const myOffcanvas = document.getElementById('offcanvasTracks');
+    const myOffcanvas = document.getElementById('offcanvasTracks');
 
-        if(myOffcanvas) {
-            myOffcanvas.addEventListener('hidden.bs.offcanvas', () => {
-                unSelectTrack()
+    if(myOffcanvas) {
+        myOffcanvas.addEventListener('hidden.bs.offcanvas', () => {
+            unSelectTrack()
+            const bounds = L.latLngBounds(northEast, southWest);
+            map.fitBounds(bounds);
+        })
+    }
+
+    if(selectedTrackId.value !== null && geoJsonTrackLayer) {
+        if (moveToCenter) {
+            const bounds = L.latLngBounds(northEast, southWest);
+            map.fitBounds(bounds);
+        }
+
+        if (zoomToTrack) {
+            geoJsonTrackLayer.eachLayer((layer) => {
+                if (layer.feature?.properties?.id === id) {
+                    map.fitBounds(layer.getBounds(), { maxZoom: maxZoom })
+                    layer.openPopup()
+                }
             })
         }
-        geoJsonTrackLayer.eachLayer((layer) => {
-            if (layer.feature?.properties?.id === id) {
-                map.fitBounds(layer.getBounds(), { maxZoom: 13 })
-                layer.openPopup()
-            }
-        })
     }
 }
 
