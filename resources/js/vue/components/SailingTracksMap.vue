@@ -295,7 +295,6 @@ function handleEachTrackFaeture(feature, layer) {
 function handleEachMediaFeature(feature, layer) {
     const props = feature.properties,
         prefix = '/storage/media',
-        bounds = isMobile ? map.getBounds() : map.getBounds().pad(-0.25),
         marker = L.marker(feature.geometry.coordinates, { zIndex: 10 });
 
     var src;
@@ -305,52 +304,12 @@ function handleEachMediaFeature(feature, layer) {
         switch (props.type) {
             case 'image':
                 src = prefix + '/images/' + props.filename
-                const image = L.imageOverlay(src,
-                    bounds,
-                    {
-                        alt: props.name,
-                        className: 'image',
-                        zIndex: 1000,
-                        interactive: true,
-                        pane: mediaPaneName,
-                    });
-                image.bringToFront();
-                image.addTo(map)
-                image.on('click', (e) => {
-                    image.remove();
-                })
                 break
             case 'video':
                 src = prefix + '/videos/' + props.filename
-                const video = L.videoOverlay(src,
-                    bounds,
-                    {
-                        alt: props.name,
-                        className: 'video',
-                        zIndex: 1000,
-                        interactive: true,
-                        pane: mediaPaneName,
-                        controls: true,
-                        loop: false,
-                        playsInline: true
-                    });
-                video.bringToFront();
-                video.addTo(map)
-                const elem = video.getElement();
-
-                video.on('load', () => {
-                    elem.controls = true;
-                });
-
-                elem.onended = (event) => {
-                    video.remove();
-                }
-
-                video.on('click', (e) => {
-                    video.remove();
-                })
                 break
         }
+        showMedia(src, props.type, props.name)
     })
 }
 function renderGeoJsonTrackLayer(data) {
@@ -372,24 +331,6 @@ function renderGeoJsonTrackLayer(data) {
         map.fitBounds(geoJsonTrackLayer.getBounds())
     }
 }
-
-/*
-function renderGeoJsonPointLayer(data) {
-    if (!map) return
-    if (geoJsonTrackLayer) geoJsonTrackLayer.remove()
-
-    const featureCollection = {
-        type: 'FeatureCollection',
-        features: data
-    }
-    geoJsonPointLayer = L.geoJSON(featureCollection, {
-        style: getPointStyle,
-        pane: pointPaneName,
-        pointToLayer: (feature, latlng) => L.circleMarker(latlng, getPointStyle()),
-        onEachFeature: handleEachPointFeature
-    }).addTo(map)
-}
-*/
 
 function renderGeoJsonMediaLayer(data) {
     if (!map) return
@@ -444,6 +385,94 @@ function unSelectTrack() {
     selectedTrackId.value = null
     updateLayerStyles()
 }
+
+function showMedia(mediaUrl, type ,title) {
+    // Falls bereits ein Modal offen ist, dieses zuerst entfernen
+    const existingBackdrop = document.querySelector('.media-modal-backdrop');
+    if (existingBackdrop) {
+        existingBackdrop.remove();
+    }
+
+    // Abgedunkelten Hintergrund über der Karte erstellen
+    const backdrop = L.DomUtil.create('div', 'media-modal-backdrop', map.getContainer());
+
+    // Karten-Interaktionen (Zoomen, Ziehen, Klicken) komplett blockieren
+    L.DomEvent.disableClickPropagation(backdrop);
+    L.DomEvent.disableScrollPropagation(backdrop);
+
+    // Äußeren Rahmen im Backdrop erstellen
+    const container = L.DomUtil.create('div', 'media-modal-container', backdrop);
+
+    // Kopfzeile erstellen
+    const header = L.DomUtil.create('div', 'media-modal-header', container);
+
+    // Titel als h5 einfügen
+    const heading = L.DomUtil.create('h5', '', header);
+    heading.textContent = title || 'Video';
+
+    // Close-Button in die Kopfzeile einfügen
+    const closeBtn = L.DomUtil.create('button', 'btn-close btn-close-white media-close-btn', header);
+    closeBtn.innerHTML = '&times;';
+    closeBtn.title = 'Schließen (ESC)';
+
+    // Video-Element unterhalb der Kopfzeile erstellen
+
+    var media = {};
+
+    switch (type) {
+        case 'image':
+            media = L.DomUtil.create('img', '', container);
+            closeBtn.onclick = function () {
+                container.remove();
+            };
+            break
+        case 'video':
+            media = L.DomUtil.create('video', '', container);
+            media.controls = true;
+            media.autoplay = true;
+            media.muted = false; // Oft nötig für Autoplay in modernen Browsern
+
+            closeBtn.onclick = function () {
+                media.pause();
+                container.remove();
+            };
+            media.onended = (event) => {
+                container.remove();
+            }
+            break
+    }
+    media.src = mediaUrl;
+
+    // Zentrale Schließen-Funktion inkl. Aufräumen des Keydown-Listeners
+    const closeModal = () => {
+        if('video' === type) {
+            media.pause();
+        }
+        backdrop.remove();
+        document.removeEventListener('keydown', onKeyDown);
+    };
+
+    // Handler für die Escape-Taste
+    const onKeyDown = (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    };
+
+    // Event-Listener registrieren
+    closeBtn.onclick = closeModal;
+    document.addEventListener('keydown', onKeyDown);
+
+    // Optional: Schließen bei Klick auf den dunklen Hintergrund außerhalb des Videos
+    backdrop.onclick = (e) => {
+        if (e.target === backdrop) {
+            closeModal();
+        }
+    };
+}
+
+// Aufrufbeispiel:
+// showCenteredVideo(map, 'https://w3schools.com', 'Mein Videotitel');
 
 watch(selectedYear, () => {
     selectedTrackId.value = null
@@ -620,15 +649,6 @@ onUnmounted(() => {
     color: #64748b;
     margin-top: 2px;
 }
-/*
-.map-wrapper {
-    flex: 1;
-}
-.map-container {
-    height: 100%;
-    width: 100%;
-}
-*/
 .track-details-panel {
     background: #f8fafc;
     border: 1px solid #cbd5e1;
@@ -676,5 +696,83 @@ onUnmounted(() => {
     font-weight: 600;
     color: #0f172a;
     margin-top: 2px;
+}
+
+/* Der äußere Rahmen des Video-Overlays */
+.media-modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Halbtransparentes Schwarz */
+    z-index: 1000; /* Über allen Karten-Layern und Controls */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.media-modal-container {
+    width: 480px; /* Feste Breite */
+    max-width: 90%; /* Fallback für sehr kleine Bildschirme */
+    background-color: #1e1e1e;
+    border: 3px solid #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+    box-sizing: border-box;
+    display: flex !important;
+    flex-direction: column !important; /* Zwingt Header und Video untereinander */
+    overflow: hidden;
+    video, img {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        object-fit: cover;
+        clear: both;
+    }
+}
+/* Kopfzeile für Titel und Close-Button */
+.media-modal-header {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background-color: #2c2c2c;
+    border-bottom: 1px solid #444;
+    h5 {
+        margin: 0;
+        padding: 0;
+        color: #ffffff;
+        font-family: sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 12px;
+    }
+}
+
+/* Der Close-Button oben rechts */
+.media-close-btn {
+    width: 26px;
+    height: 26px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+}
+.media-close-btn:hover {
+    background-color: #cc0000;
 }
 </style>
