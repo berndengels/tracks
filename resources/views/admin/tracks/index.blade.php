@@ -1,0 +1,50 @@
+@extends('layouts.default')
+
+@section('main')
+    <div class="row">
+        <div class="col">
+            <x-form class="form-floating w-50 m-3" method="post" action="{{ route('admin.tracks.store') }}" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                        <x-form-input type="file" name="tracks" label="Tracks" />
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <x-form-submit label="Speichern" />
+                    </div>
+                    <div class="col-sm-12 col-lg-6 text-primary float-end">insgesamt: {{ $totalKM }} KM {{ $totalNM }} NM</div>
+                </div>
+            </x-form>
+        </div>
+    </div>
+    <div class="m-3">
+        @if($data->total() > 0)
+            {{ $data->links() }}
+            <x-table :items="$data"
+                     :fields="['ID','Name','Start', 'Ende', 'Points', 'KM', 'NM', 'Aktiv']"
+                     hasActions isSmall
+            >
+                @foreach($data as $item)
+                    <tr>
+                        @bindData($item)
+                        <x-td field="id" />
+                        <x-td field="name" />
+                        <x-td field="start" dateformat="d.m.Y H:i" />
+                        <x-td field="end" dateformat="d.m.Y H:i" />
+                        <td>{{ $item->trackdata->count() }}</td>
+                        <x-td field="km" />
+                        <x-td field="nm" />
+                        <x-td field="active" bool />
+                        <x-action routePrefix="admin.tracks" edit delete />
+                        @endBindData
+                    </tr>
+                @endforeach
+            </x-table>
+            {{ $data->links() }}
+        @else
+            <div class="m-3">
+                <h4>Keine Daten vorhanden</h4>
+            </div>
+        @endif
+    </div>
+@endsection
+

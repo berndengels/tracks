@@ -1,0 +1,18 @@
+{
+    "name": "leaflet-nm-plugin",
+    "version": "1.0.0",
+    "description": "A Leaflet plugin to extend ScaleControl for displaying Nautical Miles.",
+    "type": "module",
+    "exports": "./src/MyNmScaleControl",
+    "files": ["src", "dist"],
+    "sideEffects": false,
+    "author": "engels@goldenacker.de",
+    "license": "MIT",
+    "scripts": {
+        "build": "rolldown --config",
+        "prepublishOnly": "npm run build"
+    },
+    "devDependencies": {
+        "leaflet-v1": "npm:leaflet@^1.9.4"
+    }
+}

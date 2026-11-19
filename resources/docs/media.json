@@ -1,0 +1,762 @@
+{
+    "type": "FeatureCollection",
+    "name": "Bernds Segeltörn 2026",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 43,
+                "name": "Altes Postboot von Nyord",
+                "filename": "MQjKI3PcfGuEOfidGr5nee8WCcKcqL1rJJOOAGn4.jpg",
+                "type": "image",
+                "created": "2026-07-25T19:24:39.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    55.038911,
+                    12.193947
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 44,
+                "name": "Rendsburg",
+                "filename": "F3UUlk9BRT8FWSP3G6Qv060phYBZTiwDGBGB6MJI.jpg",
+                "type": "image",
+                "created": "2026-07-20T18:27:08.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.306217,
+                    9.669642
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 46,
+                "name": "Abfahrt von Femö nach Nyord",
+                "filename": "yJFgnhkXMcadFx9UfHY3K5HjtSy51KhA5xcLkPBU.mp4",
+                "type": "video",
+                "created": "2026-07-25T09:12:05.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    55.0057,
+                    11.5701
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 50,
+                "name": "Brücke 4",
+                "filename": "dMvJwzl0I0cOv8sO8SzyDOmGhE1PhBQbYLEzGSkU.mp4",
+                "type": "video",
+                "created": "2026-07-25T13:20:34.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.9893,
+                    12.1634
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 51,
+                "name": "Friedrichstadt Grachten",
+                "filename": "Q5iaCEe4phmNO6GKNX9cVywBx0y9lpkpjamEjqWj.mp4",
+                "type": "video",
+                "created": "2026-07-18T10:15:21.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.3742,
+                    9.09
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 52,
+                "name": "Kiel Holtenau Schleuse vom NOK",
+                "filename": "pzuhFGeDw4GswkKxSd0ovXeQ7WKExXYIzyh2P3ym.mp4",
+                "type": "video",
+                "created": "2026-07-21T13:19:35.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.3665,
+                    10.1405
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 53,
+                "name": "Langeland Spodsbjerg Hafen",
+                "filename": "8Rh973ix2EGDLjfPSRrLuVmPnstXNSqCYJpii0jN.mp4",
+                "type": "video",
+                "created": "2026-07-23T16:28:14.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.9322,
+                    10.8299
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 55,
+                "name": "Mön Kreideküste",
+                "filename": "bCBhGdP6rWBw5fLYQxNP2ObPQcft890wo74DlfW7.mp4",
+                "type": "video",
+                "created": "2026-07-26T11:58:23.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.971,
+                    12.5585
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 56,
+                "name": "Nachbarn auf Nyord",
+                "filename": "VCSFQ3E0TFYJpAUlx7jiSZScCgllxjUWvr1IZUQB.mp4",
+                "type": "video",
+                "created": "2026-07-25T14:30:48.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    55.0393,
+                    12.1933
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 57,
+                "name": "Nordostsee-Kanal",
+                "filename": "rmMz0lZyMuyCXFaDBHoAo880i6dSPGjSblzDwxtG.mp4",
+                "type": "video",
+                "created": "2026-07-21T10:22:57.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.3458,
+                    9.9881
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 58,
+                "name": "Prerow Yachthafen",
+                "filename": "YM3pvmwAhdJbBFwhXPe1WgU0CdRpxyc0lu7Fc4Nq.mp4",
+                "type": "video",
+                "created": "2026-07-12T17:24:42.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.4591,
+                    12.572
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 59,
+                "name": "Remö",
+                "filename": "LZ4UFodZx1OmgZERmHftjtKbN6wwu4VrZ5vDLyrM.mp4",
+                "type": "video",
+                "created": "2026-07-24T15:17:17.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.9724,
+                    11.515
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 60,
+                "name": "Rendsburg Hängefähre",
+                "filename": "mPUc3KB04bSshOpI13O6u2YoXTPmOtq4kg8o2XMw.mp4",
+                "type": "video",
+                "created": "2026-07-20T12:50:18.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.2939,
+                    9.6846
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 61,
+                "name": "Rundblick von Nyord",
+                "filename": "9m7u1fvlcM608VwAXrOrbrCQh5b1nCpZlNo4SAwI.mp4",
+                "type": "video",
+                "created": "2026-07-25T15:19:40.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    55.0425,
+                    12.1919
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 62,
+                "name": "Warnemünde Stadthafen",
+                "filename": "wrIt3EptIJnJuSUwTdlHiVwRfpMWmrbfb9HaGB5J.mp4",
+                "type": "video",
+                "created": "2026-07-13T18:22:27.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.1798,
+                    12.0872
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 63,
+                "name": "Friedrichstadt Cafe",
+                "filename": "APvqYCVXX3UckJRP7MiwvSFpvujn5SDMjAl3dC2c.mp4",
+                "type": "video",
+                "created": "2026-07-18T10:08:35.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.3768,
+                    9.0921
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 64,
+                "name": "Klintholm Hafenkneipe",
+                "filename": "66H2qDU2iiNg6VIauqiS8IKG1hmZtV3R0sOqe6k7.jpg",
+                "type": "image",
+                "created": "2026-07-27T11:37:01.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.953036,
+                    12.465725
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 70,
+                "name": "Konzert Karrusell in Stralsund",
+                "filename": "NimV9wWjIbr4Ls2bc7IUy3ab42uUZfadKVcwAoCf.mp4",
+                "type": "video",
+                "created": "2026-07-29T18:51:40.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.3186,
+                    13.0969
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 71,
+                "name": "Letzte Reste vom Gewittersturm in Peenemünde",
+                "filename": "raaemkOD1I11naG9G0gGd1nqVeWMhp9YIwG79hj6.mp4",
+                "type": "video",
+                "created": "2026-07-30T19:07:32.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.1504,
+                    13.7569
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 72,
+                "name": "Die schönste Parkbank der Welt",
+                "filename": "8X75Dnt6lNiyfvvLHancNalc9I2lVbbIoCpjegti.mp4",
+                "type": "video",
+                "created": "2026-08-03T15:19:34.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.1491,
+                    13.7534
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 74,
+                "name": "Seedorf - Die Toskana Rügens",
+                "filename": "qLpQe4CaWa3MSJAkp6bw5nZkLFMwYbGK1rMgEg20.mp4",
+                "type": "video",
+                "created": "2026-08-05T17:17:59.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.3553,
+                    13.6518
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 76,
+                "name": "Karnin alte Eisenbahnbrücke",
+                "filename": "U30fVulwPV6YvJ067RDWt6X3aqM4cEL9PnjeLaek.mp4",
+                "type": "video",
+                "created": "2026-08-09T15:23:29.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    53.8443,
+                    13.8508
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 77,
+                "name": "Mönkebude beim Griechen am Haff",
+                "filename": "1zctnk8slOp2nJ16BlAAC3mZifZF863URmFa24DI.mp4",
+                "type": "video",
+                "created": "2026-08-09T18:08:19.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    53.7728,
+                    13.9717
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 78,
+                "name": "Schwanenstein - Das Unglück",
+                "filename": "E7t2wEUdfU6FrBX3bHbcDJv2pWNDANfnE9DdANro.jpg",
+                "type": "image",
+                "created": "2026-08-14T13:29:51.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.584667,
+                    13.610197
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 79,
+                "name": "Schwanenstein - Der Unglücksstein",
+                "filename": "qKvEeXLNiT3qwkYcqsv1MBkeCJBrLeUtHHElHGDh.mp4",
+                "type": "video",
+                "created": "2026-08-14T13:25:11.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.585,
+                    13.6119
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 80,
+                "name": "Kein Wind nach Lohme",
+                "filename": "WHHG1GNh34ZTyDsO7okM8nSBRmLQQOoWUPif4m38.mp4",
+                "type": "video",
+                "created": "2026-08-14T10:59:27.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.5738,
+                    13.6768
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 81,
+                "name": "Lohme Hafen",
+                "filename": "wxWWTcVj6AdZuFtVMuh3kCjnOFGMzXAOq4qQX7tp.mp4",
+                "type": "video",
+                "created": "2026-08-14T12:14:07.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.5841,
+                    13.6091
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 45,
+                "name": "Abfahrt von Langeland nach Femö",
+                "filename": "KlOfJH8nJnqaPMPEVYgUNZAGvbtu2i2cxsUH83W1.mp4",
+                "type": "video",
+                "created": "2026-07-24T09:46:43.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.963,
+                    11.0049
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 47,
+                "name": "Brücke 1",
+                "filename": "lzmvECYnkv2OmR1Adpm8yLzsR8slh2vyfpxOAbr2.mp4",
+                "type": "video",
+                "created": "2026-07-25T11:08:51.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.9729,
+                    11.8602
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 48,
+                "name": "Brücke 2",
+                "filename": "Hfyzgf6IrDlTcyjpbTTIt3VDQQPGUiouL5db4kvd.mp4",
+                "type": "video",
+                "created": "2026-07-25T11:18:46.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.9671,
+                    11.8835
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 49,
+                "name": "Brücke 3",
+                "filename": "vX3UNTQnsBA7PA76je46TTzueLMBaimd0xEyoBCD.mp4",
+                "type": "video",
+                "created": "2026-07-25T12:03:58.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.9663,
+                    11.999
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 54,
+                "name": "Langeland Leuchtturm",
+                "filename": "xgeNPx53hgGSloprspDGvvGmVFiMvgnLFCLIOcBt.mp4",
+                "type": "video",
+                "created": "2026-07-23T11:58:24.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.7264,
+                    10.7199
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 65,
+                "name": "Fähre im Weg",
+                "filename": "RKS1OAfZPkMQ6s9GTnK4Ky4pxNcH9PaQgr3NaShS.jpg",
+                "type": "image",
+                "created": "2026-07-29T06:48:44.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.861375,
+                    12.577636
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 66,
+                "name": "Großsegel bei der Arbeit",
+                "filename": "GCFeQNR0yUEPXk98F25UO2CW8uGa5Q9gN6sdACKj.jpg",
+                "type": "image",
+                "created": "2026-07-29T09:30:11.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.684394,
+                    12.811311
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 67,
+                "name": "Hiddensee voraus",
+                "filename": "FdfSBFcJ8XXawyrA1Ebd9qQnRUW91rtflHi4TUzg.jpg",
+                "type": "image",
+                "created": "2026-07-29T10:47:21.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.594933,
+                    12.937442
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 68,
+                "name": "Vorwärts",
+                "filename": "M7APDGmvVYkoRcQMGioSL6Gu7ZXtTe3xwrJZqZoB.jpg",
+                "type": "image",
+                "created": "2026-07-29T09:41:20.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.6711,
+                    12.830511
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 69,
+                "name": "Südspitze Hiddensee",
+                "filename": "OjRcHCLx4M6QoepJik7ib4hcuXUv0IpHy9uIBaFE.mp4",
+                "type": "video",
+                "created": "2026-07-29T12:38:20.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.4604,
+                    13.06
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 73,
+                "name": "Nach Seedorf",
+                "filename": "oIiIDbvbGxlA6LTgaHBe7HXubTR7dGXiRQQe2xy3.mp4",
+                "type": "video",
+                "created": "2026-08-05T10:36:56.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.2416,
+                    13.6852
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 75,
+                "name": "Frühstück in Moritzburg",
+                "filename": "ciihxlFVyw4xPfpewQWAeYAJrBAaLAZrF1ZcfcAl.mp4",
+                "type": "video",
+                "created": "2026-08-06T09:27:30.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.3514,
+                    13.6811
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 40,
+                "name": "Fehmarn Orth Yachthafen",
+                "filename": "HRAZrpwdNLqEHnNIs3suP73ZPpHQxL44sIv974zD.jpg",
+                "type": "image",
+                "created": "2018-06-29T20:57:10.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.443236,
+                    11.050772
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 42,
+                "name": "Heimathafen Netzelkow Start der Tour",
+                "filename": "biovtrQOai6NLjpJQO3RXwi9Aa7Yl58ZH3Lxzh1j.jpg",
+                "type": "image",
+                "created": "2021-10-01T09:38:09.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.026661,
+                    13.910322
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 41,
+                "name": "Radler auf Langeland",
+                "filename": "5D9HWuC5qPgY6M16jp6FJOIcum5hoQNNbGe0A52m.jpg",
+                "type": "image",
+                "created": "2026-07-23T16:11:53.000000Z",
+                "featureType": "media"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    54.932097,
+                    10.829467
+                ]
+            }
+        }
+    ]
+}

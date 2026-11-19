@@ -1,0 +1,88 @@
+@import "bootstrap/scss/bootstrap";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import "~include-media";
+@import 'variables';
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 480px,
+    md: 768px,
+    lg: 1024px
+);
+
+body {
+    width: 100%;
+    height: 100vh;
+}
+.grid-container {
+    width: 100%;
+    height: 100%;
+}
+.white { color: #fff }
+.black { color: #000 }
+.green { color: $green }
+.red { color: $red }
+.indigo { color: $indigo }
+.cyan { color: $cyan }
+.blue { color: #009 }
+.grey { color: $grey }
+.dark-grey { color: #6c757d }
+.dark { color: $dark }
+.yellow { color: $yellow }
+.orange {´color: $orange }
+.bg-white { background-color: #fff }
+.bg-black { background-color: #000 }
+.bg-green { background-color: $green }
+.bg-red { background-color: $red }
+.bg-indigo { background-color: $indigo }
+.bg-cyan { background-color: $cyan }
+.bg-blue { ackground-color: #009 }
+.bg-grey { background-color: $grey }
+.bg-dark-grey { background-color: #6c757d }
+.bg-yellow { background-color: $yellow }
+.bg-orange { background-color: $orange }
+.bg-dark { background-color: $bgDark }
+#adminMap {
+    width: 90%;
+    height: 100vh;
+    border: 1px solid grey;
+    margin: auto;
+}
+.myPopup {
+    width: auto;
+    padding: 0;
+    img {
+        width: 640px;
+    }
+    video {
+        width: 640px;
+    }
+    h6 {
+        white-space: nowrap;
+        span {
+            &.pos {
+                color: blue;
+                font-size: 12px;
+                font-weight: normal;
+            }
+        }
+    }
+}
+.nowrap {
+    text-wrap: nowrap;
+}
+@include media('<tablet') {
+    .myPopup {
+        width: auto;
+        padding: 0;
+        img {
+            width: 100%;
+        }
+        video {
+            width: 100%;
+        }
+    }
+}

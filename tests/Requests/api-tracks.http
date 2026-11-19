@@ -1,0 +1,20 @@
+### Send request with dynamic variables in request's body
+POST https://tracks.test/api/tracks
+Content-Type: application/json
+X-Requested-With: XMLHttpRequest
+Accept: application/json
+
+{
+    "southWest": {
+        "lat": 53.735447,
+        "lng": 9.083513
+    },
+    "northEast": {
+        "lat": 55.124468,
+        "lng": 14.083032
+    },
+    "zoom": 8,
+    "year": 2026
+}
+
+###

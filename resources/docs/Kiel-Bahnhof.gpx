@@ -1,0 +1,3453 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" version="1.1" creator="Navionics Boating App">
+    <metadata>
+        <link href="http://www.navionics.com"/>
+    </metadata>
+    <trk>
+        <name>Schwentineflotte E.V</name>
+        <trkseg>
+            <trkpt lat="54.323506" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:03.034Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>4</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:04.056Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>4</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:05.053Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>4</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:06.057Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>4</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:07.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>4</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:08.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>4</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:09.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>4</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:10.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>4</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:11.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>4</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:12.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>4</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:13.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>4</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:14.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>4</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:15.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>4</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:16.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>4</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:17.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>4</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:18.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:19.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>18</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:20.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>12</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:21.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>12</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:22.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:23.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:24.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:25.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:26.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:27.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:28.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:29.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:30.034Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:31.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:32.025Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:33.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:34.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:35.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:36.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>9</ele>
+                <time>2026-07-15T18:30:37.034Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139153">
+                <ele>9</ele>
+                <time>2026-07-15T18:30:38.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139153">
+                <ele>5</ele>
+                <time>2026-07-15T18:30:38.609Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>30</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139153">
+                <ele>9</ele>
+                <time>2026-07-15T18:30:40.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139153">
+                <ele>9</ele>
+                <time>2026-07-15T18:30:41.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:42.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139144">
+                <ele>9</ele>
+                <time>2026-07-15T18:30:43.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>12</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:44.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>12</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:45.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>12</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:46.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>13</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:47.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>13</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:48.034Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>13</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:49.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>13</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:50.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>9</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:51.035Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>9</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:52.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>9</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:53.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>9</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:54.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>9</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:55.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>7</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:56.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>7</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:57.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>6</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:58.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:30:59.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:00.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:01.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:02.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:03.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:04.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139153">
+                <ele>11</ele>
+                <time>2026-07-15T18:31:05.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:06.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139153">
+                <ele>11</ele>
+                <time>2026-07-15T18:31:07.034Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139153">
+                <ele>11</ele>
+                <time>2026-07-15T18:31:08.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139153">
+                <ele>11</ele>
+                <time>2026-07-15T18:31:09.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139153">
+                <ele>11</ele>
+                <time>2026-07-15T18:31:10.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139153">
+                <ele>11</ele>
+                <time>2026-07-15T18:31:11.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:12.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:13.040Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:14.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:15.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:16.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:17.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:18.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:19.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:20.024Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:21.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:22.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:23.034Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:24.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:25.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:26.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:27.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:28.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:29.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:30.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:31.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:32.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:33.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:34.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139153">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:35.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:36.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:37.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:38.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:39.034Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:40.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139144">
+                <ele>11</ele>
+                <time>2026-07-15T18:31:41.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139144">
+                <ele>11</ele>
+                <time>2026-07-15T18:31:42.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139144">
+                <ele>11</ele>
+                <time>2026-07-15T18:31:43.034Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139135">
+                <ele>11</ele>
+                <time>2026-07-15T18:31:44.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:45.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:46.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:47.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:47.914Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323474" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:49.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:50.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:51.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:52.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:53.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:54.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:55.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:56.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:57.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:58.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:31:59.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:00.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:01.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:02.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:03.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:03.883Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:05.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:06.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:07.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:08.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:09.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:10.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:11.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:12.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:13.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:14.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:15.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323480" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:16.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:17.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:18.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:19.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:20.038Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:21.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:22.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:23.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:24.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:25.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:26.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323485" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:27.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:28.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:29.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:30.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:31.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:32.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:33.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:34.025Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:35.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:36.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:37.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:38.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:39.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:40.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139108">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:41.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139108">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:42.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139108">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:43.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139108">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:44.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139108">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:45.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139108">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:46.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139108">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:47.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139108">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:48.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139108">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:49.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139108">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:50.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139108">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:51.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>2</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139099">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:52.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139099">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:53.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139099">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:54.034Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139099">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:55.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:56.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139099">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:57.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:58.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:32:59.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:00.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:01.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:02.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:03.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:04.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:05.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:06.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:07.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:08.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:09.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:10.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:11.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:12.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:13.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:14.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139090">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:15.023Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139099">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:16.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:17.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:18.024Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:19.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:20.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:21.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:22.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:23.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:24.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:25.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:26.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:27.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:28.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:29.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:30.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139045">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:31.025Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139045">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:32.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139045">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:33.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:34.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139045">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:35.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139045">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:36.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139045">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:37.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139045">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:38.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:39.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139045">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:40.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139045">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:41.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139045">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:42.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139045">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:43.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139036">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:44.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139036">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:45.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139036">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:46.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139036">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:47.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:48.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:49.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:50.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:51.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:52.035Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:53.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:54.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:55.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:56.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:57.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:58.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:33:59.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:00.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:01.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:02.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:03.077Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:04.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:05.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:06.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:07.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:08.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:09.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:10.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:11.034Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:12.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:13.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139027">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:14.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139036">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:15.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139036">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:16.025Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139045">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:17.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139045">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:18.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139045">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:19.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139045">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:20.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:21.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:22.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:23.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:24.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:25.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:26.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:27.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>6</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:28.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:29.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:30.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:31.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:32.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:33.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:34.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323516" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:35.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323516" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:36.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323516" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:37.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323516" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:38.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323516" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:39.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:40.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:41.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:42.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:43.036Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:44.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:45.025Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:46.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:47.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:48.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:49.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:50.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323516" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:51.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:52.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:53.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:54.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:55.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323522" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:56.024Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323516" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:57.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323516" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:58.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323516" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:34:59.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323516" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:00.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323516" lon="10.139081">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:01.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:02.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:02.727Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:04.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:05.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:06.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:07.025Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:08.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323511" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:09.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:10.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:11.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:12.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:13.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>10</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:14.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:15.025Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323506" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:15.824Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:17.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:18.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:19.020Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:20.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:21.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139054">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:22.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>9</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:23.024Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:24.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139072">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:25.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:26.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:27.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:28.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:29.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139063">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:30.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139081">
+                <ele>9</ele>
+                <time>2026-07-15T18:35:31.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139090">
+                <ele>9</ele>
+                <time>2026-07-15T18:35:32.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>6</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139090">
+                <ele>9</ele>
+                <time>2026-07-15T18:35:33.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>6</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139090">
+                <ele>9</ele>
+                <time>2026-07-15T18:35:34.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>6</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139090">
+                <ele>9</ele>
+                <time>2026-07-15T18:35:35.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>6</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139090">
+                <ele>9</ele>
+                <time>2026-07-15T18:35:36.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>6</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139099">
+                <ele>9</ele>
+                <time>2026-07-15T18:35:37.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>6</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139099">
+                <ele>9</ele>
+                <time>2026-07-15T18:35:37.866Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>6</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139099">
+                <ele>9</ele>
+                <time>2026-07-15T18:35:39.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139099">
+                <ele>9</ele>
+                <time>2026-07-15T18:35:40.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139099">
+                <ele>9</ele>
+                <time>2026-07-15T18:35:41.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139099">
+                <ele>9</ele>
+                <time>2026-07-15T18:35:42.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139099">
+                <ele>9</ele>
+                <time>2026-07-15T18:35:43.034Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139108">
+                <ele>9</ele>
+                <time>2026-07-15T18:35:44.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139108">
+                <ele>9</ele>
+                <time>2026-07-15T18:35:45.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139108">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:46.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139108">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:47.028Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139108">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:47.766Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:49.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:50.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:51.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:52.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:53.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:54.058Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:55.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139117">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:56.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:57.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:58.034Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139126">
+                <ele>10</ele>
+                <time>2026-07-15T18:35:59.027Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:00.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:00.539Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:02.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:03.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:04.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:05.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:06.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:07.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:07.887Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>3</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:09.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:10.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:11.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:12.034Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>5</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:13.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323490" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:14.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:15.030Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:16.033Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:17.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>8</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:18.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:19.026Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:20.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:21.029Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:22.032Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323495" lon="10.139144">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:23.034Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <trkpt lat="54.323501" lon="10.139135">
+                <ele>10</ele>
+                <time>2026-07-15T18:36:24.031Z</time>
+                <extensions>
+                    <navionics_speed>0.000</navionics_speed>
+                    <navionics_haccuracy>4</navionics_haccuracy>
+                    <navionics_vaccuracy>7</navionics_vaccuracy>
+                </extensions>
+            </trkpt>
+            <extensions>
+                <navionics_start_time>2026-07-15T18:30:03.019Z</navionics_start_time>
+                <navionics_end_time>2026-07-15T18:36:24.031Z</navionics_end_time>
+            </extensions>
+        </trkseg>
+    </trk>
+</gpx>
