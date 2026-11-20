@@ -11,7 +11,9 @@
         </div>
 
         <div v-if="errorMessage" class="error-banner m-3">
-            {{ errorMessage }}
+            <ul>
+                <li v-for="(err, key) in errorMessage" :key="key" v-html="err"></li>
+            </ul>
         </div>
 
         <div class="sailing-dashboard">
@@ -203,8 +205,8 @@ async function fetchApi() {
             console.error(err)
         }
     } catch (err) {
-        errorMessage.value = 'Tracks konnten nicht geladen werden.'
-        console.error('Axios POST Fehler:', err)
+        errorMessage.value = err
+        console.error(err)
     } finally {
         isLoading.value = false
     }
@@ -294,22 +296,11 @@ function handleEachTrackFaeture(feature, layer) {
 
 function handleEachMediaFeature(feature, layer) {
     const props = feature.properties,
-        prefix = '/storage/media',
         marker = L.marker(feature.geometry.coordinates, { zIndex: 10 });
 
-    var src;
-
     markers.addLayer(marker)
-    marker.on('click', (e) => {
-        switch (props.type) {
-            case 'image':
-                src = prefix + '/images/' + props.filename
-                break
-            case 'video':
-                src = prefix + '/videos/' + props.filename
-                break
-        }
-        showMedia(src, props.type, props.name)
+    marker.on('click', () => {
+        showMedia(props.file, props.type, props.name)
     })
 }
 function renderGeoJsonTrackLayer(data) {
@@ -337,9 +328,9 @@ function renderGeoJsonMediaLayer(data) {
     if (geoJsonMediaLayer) geoJsonMediaLayer.remove()
 
     const featureCollection = {
-            type: 'FeatureCollection',
-            features: data
-        },
+        type: 'FeatureCollection',
+        features: data
+    },
 
     geoJsonMediaLayer = L.geoJSON(featureCollection, {
         style: getMediaStyle,

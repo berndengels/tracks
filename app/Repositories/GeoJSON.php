@@ -100,10 +100,10 @@ class GeoJSON
             ->map(fn(Media $m) => [
                 'type'  => 'Feature',
                 'properties' => [
-                    'id'  => $m->id,
-                    'name'  => $m->name,
-                    'filename' => $m->filename,
-                    'type'  => $m->type,
+                    'id'        => $m->id,
+                    'name'      => $m->name,
+                    'file'      => $m->file,
+                    'type'      => $m->type,
                     'created'   => $m->created,
                     'featureType'   => 'media',
                 ],
@@ -141,7 +141,6 @@ class GeoJSON
                         ->orderBy('datetime')
                         ->get()
                         ->map(fn (TrackData $p) => [
-//                            'latlng'    => [(float) $p->lat, (float) $p->lng],
                             'name'  => $t->name,
                             'nmSpeed' => $p->nmSpeed,
                             'kmSpeed' => $p->kmSpeed,

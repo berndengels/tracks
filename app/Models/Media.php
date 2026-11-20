@@ -75,6 +75,10 @@ class Media extends Model
         return Attribute::make(get: fn() => Storage::disk($this->type)->fileExists($this->filename));
     }
 
+    public function file(): Attribute {
+        return Attribute::make(get: fn() => Storage::disk($this->type)->url($this->filename));
+    }
+
     public function track()
     {
         return $this->belongsTo(Track::class, 'track_id', 'id');

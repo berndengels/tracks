@@ -50,11 +50,9 @@ class ApiTrackController extends BaseController
 
             if($this->useCache) {
                 $lineFeatures   = Cache::remember("lineFeatures{$zoom}_{$year}", $this->ttl, fn() => GeoJSON::getlineFeaturesFromBound(southWest: $southWest, northEast: $northEast, modulo: $modulo, year: $year));
-//                $pointFeatures  = Cache::remember("pointFeatures{$zoom}_{$year}", $this->ttl, fn() => GeoJSON::getPointFeaturesFromBound(southWest: $southWest, northEast: $northEast, modulo: $modulo, year: $year));
                 $mediaFeatures  = Cache::remember("mediaFeatures{$zoom}_{$year}", $this->ttl, fn() => GeoJSON::getMediaFeaturesFromBound(southWest: $southWest, northEast: $northEast, year: $year));
             } else {
                 $lineFeatures   = GeoJSON::getlineFeaturesFromBound(southWest: $southWest, northEast: $northEast, modulo: $modulo, year: $year);
-//                $pointFeatures  = GeoJSON::getPointFeaturesFromBound(southWest: $southWest, northEast: $northEast, modulo: $modulo, year: $year);
                 $mediaFeatures  = GeoJSON::getMediaFeaturesFromBound(southWest: $southWest, northEast: $northEast, year: $year);
             }
 
@@ -63,13 +61,7 @@ class ApiTrackController extends BaseController
                 'name'  =>  $trackName,
                 'features'  => $lineFeatures,
             ];
-  /*
-            $points = [
-                'type'  => 'FeatureCollection',
-                'name'  =>  $trackName,
-                'features'  => $pointFeatures,
-            ];
- */
+
             $media = collect([
                 'type'  => 'FeatureCollection',
                 'name'  =>  $trackName,
@@ -79,14 +71,20 @@ class ApiTrackController extends BaseController
             return response()->json([
                 'error'     => null,
                 'tracks'    => $tracks,
-//                'points'    => $points,
                 'media'     => $media,
                 'bounds'    => [$southWest, $northEast],
                 'maxZoom'   => $this->maxZoom,
             ]);
 
         } catch(\Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            $error = [
+                'msg' => $e->getMessage(),
+                'file'  => $e->getFile(),
+                'line'  => $e->getLine(),
+                'code'  => $e->getCode(),
+                'trace' => $e->getTraceAsString(),
+            ];
+            return response()->json(['error' => $error]);
         }
     }
 }
