@@ -124,6 +124,7 @@ const props = defineProps([
     selectedTrackId = ref(null),
     markers = new MarkerClusterGroup({zIndex: 10}),
     mediaPaneName = 'mediaPane',
+    trackPointPaneName = 'trackPointPane',
     trackPaneName = 'trackPane';
 
 let map = null,
@@ -274,21 +275,23 @@ function getMediaStyle() {
 
 function handleEachTrackFaeture(feature, layer) {
     feature.properties.points.forEach(p => {
-        const
-//            latlng = p.latlng,
-            name = p.name,
-            nmSpeed = p.nmSpeed,
-            kmSpeed = p.kmSpeed,
-            time = p.time;
-
-        const popupHtml = `
+        var popupHtml = `
         <div style="min-width: 195px; font-family: system-ui, sans-serif;">
-            <strong>${name}</strong><br>
-            <strong>Zeit: </strong>${time} Uhr<br>
-            <strong>Speed: </strong>${kmSpeed} km/h, ${nmSpeed} kn<br>
+            <strong>${p.name}</strong><br>
+            <strong>Zeit: </strong>${p.time} Uhr<br>
+            <strong>Speed: </strong>${p.kmSpeed} km/h, ${p.nmSpeed} kn<br>
         </div>`;
-
-        layer.bindPopup(popupHtml)
+        const marker = L.circleMarker(p.latlng, {
+            stroke: false,
+            radius: 6,
+            opacity: 0,
+            fillOpacity: 0,
+            className: 'track-point',
+            bubblingPointerEvents: true,
+            pane: trackPointPaneName,
+        })
+        marker.bindPopup(popupHtml)
+        marker.addTo(map)
     })
 
     layer.on({
@@ -519,6 +522,11 @@ onMounted(() => {
     map.getPane(trackPaneName).style.zIndex = 600;
     map.getPane(trackPaneName).style.pointerEvents = 'auto';
 
+    map.createPane(trackPointPaneName);
+    // Z-Index höher als markerPane (600) setzen, z.B. 650 (aber unter Popups, die bei 700 liegen)
+    map.getPane(trackPointPaneName).style.zIndex = 650;
+    map.getPane(trackPointPaneName).style.pointerEvents = 'auto';
+
     map.createPane(mediaPaneName);
     // Z-Index höher als markerPane (600) setzen, z.B. 650 (aber unter Popups, die bei 700 liegen)
     map.getPane(mediaPaneName).style.zIndex = 1000;
@@ -543,8 +551,6 @@ onMounted(() => {
         imperial: false,
         nautic: true
     }).addTo(map);
-
-    console.info('yearOptions', yearOptions)
 
     fetchApi()
 })

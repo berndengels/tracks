@@ -79,11 +79,11 @@ class TrackData extends Model
     ];
 
     public function nmSpeed(): Attribute {
-        return Attribute::make(get: fn () => round($this->speed * 1.944, 1));
+        return Attribute::make(get: fn () => $this->speed ? round($this->speed * 1.944, 1) : 0);
     }
 
     public function kmSpeed(): Attribute {
-        return Attribute::make(get: fn () => round($this->speed * 3.6, 1));
+        return Attribute::make(get: fn () => $this->speed ? round($this->speed * 3.6, 1) : 0);
     }
 
     public function track()

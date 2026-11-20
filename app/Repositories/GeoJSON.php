@@ -141,13 +141,17 @@ class GeoJSON
                         ->orderBy('datetime')
                         ->get()
                         ->map(fn (TrackData $p) => [
+                            'latlng'    => [
+                                'lat'   => $p->lat,
+                                'lng'   => $p->lng,
+                            ],
                             'name'  => $t->name,
+                            'track_id'    => $t->id,
                             'nmSpeed' => $p->nmSpeed,
                             'kmSpeed' => $p->kmSpeed,
                             'time' => $p->datetime->format('H:i')
                         ])
-                        ->values()
-                        ->toArray()
+//                        ->toArray()
                 ],
                 'geometry' => [
                     'type'  => 'LineString',
@@ -158,12 +162,14 @@ class GeoJSON
                         ->orderBy('datetime')
                         ->get()
                         ->map(fn (TrackData $p, $idx) => [(float) $p->lng, (float) $p->lat])
-                        ->values()
-                        ->toArray(),
+//                        ->values()
+//                        ->toArray()
+                    ,
                 ]
             ])
-            ->values()
-            ->toArray();
+//            ->values()
+//            ->toArray()
+            ;
     }
 
     public static function getPointFeaturesFromBound(array $southWest, array $northEast, int $modulo, int $year)
