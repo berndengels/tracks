@@ -546,6 +546,11 @@ onUnmounted(() => {
     width: 100%;
     height: 100%;
 }
+#map {
+    border: 1px solid green;
+    width: 100%;
+    height: 95%;
+}
 #loader {
     position: absolute;
     width: 100%;
@@ -580,11 +585,6 @@ onUnmounted(() => {
             margin-left: 20px;
         }
     }
-}
-#map {
-    border: 1px solid green;
-    width: 100%;
-    height: 90%;
 }
 .error-banner {
     background: #fee2e2;
