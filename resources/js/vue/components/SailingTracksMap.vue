@@ -450,8 +450,9 @@ function showMedia(mediaUrl, type ,title) {
                 media.pause();
                 container.remove();
             };
-            media.onended = (event) => {
+            media.onended = () => {
                 container.remove();
+                backdrop.remove();
             }
             break
     }
@@ -517,10 +518,10 @@ onMounted(() => {
         zIndex: 100
     }).addTo(map)
 
-    map.createPane(trackPaneName);
     // Z-Index höher als markerPane (600) setzen, z.B. 650 (aber unter Popups, die bei 700 liegen)
-    map.getPane(trackPaneName).style.zIndex = 600;
-    map.getPane(trackPaneName).style.pointerEvents = 'auto';
+    map.createPane(trackPaneName);
+//    map.getPane(trackPaneName).style.zIndex = 600;
+//    map.getPane(trackPaneName).style.pointerEvents = 'auto';
 
     map.createPane(trackPointPaneName);
     // Z-Index höher als markerPane (600) setzen, z.B. 650 (aber unter Popups, die bei 700 liegen)
@@ -528,8 +529,8 @@ onMounted(() => {
     map.getPane(trackPointPaneName).style.pointerEvents = 'auto';
 
     map.createPane(mediaPaneName);
-    // Z-Index höher als markerPane (600) setzen, z.B. 650 (aber unter Popups, die bei 700 liegen)
-    map.getPane(mediaPaneName).style.zIndex = 1000;
+    map.getPane(mediaPaneName).style.zIndex = 10000;
+    map.getPane(mediaPaneName).style.pointerEvents = 'auto';
 
     L.control.layers(
         {'OpenStreetMap': osmLayer},
