@@ -1,13 +1,20 @@
 <template>
-    <div id="sailing-app" class="bg-dark text-light">
-        <div v-if="featureCollectionName" class="collection-header">
-            <strong>{{ featureCollectionName }}</strong>
-            <button id="trackSelector"
-                class="btn btn-outline-light"
-                type="button"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasTracks"
-                aria-controls="offcanvasTracks">Select Track</button>
+    <div id="sailing-app" class="bg-dark text-light w-full">
+        <div v-if="featureCollectionName" class="collection-header row w-full">
+            <div class="col-10 float-start">
+                <strong>{{ featureCollectionName }}</strong>
+                <button id="trackSelector"
+                        class="btn btn-outline-light"
+                        type="button"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasTracks"
+                        aria-controls="offcanvasTracks">Select Track</button>
+            </div>
+            <div class="col-2 float-end">
+                <div v-if="duration" class="align-content-end">
+                    <span class="text-light align-content-end">Duration: {{ duration }} sec</span>
+                </div>
+            </div>
         </div>
 
         <div v-if="errorMessage" class="error-banner m-3">
@@ -97,6 +104,7 @@ const props = defineProps([
     ]),
 // API-Konfiguration (passe URL und Payload an dein Backend an)
     API_URL = '/api/tracks',
+    startTime = moment(),
     zoom = props.zoom,
     maxZoom = props.maxZoom,
     km = props.km,
@@ -106,6 +114,7 @@ const props = defineProps([
     center      = JSON.parse(props.initCenter),
     yearOptions = JSON.parse(props.initYearOptions),
     // Reaktive Zustände
+    duration = ref(null),
     featureCollectionName = ref(''),
     allTrackFeatures = ref([]),
     allMediaFeatures = ref([]),
@@ -205,6 +214,8 @@ async function fetchApi() {
             errorMessage.value = `Fehler: ${resp.error}`
             console.error(err)
         }
+        const endTime = moment()
+        duration.value = endTime.diff(startTime, 'seconds').toLocaleString()
     } catch (err) {
         errorMessage.value = err
         console.error(err)
