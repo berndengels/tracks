@@ -122,10 +122,13 @@ const props = defineProps([
     mapContainer = ref(null),
     year = ref(moment().year()),
     selectedTrackId = ref(null),
-    markers = new MarkerClusterGroup({zIndex: 10}),
     mediaPaneName = 'mediaPane',
     trackPointPaneName = 'trackPointPane',
-    trackPaneName = 'trackPane';
+    trackPaneName = 'trackPane',
+    markers = new MarkerClusterGroup({optios: {
+        zIndex: 1000,
+        clusterPane: mediaPaneName,
+    }});
 
 let map = null,
     geoJsonTrackLayer = null,
@@ -425,8 +428,9 @@ function showMedia(mediaUrl, type ,title) {
     heading.textContent = title || 'Video';
 
     // Close-Button in die Kopfzeile einfügen
-    const closeBtn = L.DomUtil.create('button', 'btn-close btn-close-white media-close-btn', header);
-    closeBtn.innerHTML = '&times;';
+    const closeBtn = L.DomUtil.create('span', 'media-close-btn', header);
+    closeBtn.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>';
+//    closeBtn.innerHTML = '&times;';
     closeBtn.title = 'Schließen (ESC)';
 
     // Video-Element unterhalb der Kopfzeile erstellen
@@ -526,8 +530,8 @@ onMounted(() => {
 
     map.createPane(trackPointPaneName);
     // Z-Index höher als markerPane (600) setzen, z.B. 650 (aber unter Popups, die bei 700 liegen)
-    map.getPane(trackPointPaneName).style.zIndex = 650;
-    map.getPane(trackPointPaneName).style.pointerEvents = 'auto';
+//    map.getPane(trackPointPaneName).style.zIndex = 650;
+//    map.getPane(trackPointPaneName).style.pointerEvents = 'auto';
 
     map.createPane(mediaPaneName);
     map.getPane(mediaPaneName).style.zIndex = 10000;
@@ -542,7 +546,7 @@ onMounted(() => {
     L.Control.mea
     L.Control.measureControl({
         handler: {
-            multiDistance: true,
+            multiDistance: false,
             metric: false,
             imperial: false,
             nauticalMiles: true
@@ -795,10 +799,12 @@ onUnmounted(() => {
 
 /* Der Close-Button oben rechts */
 .media-close-btn {
+    display: inline-block;
+    float: right;
     width: 26px;
     height: 26px;
-    background-color: #ff4d4d;
-    color: white;
+    background-color: transparent;
+    color: #fff;
     border: none;
     border-radius: 50%;
     font-size: 18px;
@@ -810,6 +816,6 @@ onUnmounted(() => {
     padding: 0;
 }
 .media-close-btn:hover {
-    background-color: #cc0000;
+    color: #cc0000;
 }
 </style>
