@@ -12,8 +12,8 @@ class StoreMediaRequest extends AdminRequest
 {
     protected function prepareForValidation()
     {
-        $videoDisk = Storage::disk('videos');
-        $imageDisk = Storage::disk('images');
+        $videoDisk = Storage::disk('video');
+        $imageDisk = Storage::disk('image');
         $file = $this->file('medium');
         $type = 'image';
 

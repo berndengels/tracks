@@ -75,10 +75,10 @@ class AdminMediaController extends Controller
     {
         switch ($medium->type) {
             case 'image':
-                $disk = Storage::disk('images');
+                $disk = Storage::disk('image');
                 break;
             case 'video':
-                $disk = Storage::disk('videos');
+                $disk = Storage::disk('video');
                 break;
         }
 
@@ -94,13 +94,13 @@ class AdminMediaController extends Controller
 
     public function sanitize()
     {
-        $disk = Storage::disk('images');
+        $disk = Storage::disk('image');
         $files = collect($disk->files())->map(fn($f) => $f !== '.gitignore' ? $f : null)->reject(fn($f) => !$f);
         $dbEntries = Media::select('filename')->whereType('image')->pluck('filename');
         $toRemove = $files->diff($dbEntries);
         $toRemove->each(fn($filename) => $disk->delete($filename));
 
-        $disk = Storage::disk('videos');
+        $disk = Storage::disk('video');
         $files = collect($disk->files())->map(fn($f) => $f !== '.gitignore' ? $f : null)->reject(fn($f) => !$f);
         $dbEntries = Media::select('filename')->whereType('video')->pluck('filename');
         $toRemove = $files->diff($dbEntries);

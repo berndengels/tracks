@@ -45,14 +45,14 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
-        'images' => [
+        'image' => [
             'driver' => 'local',
             'root' => storage_path('app/public/media/images'),
             'url' => env('APP_URL').'/storage/media/images',
             'visibility' => 'public',
             'throw' => false,
         ],
-        'videos' => [
+        'video' => [
             'driver' => 'local',
             'root' => storage_path('app/public/media/videos'),
             'url' => env('APP_URL').'/storage/media/videos',

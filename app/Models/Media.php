@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
+use App\Traits\Models\UseBooleanIcon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
 use MatanYadaev\EloquentSpatial\Objects\Point;
 
@@ -55,7 +58,7 @@ use MatanYadaev\EloquentSpatial\Objects\Point;
  */
 class Media extends Model
 {
-    use HasSpatial;
+    use HasSpatial, UseBooleanIcon;
 
     protected $table = 'media';
     protected $guarded = ['id'];
@@ -67,6 +70,10 @@ class Media extends Model
         'lng'   => 'decimal:6',
         'pos'   => Point::class,
     ];
+
+    public function fileExist(): Attribute {
+        return Attribute::make(get: fn() => Storage::disk($this->type)->fileExists($this->filename));
+    }
 
     public function track()
     {

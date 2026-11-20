@@ -14,7 +14,7 @@ class MediaRepository
 
         FFMpeg::open($input)
             ->export()
-            ->toDisk('videos')
+            ->toDisk('video')
             ->inFormat(new X264)
 //            ->resize(640, 480)
             ->addFormat($highBitrate, function ($media) {

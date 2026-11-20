@@ -75,7 +75,7 @@ class Gis
     {
         $media = MediaAnalyzer::fromLocalFile(
             path: $filename,
-            disk: 'videos',
+            disk: 'video',
         );
         $comments = $media->getNestedValue('comments');
 
