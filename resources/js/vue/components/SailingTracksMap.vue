@@ -449,6 +449,7 @@ function showMedia(mediaUrl, type ,title) {
             closeBtn.onclick = function () {
                 media.pause();
                 container.remove();
+                backdrop.remove();
             };
             media.onended = () => {
                 container.remove();
