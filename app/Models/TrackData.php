@@ -63,8 +63,8 @@ class TrackData extends Model
     const LATITUDE  = 'lat';
     const LONGITUDE = 'lng';
 
-    protected static $kilometers = true;
     protected $table = 'track_data';
+    protected static $kilometers = true;
     protected $guarded = ['id'];
     public $timestamps = false;
     protected $casts = [
