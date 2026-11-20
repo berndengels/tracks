@@ -52,15 +52,12 @@
                                 @mouseenter="hoveredTrackId = feature.properties.id"
                                 @mouseleave="hoveredTrackId = null"
                             >
-                                <div class="track-title">{{ feature.properties.name }}</div>
+                                <div class="track-title">{{ feature.properties.name }} <span>({{ feature.properties.id }})</span></div>
                                 <div class="track-meta">
                                     {{ stats.nm.toFixed(1) }} sm ({{ stats.km.toFixed(1) }} km) • Ø
                                     {{ stats.avgSpeedKn.toFixed(1) }} kn
                                 </div>
-                                <div class="track-date">Start {{ (stats.start) }} Uhr</div>
-                                <div v-if="selectedTrackId && selectedTrackId.value === feature.properties.id">
-                                    <button class="close-btn" @click="unSelectTrack">✕ Schließen</button>
-                                </div>
+                                <div class="track-date">Start: {{ (stats.start) }} Ende: {{ (stats.end) }}</div>
                             </li>
                         </ul>
                     </div>
@@ -177,6 +174,7 @@ function getTrackStats(feature) {
     }
 
     return {
+        id: props.id,
         km,
         nm,
         start: props.start || '–',
@@ -666,6 +664,9 @@ onUnmounted(() => {
     font-weight: 600;
     font-size: 0.95rem;
     color: #0f172a;
+    span {
+        font-weight: normal;
+    }
 }
 .track-meta {
     font-size: 0.82rem;
