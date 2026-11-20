@@ -17,7 +17,7 @@ class ApiTrackController extends BaseController
     private $year;
     private $maxZoom = 16;
     private $zoomModulo = [
-        8 => 60,
+        8 => 600,
         9 => 60,
         10 => 30,
         11 => 30,
