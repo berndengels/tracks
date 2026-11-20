@@ -11,9 +11,7 @@
         </div>
 
         <div v-if="errorMessage" class="error-banner m-3">
-            <ul>
-                <li v-for="(err, key) in errorMessage" :key="key" v-html="err"></li>
-            </ul>
+            <!-- @TODO handle Error -->
         </div>
 
         <div class="sailing-dashboard">
@@ -76,6 +74,9 @@ import "leaflet.markercluster/dist/MarkerCluster.css"
 import "leaflet.markercluster/dist/MarkerCluster.Default.css"
 import { MarkerClusterGroup } from 'leaflet.markercluster';
 import "leaflet.nauticscale/dist/leaflet.nauticscale";
+import 'leaflet-draw';
+import 'leaflet-draw/dist/leaflet.draw.css';
+import "leaflet.measurecontrol";
 import { VueSpinnerHourglass } from 'vue3-spinners';
 import { isMobile } from '@basitcodeenv/vue3-device-detect'
 
@@ -472,9 +473,6 @@ function showMedia(mediaUrl, type ,title) {
     };
 }
 
-// Aufrufbeispiel:
-// showCenteredVideo(map, 'https://w3schools.com', 'Mein Videotitel');
-
 watch(selectedYear, () => {
     selectedTrackId.value = null
     // Wenn dein API-Endpoint pro Jahr abfragt, hier fetchApi() aufrufen;
@@ -522,6 +520,21 @@ onMounted(() => {
         { position: 'topright' }
     ).addTo(map)
 
+    L.Control.mea
+    L.Control.measureControl({
+        handler: {
+            multiDistance: true,
+            metric: false,
+            imperial: false,
+            nauticalMiles: true
+        }
+    }).addTo(map);
+
+    L.control.scalenautic({
+        imperial: false,
+        nautic: true
+    }).addTo(map);
+
     console.info('yearOptions', yearOptions)
 
     fetchApi()
@@ -554,6 +567,9 @@ onUnmounted(() => {
         font-weight: bold;
         color: red;
     }
+}
+.leaflet-control-draw-measure {
+    background-image: url("/images/measure-control.svg");
 }
 #sailing-app {
     display: block;

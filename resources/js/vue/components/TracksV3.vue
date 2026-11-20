@@ -172,6 +172,7 @@ export default {
 
             const bounds = L.latLngBounds(this.initNorthEast, this.initSouthWest);
             this.map.fitBounds(bounds);
+
             L.control.scalenautic({
                 imperial: false,
                 nautic: true
