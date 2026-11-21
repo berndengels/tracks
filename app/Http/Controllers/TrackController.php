@@ -40,13 +40,31 @@ class TrackController extends Controller
             $northEast  = Cache::remember('northEast'.$year, $this->ttl, fn() => GeoJSON::getNordEast($year)->toJson());
             $distances  = Cache::remember('distances'.$year, $this->ttl, fn() => Track::selectRaw('ROUND(SUM(km), 0) km, ROUND(SUM(nm), 0) nm')->whereRaw('YEAR(`start`) = ?', [$year])->first());
             $center     = Cache::remember('center'.$year, $this->ttl, fn() => TrackData::selectRaw('AVG(lat) lat, AVG(lng) lng')->first()->toJson());
-            $yearOptions = Cache::remember('yearOptions', $this->ttl, fn() => Track::selectRaw('DISTINCT YEAR(`start`) year')->get()->keyBy('year')->map->year->prepend('--bitte wählen--', '')->sort()->toJson());
+            $yearOptions = Cache::remember('yearOptions', $this->ttl, fn() => Track::selectRaw('DISTINCT YEAR(`start`) year')->get()
+                ->map(fn($y) => [
+                    'value' => (string) $y->year,
+                    'label' => (string) $y->year,
+                ])
+                ->prepend([
+                    'value' => '',
+                    'label' => '--bitte wählen--',
+                ])
+                ->toJson());
         } else {
             $southWest  = GeoJSON::getSouthWest($year)->toJson();
             $northEast  = GeoJSON::getNordEast($year)->toJson();
             $distances  = Track::selectRaw('ROUND(SUM(km), 0) km, ROUND(SUM(nm), 0) nm')->whereRaw('YEAR(`start`) = ?', [$year])->first();
             $center     = TrackData::selectRaw('AVG(lat) lat, AVG(lng) lng')->first()->toJson();
-            $yearOptions = Track::selectRaw('DISTINCT YEAR(`start`) year')->get()->keyBy('year')->map->year->prepend('--bitte wählen--', '')->sort()->toJson();
+            $yearOptions = Track::selectRaw('DISTINCT YEAR(`start`) year')->get()
+                ->map(fn($y) => [
+                    'value' => (string) $y->year,
+                    'label' => (string) $y->year,
+                ])
+                ->prepend([
+                    'value' => '',
+                    'label' => '--bitte wählen--',
+                ])
+                ->toJson();
         }
 
         $km = (int) $distances->km;

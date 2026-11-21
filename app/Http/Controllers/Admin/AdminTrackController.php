@@ -69,6 +69,7 @@ class AdminTrackController extends Controller
             setlocale(LC_CTYPE, 'de_DE');
 
             if($file) {
+                $modulo = config('tracks.track.import.modulo');
                 $content = trim($file->getContent());
                 $gpx = Gpx::parseFromString($content);
 
@@ -80,23 +81,28 @@ class AdminTrackController extends Controller
                                 'start' => $segment->extensions->navionics_start_time,
                                 'end'   => $segment->extensions->navionics_end_time,
                             ]);
+//                            $track = Track::where('start','=', $segment->extensions->navionics_start_time)->first();
 
                             if($track) {
                                 $points = collect($segment->points)
-                                    ->map(fn(TrackPoint $p) => $p->extensions->navionics_speed > 0 && $p->latitude && $p->longitude ? [
-                                        'track_id'  => $track->id,
-                                        'lat'   => $p->latitude,
-                                        'lng'   => $p->longitude,
-                                        'pos'   => new Point($p->latitude, $p->longitude),
-                                        'datetime'  => $p->time->format('Y-m-d H:i:s'),
-                                        'speed' => $p->extensions->navionics_speed,
-                                        'stamp' => strtotime($p->time->format('Y-m-d H:i:s')),
-                                    ] : null)->reject(fn($p) => !$p);
+                                    ->map(function(TrackPoint $p) use ($modulo, $track) {
+                                        $stamp = $p->time->getTimestamp();
+                                        if($p->extensions->navionics_speed > 0 && $p->latitude && $p->longitude && 0 === $stamp % $modulo) {
+                                            return [
 
-                                $points
-//                                    ->chunk(1000)
-//                                    ->each(fn(Collection $c) => $track->trackdata()->insertOrIgnore($c->toArray()));
-                                    ->each(fn(array $c) => $track->trackdata()->create($c));
+                                                'track_id'  => $track->id,
+                                                'lat'   => $p->latitude,
+                                                'lng'   => $p->longitude,
+                                                'pos'   => new Point($p->latitude, $p->longitude),
+                                                'datetime'  => $p->time->format('Y-m-d H:i:s'),
+                                                'speed' => $p->extensions->navionics_speed,
+                                                'stamp' => $stamp,
+                                            ];
+                                        }
+                                        return null;
+                                    })->reject(fn($p) => !$p);
+
+                                $points->each(fn(array $c, $idx) => $track->trackdata()->create($c));
                             }
                         }
                     }

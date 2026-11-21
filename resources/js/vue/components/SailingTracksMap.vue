@@ -33,9 +33,7 @@
                     <div class="filter-bar">
                         <label for="year-select"><strong>Segeljahr:</strong></label>
                         <select id="year-select" v-model="selectedYear">
-                            <option v-for="year in yearOptions" :key="year" :value="year">
-                                {{ year }}
-                            </option>
+                            <option v-for="option in yearOptions" :key="option.value" :value="option.value" v-html="option.label" />
                         </select>
                     </div>
                     <div>
@@ -375,7 +373,9 @@ function selectTrack(id, zoomToTrack = false, moveToCenter = true) {
 
     if(myOffcanvas) {
         myOffcanvas.addEventListener('hidden.bs.offcanvas', () => {
-            unSelectTrack()
+            if(!isMobile) {
+                unSelectTrack()
+            }
             const bounds = L.latLngBounds(northEast, southWest);
             map.fitBounds(bounds);
         })
@@ -504,6 +504,7 @@ watch([selectedTrackId, hoveredTrackId], () => {
 })
 
 onMounted(() => {
+    console.info('yearOptions', yearOptions)
     map = L.map(mapContainer.value, {
         zoom: zoom,
         maxZoom: maxZoom,
