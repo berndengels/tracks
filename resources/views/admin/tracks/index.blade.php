@@ -20,18 +20,18 @@
         @if($data->total() > 0)
             {{ $data->links() }}
             <x-table :items="$data"
-                     :fields="['ID','Name','Start', 'Ende', 'Points', 'KM', 'NM', 'Aktiv']"
+                     :fields="['ID:md','Name','Start', 'Ende:md', 'Points:md', 'KM:md', 'NM', 'Aktiv']"
                      hasActions isSmall
             >
                 @foreach($data as $item)
                     <tr>
                         @bindData($item)
-                        <x-td field="id" />
+                        <x-td field="id:md" />
                         <x-td field="name" />
                         <x-td field="start" dateformat="d.m.Y H:i" />
-                        <x-td field="end" dateformat="d.m.Y H:i" />
+                        <x-td field="end:md" dateformat="d.m.Y H:i" />
                         <td>{{ $item->trackdata->count() }}</td>
-                        <x-td field="km" />
+                        <x-td field="km:md" />
                         <x-td field="nm" />
                         <x-td field="active" bool />
                         <x-action routePrefix="admin.tracks" edit delete />

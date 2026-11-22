@@ -21,21 +21,21 @@
         @if($data->total() > 0)
             {{ $data->links() }}
             <x-table :items="$data"
-                     :fields="['ID','Track','Name','Filename','Type', 'Lat', 'Lng', 'Exist', 'Erstellt']"
+                     :fields="['ID','Track:md','Name','Filename:md','Type', 'Lat:md', 'Lng:md', 'Exist', 'Erstellt:md']"
                      hasActions isSmall
             >
                 @foreach($data as $item)
                     <tr>
                         @bindData($item)
                         <x-td field="id" />
-                        <x-td field="track.name" />
+                        <x-td field="track.name:md" />
                         <x-td field="name" />
-                        <x-td field="filename" />
+                        <x-td field="filename:md" />
                         <x-td field="type" />
-                        <x-td field="lat" />
-                        <x-td field="lng" />
+                        <x-td field="lat:md" />
+                        <x-td field="lng:md" />
                         <x-td field="fileExist" bool />
-                        <x-td field="created" dateformat="d.m.Y H:i" />
+                        <x-td field="created:md" dateformat="d.m.Y H:i" />
                         <x-action routePrefix="admin.media" edit delete />
                         @endBindData
                     </tr>
