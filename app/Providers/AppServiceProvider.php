@@ -10,6 +10,7 @@ use App\View\Components\Button\InfoButton;
 use App\View\Components\Button\PrintButton;
 use App\View\Components\Button\ResetButton;
 use App\View\Components\Button\ShowButton;
+use App\View\Components\NavLink;
 use App\View\Components\Table\Action;
 use App\View\Components\Table\Table;
 use App\View\Components\Table\Td;
@@ -53,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
             'tr' => Tr::class,
             'td' => Td::class,
             'action' => Action::class,
+            'nav-link' => NavLink::class,
             'btn-create' => CreateButton::class,
             'btn-edit' => EditButton::class,
             'btn-delete' => DeleteButton::class,

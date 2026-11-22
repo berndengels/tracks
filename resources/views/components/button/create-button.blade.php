@@ -1,7 +1,7 @@
 <button
     href="{{ $route }}"
     class="btn btn-sm btn-secondary"
-    icon="far fa-plus-square"
 >
+    <i class="far fa-plus-square"></i>
     <span class="d-none d-md-inline-block">Neueintrag</span>
 </button>
