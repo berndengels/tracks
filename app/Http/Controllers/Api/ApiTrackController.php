@@ -34,16 +34,22 @@ class ApiTrackController extends BaseController
         $this->year = Carbon::today(config('app.timezone'))->year;
     }
 
-    public function index(Request $request, $year = null) {
+    public function index(Request $request) {
         try {
             $southWest  = $request->post('southWest');
             $northEast  = $request->post('northEast');
             $zoom       = (int) $request->post('zoom');
-            $year       = $request->post('year');
+            $year       = $request->post('year', null);
             $modulo     = $this->zoomModulo[$zoom] ?? $this->limit;
 
             if(! $year) {
-                $year = $this->year;
+                return response()->json([
+                    'error'     => 'Bitte ein Jahr auswählen',
+                    'tracks'    => null,
+                    'media'     => null,
+                    'bounds'    => [$southWest, $northEast],
+                    'maxZoom'   => $this->maxZoom,
+                ]);
             }
 
             $trackName  = "Bernds Segeltörn $year";

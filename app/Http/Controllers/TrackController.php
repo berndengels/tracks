@@ -61,7 +61,7 @@ class TrackController extends Controller
                     'label' => (string) $y->year,
                 ])
                 ->prepend([
-                    'value' => '',
+                    'value' => null,
                     'label' => '--bitte wählen--',
                 ])
                 ->toJson();

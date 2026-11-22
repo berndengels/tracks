@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 //Route::resource('tracks', ApiTrackController::class);
-Route::post('tracks/{year?}', [ApiTrackController::class, 'index']);
+Route::post('tracks', [ApiTrackController::class, 'index']);
