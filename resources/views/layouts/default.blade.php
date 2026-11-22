@@ -26,10 +26,10 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Navbar</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle Navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse" id="navbarContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{ route('admin.tracks.index') }}">Tracks</a>
@@ -39,10 +39,10 @@
                             </li>
                         </ul>
                     </div>
+
                     <div class="float-end m-3">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
                             <x-responsive-nav-link :href="route('logout')"
                                                    :active="true"
                                                    onclick="event.preventDefault();

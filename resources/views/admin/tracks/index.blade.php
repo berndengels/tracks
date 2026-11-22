@@ -1,21 +1,17 @@
 @extends('layouts.default')
 
 @section('main')
-    <div class="row">
-        <div class="col">
-            <x-form class="form-floating w-50 m-3" method="post" action="{{ route('admin.tracks.store') }}" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-sm-12 col-lg-6">
-                        <x-form-input type="file" name="tracks" label="Tracks" />
-                    </div>
-                    <div class="col-sm-12 col-lg-6">
-                        <x-form-submit label="Speichern" />
-                    </div>
-                    <div class="col-sm-12 col-lg-6 text-primary float-end">insgesamt: {{ $totalKM }} KM {{ $totalNM }} NM</div>
-                </div>
-            </x-form>
+    <x-form class="form-floating m-3" method="post" action="{{ route('admin.tracks.store') }}" enctype="multipart/form-data">
+        <div class="row w-full">
+            <div class="col-sm-12 col-lg-6">
+                <x-form-input floating class="w-full" type="file" name="tracks" label="Tracks" />
+            </div>
+            <div class="col-sm-12 col-lg-6">
+                <x-form-submit floating label="Speichern" />
+            </div>
         </div>
-    </div>
+    </x-form>
+    <div class="text-primary ms-3">Insgesamt: {{ $totalKM }} KM {{ $totalNM }} NM</div>
     <div class="m-3">
         @if($data->total() > 0)
             {{ $data->links() }}
