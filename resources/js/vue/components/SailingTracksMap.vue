@@ -22,11 +22,11 @@
                 <span v-html="errorMsg"></span>
             </div>
 
-            <div v-if="errorResponse" class="error-banner m-3">
-                <table class="table table-sm">
+            <div v-if="errorResponse" class="error-banner justify-content-center m-3">
+                <table class="table table-sm align-self-center">
                     <tr v-for="(val, key) in errorResponse" :key="key">
                         <th v-html="key" />
-                        <td v-html="val"/>
+                        <td v-html="val" />
                     </tr>
                 </table>
             </div>
@@ -160,21 +160,24 @@ const fetchApi = async () => {
                 northEast: {lat: northEast[0], lng: northEast[1]},
                 zoom: map.getZoom(),
             })
+            if(resp && resp.data) {
+                if(resp.data.error) {
+                    errorResponse.value = resp.data.error
+                    console.error(resp.data.error)
+                } else {
+                    const tracks = resp.data.tracks,
+                        media = resp.data.media;
 
-            if(resp && resp.data && !resp.error) {
-                const tracks = resp.data.tracks,
-                    media = resp.data.media;
+                    featureCollectionName.value = tracks.name || ''
+                    allTrackFeatures.value = Array.isArray(tracks.features) ? tracks.features : []
+                    allMediaFeatures.value = Array.isArray(media.features) ? media.features : []
 
-                featureCollectionName.value = tracks.name || ''
-                allTrackFeatures.value = Array.isArray(tracks.features) ? tracks.features : []
-                allMediaFeatures.value = Array.isArray(media.features) ? media.features : []
-
-                renderGeoJsonTrackLayer(tracks.features)
-                renderGeoJsonMediaLayer(media.features)
-                isLoading.value = false
+                    renderGeoJsonTrackLayer(tracks.features)
+                    renderGeoJsonMediaLayer(media.features)
+                    isLoading.value = false
+                }
             } else {
-                errorMsg.value = `Fehler: ${resp.error}`
-                console.error(err)
+                errorMsg.value = 'Fehler: keine Daten erhalten!'
             }
             const endTime = moment()
             duration.value = endTime.diff(startTime, 'seconds').toLocaleString()
@@ -578,7 +581,14 @@ onUnmounted(() => {
     span {
         color: #991b1b;
     }
-    z-index: 1000;
+    table {
+        tr {
+            td,th {
+                color: blue;
+                text-align: left;
+            }
+        }
+    }
 }
 .sailing-dashboard {
     display: flex;

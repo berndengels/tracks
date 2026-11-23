@@ -88,8 +88,8 @@ class ApiTrackController extends BaseController
                 'file'  => $e->getFile(),
                 'line'  => $e->getLine(),
                 'code'  => $e->getCode(),
-                'trace' => $e->getTraceAsString(),
             ];
+
             return response()->json(['error' => $error]);
         }
     }
