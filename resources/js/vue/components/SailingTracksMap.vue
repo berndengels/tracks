@@ -285,7 +285,7 @@ const fetchApi = async () => {
 
         markers.addLayer(marker)
         marker.on('click', () => {
-            showMedia(props.file, props.type, props.name)
+            showMedia(props)
         })
     },
     renderGeoJsonTrackLayer = (data) => {
@@ -370,7 +370,7 @@ const fetchApi = async () => {
         selectedTrackId.value = null
         updateLayerStyles()
     },
-    showMedia = (mediaUrl, type ,title) => {
+    showMedia = (props) => {
         // Falls bereits ein Modal offen ist, dieses zuerst entfernen
         const existingBackdrop = document.querySelector('.media-modal-backdrop');
         if (existingBackdrop) {
@@ -392,7 +392,7 @@ const fetchApi = async () => {
 
         // Titel als h5 einfügen
         const heading = L.DomUtil.create('h5', '', header);
-        heading.textContent = title || 'Video';
+        heading.textContent = `${props.name} ${moment(props.created).format('DD.MM.YYYY HH:mm')} Uhr` || '';
 
         // Close-Button in die Kopfzeile einfügen
         const closeBtn = L.DomUtil.create('span', 'media-close-btn', header);
@@ -404,10 +404,10 @@ const fetchApi = async () => {
 
         var media = {};
 
-        switch (type) {
+        switch (props.type) {
             case 'image':
                 media = L.DomUtil.create('img', '', container);
-                closeBtn.onclick = function () {
+                closeBtn.onclick = () => {
                     container.remove();
                 };
                 break
@@ -417,7 +417,7 @@ const fetchApi = async () => {
                 media.autoplay = true;
                 media.muted = false; // Oft nötig für Autoplay in modernen Browsern
 
-                closeBtn.onclick = function () {
+                closeBtn.onclick = () => {
                     media.pause();
                     container.remove();
                     backdrop.remove();
@@ -428,11 +428,11 @@ const fetchApi = async () => {
                 }
                 break
         }
-        media.src = mediaUrl;
+        media.src = props.file;
 
         // Zentrale Schließen-Funktion inkl. Aufräumen des Keydown-Listeners
         const closeModal = () => {
-            if('video' === type) {
+            if('video' === props.type) {
                 media.pause();
             }
             backdrop.remove();
@@ -712,7 +712,7 @@ onUnmounted(() => {
     justify-content: center;
 }
 .media-modal-container {
-    width: 480px; /* Feste Breite */
+    width: 800px; /* Feste Breite */
     max-width: 90%; /* Fallback für sehr kleine Bildschirme */
     background-color: #1e1e1e;
     border: 3px solid #ffffff;
