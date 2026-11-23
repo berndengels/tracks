@@ -1,7 +1,3 @@
-import toastr from 'toastr';
-
-window.$ = window.jQuery = jQuery = $ = require('jquery');
-
 try {
     //	require('bootstrap');
 //    require('bootstrap/js/dist/carousel');
@@ -19,6 +15,16 @@ try {
 } catch (e) {
     console.error(e)
 }
+import axios from "axios";
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.baseURL = process.env.MIX_API_URL;
+axios.defaults.withCredentials = true;
+window.axios = axios;
+
+window.$ = window.jQuery = jQuery = $ = require('jquery');
+
+import Edit from "L@/Edit";
+window.Edit = global.Edit = new Edit;
 
 $(document).ready(() => {
     $(".delSoft,.delsoft").click(()=> {

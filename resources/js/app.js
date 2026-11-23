@@ -4,12 +4,12 @@ import { createApp } from "vue";
 import { createPinia } from 'pinia';
 
 window.createApp = createApp;
-window.axios = axios;
 window.toastr = toastr;
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 axios.defaults.baseURL = process.env.MIX_API_URL;
 axios.defaults.withCredentials = true;
+window.axios = axios;
 
 try {
     //	require('bootstrap');
@@ -23,7 +23,7 @@ try {
 // require('bootstrap/js/dist/popover');
 // require('bootstrap/js/dist/scrollspy');
 // require('bootstrap/js/dist/tab');
-// require('bootstrap/js/dist/toast');
+    require('bootstrap/js/dist/toast');
     require('bootstrap/js/dist/tooltip');
 } catch (e) {
     console.error(e)
@@ -31,7 +31,6 @@ try {
 
 window.$ = window.jQuery = jQuery = $ = require('jquery');
 
-import Tracks from "c@/Tracks.vue";
 import SailingTracksMap from "c@/SailingTracksMap.vue";
 
 const toastrOptions = {

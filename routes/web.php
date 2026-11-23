@@ -18,6 +18,9 @@ Route::group([
     Route::resource('tracks', AdminTrackController::class)->except(['show','create']);
     Route::resource('media', AdminMediaController::class)->except(['show','create']);
     Route::get('media/sanitize', [AdminMediaController::class, 'sanitize'])->name('media.sanitize');
+    // toggles
+    Route::post('tracks/toggle/{track}', [AdminTrackController::class, 'toggle'])->name('tracks.toggle');
+    Route::post('media/toggle/{medium}', [AdminMediaController::class, 'toggle'])->name('media.toggle');
 });
 
 Route::middleware('guest')->group(function () {

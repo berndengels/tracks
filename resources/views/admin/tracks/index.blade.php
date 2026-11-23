@@ -44,3 +44,10 @@
     </div>
 @endsection
 
+@push('inline-scripts')
+    <script>
+        $(document).ready(() => {
+            Edit.toggle("/admin/tracks/toggle", "active", true);
+        });
+    </script>
+@endpush

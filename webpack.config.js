@@ -15,6 +15,7 @@ module.exports = {
     resolve: {
         alias: {
             '@': path.resolve('resources/js'),
+            'L@': path.resolve('resources/js/Libs'),
             'css@': path.resolve('resources/css'),
             'v@': path.resolve('resources/js/vue'),
             'store@': path.resolve('resources/js/vue/store'),

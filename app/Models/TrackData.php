@@ -54,6 +54,8 @@ use Carbon\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|TrackData withCentroid(\Illuminate\Contracts\Database\Query\Expression|\MatanYadaev\EloquentSpatial\Objects\Geometry|string $column, string $alias = 'centroid')
  * @method static \Illuminate\Database\Eloquent\Builder|TrackData withDistance(\Illuminate\Contracts\Database\Query\Expression|\MatanYadaev\EloquentSpatial\Objects\Geometry|string $column, \Illuminate\Contracts\Database\Query\Expression|\MatanYadaev\EloquentSpatial\Objects\Geometry|string $geometryOrColumn, string $alias = 'distance')
  * @method static \Illuminate\Database\Eloquent\Builder|TrackData withDistanceSphere(\Illuminate\Contracts\Database\Query\Expression|\MatanYadaev\EloquentSpatial\Objects\Geometry|string $column, \Illuminate\Contracts\Database\Query\Expression|\MatanYadaev\EloquentSpatial\Objects\Geometry|string $geometryOrColumn, string $alias = 'distance')
+ * @property-read mixed $km_speed
+ * @property-read mixed $nm_speed
  * @mixin \Eloquent
  */
 class TrackData extends Model

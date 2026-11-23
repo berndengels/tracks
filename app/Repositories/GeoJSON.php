@@ -72,6 +72,7 @@ class GeoJSON
     public static function getMediaFeatures($year)
     {
         return Media::orderBy('created_at')
+            ->whereActive(true)
             ->whereRaw('YEAR(created_at) = ?', [$year])
             ->get()
             ->map(fn(Media $m) => [
@@ -93,6 +94,7 @@ class GeoJSON
     public static function getMediaFeaturesFromBound(array $southWest, array $northEast, int $year)
     {
         return Media::orderBy('created_at')
+            ->whereActive(true)
             ->whereRaw('YEAR(created_at) = ?', [$year])
             ->whereBetween('lat', [$southWest['lat'], $northEast['lat']])
             ->whereBetween('lng', [$southWest['lng'], $northEast['lng']])

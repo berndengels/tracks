@@ -54,6 +54,10 @@ use MatanYadaev\EloquentSpatial\Objects\Point;
  * @method static \Illuminate\Database\Eloquent\Builder|Media withCentroid(\Illuminate\Contracts\Database\Query\Expression|\MatanYadaev\EloquentSpatial\Objects\Geometry|string $column, string $alias = 'centroid')
  * @method static \Illuminate\Database\Eloquent\Builder|Media withDistance(\Illuminate\Contracts\Database\Query\Expression|\MatanYadaev\EloquentSpatial\Objects\Geometry|string $column, \Illuminate\Contracts\Database\Query\Expression|\MatanYadaev\EloquentSpatial\Objects\Geometry|string $geometryOrColumn, string $alias = 'distance')
  * @method static \Illuminate\Database\Eloquent\Builder|Media withDistanceSphere(\Illuminate\Contracts\Database\Query\Expression|\MatanYadaev\EloquentSpatial\Objects\Geometry|string $column, \Illuminate\Contracts\Database\Query\Expression|\MatanYadaev\EloquentSpatial\Objects\Geometry|string $geometryOrColumn, string $alias = 'distance')
+ * @property bool|null $active
+ * @property-read mixed $file
+ * @property-read mixed $file_exist
+ * @method static \Illuminate\Database\Eloquent\Builder|Media whereActive($value)
  * @mixin \Eloquent
  */
 class Media extends Model
@@ -68,6 +72,7 @@ class Media extends Model
         'created'   => 'datetime',
         'lat'   => 'decimal:6',
         'lng'   => 'decimal:6',
+        'active'    => 'bool',
         'pos'   => Point::class,
     ];
 

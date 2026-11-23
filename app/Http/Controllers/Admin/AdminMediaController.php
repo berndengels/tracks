@@ -7,6 +7,7 @@ use App\Http\Requests\StoreMediaRequest;
 use App\Http\Requests\UpdateMediaRequest;
 use App\Models\Media;
 use App\Models\Track;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
@@ -107,5 +108,17 @@ class AdminMediaController extends Controller
         $toRemove->each(fn($filename) => $disk->delete($filename));
 
         return redirect()->route('admin.media.index')->with('success', 'Daten erfolgreich bereinigt!');
+    }
+
+    public function toggle(Request $request, Media $medium)
+    {
+        if($request->isXmlHttpRequest()) {
+            $attribute  = $request->post('attribute');
+            $value      = (bool) $request->post('value');
+            $medium->update([$attribute => $value]);
+            $medium->refresh();
+            return response()->json($medium);
+        }
+        return response()->json(['error' => 'no ajax request']);
     }
 }

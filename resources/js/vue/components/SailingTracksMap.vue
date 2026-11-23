@@ -314,12 +314,13 @@ const fetchApi = async () => {
         const featureCollection = {
             type: 'FeatureCollection',
             features: data
-        },
+        }
 
         geoJsonMediaLayer = L.geoJSON(featureCollection, {
             style: getMediaStyle,
             onEachFeature: handleEachMediaFeature
-        }).addTo(map)
+        })
+
         map.addLayer(markers);
     },
     updateLayerStyles = () => {
@@ -476,7 +477,7 @@ onMounted(() => {
     const bounds = L.latLngBounds(northEast, southWest);
     map.fitBounds(bounds);
 
-    const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors',
         zIndex: 1
     }).addTo(map)
@@ -488,13 +489,7 @@ onMounted(() => {
 
     // Z-Index höher als markerPane (600) setzen, z.B. 650 (aber unter Popups, die bei 700 liegen)
     map.createPane(trackPaneName);
-//    map.getPane(trackPaneName).style.zIndex = 600;
-//    map.getPane(trackPaneName).style.pointerEvents = 'auto';
-
     map.createPane(trackPointPaneName);
-//    map.getPane(trackPointPaneName).style.zIndex = 650;
-//    map.getPane(trackPointPaneName).style.pointerEvents = 'auto';
-
     map.createPane(mediaPaneName);
     map.getPane(mediaPaneName).style.zIndex = 10000;
     map.getPane(mediaPaneName).style.pointerEvents = 'auto';
@@ -518,6 +513,8 @@ onMounted(() => {
         imperial: false,
         nautic: true
     }).addTo(map);
+
+    map.on('click', (e) => console.info('latlng', e.latlng))
 
     fetchApi()
 })

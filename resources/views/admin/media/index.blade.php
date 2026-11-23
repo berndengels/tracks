@@ -19,7 +19,7 @@
         @if($data->total() > 0)
             {{ $data->links() }}
             <x-table :items="$data"
-                     :fields="['ID','Track:md','Name','Filename:md','Type', 'Lat:md', 'Lng:md', 'Exist', 'Erstellt:md']"
+                     :fields="['ID','Track:md','Name','Filename:md','Type', 'Lat:md', 'Lng:md', 'Exist', 'Erstellt:md','Aktiv']"
                      hasActions isSmall
             >
                 @foreach($data as $item)
@@ -34,6 +34,7 @@
                         <x-td field="lng:md" />
                         <x-td field="fileExist" bool />
                         <x-td field="created:md" dateformat="d.m.Y H:i" />
+                        <x-td field="active" bool />
                         <x-action routePrefix="admin.media" edit delete />
                         @endBindData
                     </tr>
@@ -48,3 +49,10 @@
     </div>
 @endsection
 
+@push('inline-scripts')
+    <script>
+        $(document).ready(() => {
+            Edit.toggle("/admin/media/toggle", "active", true);
+        });
+    </script>
+@endpush

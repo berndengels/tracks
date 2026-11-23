@@ -10,6 +10,7 @@ use App\Models\TrackData;
 use App\Repositories\Gis;
 use Dunn\GpxReader\Facades\Gpx;
 use Dunn\GpxReader\DTO\TrackPoint;
+use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
 use MatanYadaev\EloquentSpatial\Objects\Point;
@@ -138,5 +139,18 @@ class AdminTrackController extends Controller
         Cache::clear();
 
         return redirect()->route('admin.tracks.index')->with('success', 'Daten erfolgreich gelöscht!');
+    }
+
+    public function toggle(Request $request, Track $track)
+    {
+        if($request->isXmlHttpRequest()) {
+            $attribute  = $request->post('attribute');
+            $value      = (bool) $request->post('value');
+            $track->update([$attribute => $value]);
+            $track->refresh();
+            return response()->json($track);
+        }
+
+        return response()->json(['error' => 'no ajax request']);
     }
 }
