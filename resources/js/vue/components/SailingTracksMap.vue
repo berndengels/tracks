@@ -2,7 +2,7 @@
     <div>
         <div id="sailing-app" class="bg-dark text-light w-full">
             <div v-if="featureCollectionName" class="collection-header row w-full">
-                <div class="col-10 float-start">
+                <div class="col-10 float-start ms-0">
                     <strong>{{ featureCollectionName }}</strong>
                     <button id="trackSelector"
                             class="btn btn-outline-light"
@@ -12,8 +12,8 @@
                             aria-controls="offcanvasTracks">Select Track</button>
                 </div>
                 <div class="col-2 float-end">
-                    <div v-if="duration" class="align-content-end">
-                        <span class="text-light align-content-end">Duration: {{ duration }} sec</span>
+                    <div v-if="duration" class="text-end me-3">
+                        <span class="text-light align-middle fa-align-right fs-6">Duration: {{ duration }} sec</span>
                     </div>
                 </div>
             </div>
