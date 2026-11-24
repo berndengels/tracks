@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 class UpdateMediaRequest extends AdminRequest
 {
+    protected $booleanFields = ['active'];
+
     /**
      * Get the validation rules that apply to the request.
      *

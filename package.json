@@ -17,8 +17,10 @@
         "@fortawesome/free-brands-svg-icons": "^7.3.0",
         "@fortawesome/free-regular-svg-icons": "^7.3.0",
         "@fortawesome/free-solid-svg-icons": "^7.3.0",
+        "@geoman-io/leaflet-geoman-free": "^2.20.8",
         "@vitejs/plugin-vue": "^6.0.11",
         "@vue-leaflet/vue-leaflet": "^0.10.1",
+        "@vueuse/core": "^15.1.0",
         "axios": "^1.6.4",
         "bootstrap": "^5.3.8",
         "jquery": "^4.0.0",
@@ -34,10 +36,12 @@
         "terser-webpack-plugin": "^5.6.1",
         "toastr": "^2.1.4",
         "vue": "^3.5.45",
+        "vue-draggable-plus": "^0.6.1",
         "vue-spinner": "^3.0.2",
         "vue3-spinners": "^1.3.3"
     },
     "devDependencies": {
+        "@types/leaflet": "^1.9.22",
         "@vue/compiler-sfc": "^3.2.29",
         "alpinejs": "^3.4.2",
         "autoprefixer": "^10.4.2",

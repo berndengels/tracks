@@ -31,8 +31,6 @@ try {
 
 window.$ = window.jQuery = jQuery = $ = require('jquery');
 
-import SailingTracksMap from "c@/SailingTracksMap.vue";
-
 const toastrOptions = {
     escapeHtml: false,
     closeButton: true,
@@ -82,15 +80,22 @@ $(document).ajaxError(function( event, xhr, settings, thrownError ) {
     console.error('xhr', xhr);
 });
 
+// init Vue Components
+import SailingTracksMap from "c@/SailingTracksMap.vue";
+const app = createApp({});
+app.component('sailing-tracks-map', SailingTracksMap).mount('#app');
+
 $(document).ready(() => {
     $(".delSoft,.delsoft").click(()=> {
         return confirm("Daten wirklich löschen");
     });
-
+/*
     const tracks = document.getElementById('tracks');
     switch (true) {
         case $(tracks).is(":visible"):
-            createApp(SailingTracksMap, {...tracks.dataset}).mount(tracks);
+            app.component('SailingTracksMap', SailingTracksMap).mount('#app');
+//            createApp(SailingTracksMap, {...tracks.dataset}).mount(tracks);
             break;
     }
+*/
 });

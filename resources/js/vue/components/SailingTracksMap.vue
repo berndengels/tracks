@@ -2,18 +2,28 @@
     <div>
         <div id="sailing-app" class="bg-dark text-light w-full">
             <div v-if="featureCollectionName" class="collection-header row w-full">
-                <div class="col-10 float-start ms-0">
-                    <strong>{{ featureCollectionName }}</strong>
-                    <button id="trackSelector"
-                            class="btn btn-outline-light"
-                            type="button"
-                            data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasTracks"
-                            aria-controls="offcanvasTracks">Select Track</button>
+                <div class="col-9 float-start ms-0">
+                    <div class="d-inline-block">
+                        <select id="modus" v-model="selectedModus" class="form-select form-floating ms-3">
+                            <option v-for="item in modusOptions" :key="item.val" v-html="item.label" :value="item.val" />
+                        </select>
+                    </div>
+                    <div class="d-inline-block">
+                        <strong>{{ featureCollectionName }}</strong>
+                        <button id="trackSelector"
+                                class="btn btn-outline-light"
+                                type="button"
+                                data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasTracks"
+                                aria-controls="offcanvasTracks">Select {{ selectedModus }}</button>
+                    </div>
                 </div>
-                <div class="col-2 float-end">
+                <div class="col-3 float-end">
+                    <div class="stats-bar">
+                    </div>
                     <div v-if="duration" class="text-end me-3">
-                        <span class="text-light align-middle fa-align-right fs-6">Duration: {{ duration }} sec</span>
+                        <span v-if="'Planung' === selectedModus">Gesamtdistanz Törn: {{ totalDistanceNM }} NM<br></span>
+                        <span class="text-light align-middle fa-align-right ms-3 fs-6">Duration: {{ duration }} sec</span>
                     </div>
                 </div>
             </div>
@@ -46,7 +56,8 @@
                                 <option v-for="option in yearOptions" :key="option.value" :value="option.value" v-html="option.label" />
                             </select>
                         </div>
-                        <div>
+
+                        <div v-if="'Track' === selectedModus">
                             <h3>Törns {{ selectedYear }} ({{ yearlyTracks.length }})</h3>
                             <ul class="track-list">
                                 <li
@@ -69,8 +80,69 @@
                                 </li>
                             </ul>
                         </div>
+
+                        <div v-if="'Planung' === selectedModus">
+                            <h3>Planung {{ selectedYear }} ({{ allPlannerFeatures.length }})</h3>
+                            <ul class="track-list">
+                                <li
+                                    v-for="feature in yearlyPlanners"
+                                    :key="feature.properties.id"
+                                    :class="{
+                                        active: feature.properties.id === selectedPlannerId,
+                                        hovered: feature.properties.id === selectedPlannerId
+                                    }"
+                                    @click="selectTour(feature.properties.id)"
+                                    @mouseenter="hoveredPlannerId = feature.properties.id"
+                                    @mouseleave="hoveredPlannerId = null"
+                                >
+                                    <div class="track-title">{{ feature.properties.name }} <span>(Points: {{ feature.properties.points.length }})</span></div>
+                                    <div class="track-meta" v-html="feature.properties.desc"></div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </aside>
+                <div v-if="'Planung' === selectedModus"
+                     id="sailing-planner"
+                     ref="plannerBox"
+                     :style="style"
+                     style="position: fixed; cursor: grab; user-select: none;"
+                     class="drag-box"
+                >
+                    <div class="sailing-planner">
+                        <!-- Obere Info-Leiste mit Distanz, ETA und Geschwindigkeits-Eingabe -->
+                        <div class="stats-bar">
+                            <div class="stats-item cursor-move"><i class="fa-solid fa-up-down-left-right"></i></div>
+                            <div v-if="totalDistanceNM" class="stat-item">
+                                <span class="label">Gesamtdistanz</span>
+                                <strong>{{ Math.round(totalDistanceNM, 1)  }} NM</strong>
+                            </div>
+
+                            <div class="stat-item">
+                                <span class="label">Geschätzte Fahrzeit (ETA)</span>
+                                <strong>~ {{ estimatedDuration }}</strong>
+                            </div>
+
+                            <div class="stat-item speed-control">
+                                <label for="speed-input">Ø Fahrt:</label>
+                                <input
+                                    id="speed-input"
+                                    v-model.number="averageSpeedKnots"
+                                    type="number"
+                                    step="0.5"
+                                    min="0.5"
+                                    max="30"
+                                />
+                                <span>kn</span>
+                            </div>
+
+                            <div class="stat-item">
+                                <span class="label">Etappen</span>
+                                <strong>{{ segmentCount }}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div id="map" ref="mapContainer"></div>
             </div>
         </div>
@@ -79,7 +151,7 @@
 
 <script setup>
 const $ = require('jquery')
-import {ref, computed, watch, onMounted, onUnmounted} from 'vue'
+import {ref, computed, watch, onMounted, onUnmounted, useTemplateRef} from 'vue'
 import axios from 'axios'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -92,17 +164,17 @@ import 'leaflet-draw/dist/leaflet.draw.css';
 import "leaflet.measurecontrol";
 import { VueSpinnerHourglass } from 'vue3-spinners';
 import { isMobile } from '@basitcodeenv/vue3-device-detect'
-
+import { useDraggable } from '@vueuse/core'
 import moment from "moment";
 
 moment.locale('de');
 moment.locale('de_DE');
 
 const props = defineProps([
-        'initNorthEast',
-        'initSouthWest',
-        'initCenter',
-        'initYearOptions',
+        'northEast',
+        'southWest',
+        'center',
+        'yearOptions',
         'zoom',
         'maxZoom',
         'km',
@@ -111,38 +183,54 @@ const props = defineProps([
 // API-Konfiguration (passe URL und Payload an dein Backend an)
     API_URL = '/api/tracks',
     startTime = moment(),
-    zoom = props.zoom,
-    maxZoom = props.maxZoom,
-    km = props.km,
-    nm = props.nm,
-    northEast = JSON.parse(props.initNorthEast),
-    southWest = JSON.parse(props.initSouthWest),
-    center      = JSON.parse(props.initCenter),
-    yearOptions = JSON.parse(props.initYearOptions),
+    modusOptions = [
+        {val: null, label: '-- Modus --'},
+        {val: 'Track', label: 'Touren'},
+        {val: 'Planung', label: 'Planung'}
+    ],
     // Reaktive Zustände
     duration = ref(null),
     featureCollectionName = ref(''),
     allTrackFeatures = ref([]),
     allMediaFeatures = ref([]),
+    allPlannerFeatures = ref([]),
     isLoading = ref(true),
+    totalDistanceNM = ref('0.00'),
+    modus = ref(null),
+    mapData = ref(null),
     errorMsg = ref(null),
     errorResponse = ref(null),
     selectedYear = ref(new Date().getFullYear()),
+    selectedModus = ref('Planung'),
     hoveredTrackId = ref(null),
+    hoveredPlannerId = ref(null),
     mapContainer = ref(null),
+    geoJsonOutput = ref(null),
+    segmentCount = ref(0),
+    averageSpeedKnots = ref(5.0),
     year = ref(moment().year()),
     selectedTrackId = ref(null),
+    selectedPlannerId = ref(null),
+    allWaypoints = ref([]),
     mediaPaneName = 'mediaPane',
     trackPointPaneName = 'trackPointPane',
     trackPaneName = 'trackPane',
     markers = new MarkerClusterGroup({optios: {
         zIndex: 1000,
         clusterPane: mediaPaneName,
-    }});
+    }}),
+    el = useTemplateRef('plannerBox'),
+    { style } = useDraggable(el, {
+        initialValue: { x: parseInt(screen.availWidth / 2), y: parseInt(screen.availHeight / 2) },
+    });
 
 let map = null,
     geoJsonTrackLayer = null,
-    geoJsonMediaLayer = null;
+    geoJsonPlannerLayer = null,
+    geoJsonMediaLayer = null,
+    segments = [],
+    waypointMarkers = [],
+    isAutoHealing = false;
 
 // --- API-Request per Axios-POST ---
 const fetchApi = async () => {
@@ -156,24 +244,23 @@ const fetchApi = async () => {
         try {
             const resp = await axios.post(API_URL, {
                 year: selectedYear.value,
-                southWest: {lat: southWest[0], lng: southWest[1]},
-                northEast: {lat: northEast[0], lng: northEast[1]},
+                southWest: {lat: props.southWest[0], lng: props.southWest[1]},
+                northEast: {lat: props.northEast[0], lng: props.northEast[1]},
                 zoom: map.getZoom(),
             })
+
             if(resp && resp.data) {
                 if(resp.data.error) {
                     errorResponse.value = resp.data.error
                     console.error(resp.data.error)
                 } else {
-                    const tracks = resp.data.tracks,
-                        media = resp.data.media;
+                    mapData.value = {
+                        media: resp.data.media,
+                        tracks: resp.data.tracks,
+                        planners: resp.data.planners
+                    }
 
-                    featureCollectionName.value = tracks.name || ''
-                    allTrackFeatures.value = Array.isArray(tracks.features) ? tracks.features : []
-                    allMediaFeatures.value = Array.isArray(media.features) ? media.features : []
-
-                    renderGeoJsonTrackLayer(tracks.features)
-                    renderGeoJsonMediaLayer(media.features)
+                    setDataByModus()
                     isLoading.value = false
                 }
             } else {
@@ -188,14 +275,13 @@ const fetchApi = async () => {
             isLoading.value = false
         }
     },
-    yearlyTracks = computed(() => {
-    return allTrackFeatures.value
-        .filter((f) => f.geometry?.type === 'LineString')
-        .map((feature) => ({
-            feature,
-            stats: getTrackStats(feature)
-        }));
-    }),
+    yearlyTracks = computed(() => allTrackFeatures.value
+            .filter((f) => f.geometry?.type === 'LineString')
+            .map((feature) => ({
+                feature,
+                stats: getTrackStats(feature)
+            }))),
+    yearlyPlanners = computed(() => allPlannerFeatures.value.filter((f) => f.geometry?.type === 'LineString')),
     getYearFromFeature = (feature) => moment(feature.properties?.start).year(),
     getTrackStats = (feature) => {
         const props = feature.properties || {},
@@ -246,8 +332,215 @@ const fetchApi = async () => {
 
         return { color: '#1e3a8a', weight: 5, opacity: 0.9, zIndex: 1000 }
     },
+    getPlannerStyle = (feature) => {
+        const id = feature.properties.id,
+            isSelected = id === selectedPlannerId.value,
+            isHovered = id === hoveredPlannerId.value;
+
+        if (isSelected) {
+            return { color: '#f00', weight: 6, opacity: 1 }
+        }
+        if (isHovered) {
+            return { color: '#f80', weight: 5, opacity: 0.9 }
+        }
+
+        return { color: '#1e3a8a', weight: 5, opacity: 0.9, zIndex: 1000 }
+    },
+    createSegmentsFromGeoJson = (geoJson) => {
+        // Koordinaten extrahieren (unterstützt LineString & MultiLineString)
+        let coords = [];
+        if (geoJson.geometry.type === 'LineString') {
+            coords = geoJson.geometry.coordinates;
+        } else if (geoJson.geometry.type === 'MultiLineString') {
+            coords = geoJson.geometry.coordinates.flat();
+        }
+
+        // Für je zwei aufeinanderfolgende Punkte ein eigenes Segment erstellen
+        for (let i = 0; i < coords.length - 1; i++) {
+            const start = [coords[i][1], coords[i][0]];     // [Lat, Lng]
+            const end = [coords[i + 1][1], coords[i + 1][0]]; // [Lat, Lng]
+            addSegmentLayer([start, end]);
+        }
+    },
+    addSegmentLayer = (latlngs) => {
+        const segment = L.polyline(latlngs, { color: '#0284c7', weight: 4 }).addTo(map);
+        segments.push(segment);
+    },
+    getBearing = (latlng1, latlng2) => {
+        const toRad = (deg) => (deg * Math.PI) / 180;
+        const toDeg = (rad) => (rad * 180) / Math.PI;
+
+        const lat1 = toRad(latlng1.lat);
+        const lat2 = toRad(latlng2.lat);
+        const dLon = toRad(latlng2.lng - latlng1.lng);
+
+        const y = Math.sin(dLon) * Math.cos(lat2);
+        const x =
+            Math.cos(lat1) * Math.sin(lat2) -
+            Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
+
+        const brng = toDeg(Math.atan2(y, x));
+        return Math.round((brng + 360) % 360);
+    },
+    setPlannererData = (data) => {
+        if(geoJsonPlannerLayer) {
+            geoJsonPlannerLayer.remove()
+        }
+        allPlannerFeatures.value = Array.isArray(data.planners.features) ? data.planners.features : []
+        renderGeoJsonPlannerLayer(allPlannerFeatures.value)
+
+        geoJsonPlannerLayer.eachLayer((layer) => {
+            bindLayerEvents(layer);
+        });
+
+        loadFromGeoJson(allPlannerFeatures.value);
+    },
+    setDataByModus = () => {
+        const data = mapData.value
+
+        switch (selectedModus.value) {
+            case 'Track':
+                if(geoJsonPlannerLayer) {
+                    geoJsonPlannerLayer.remove()
+                }
+                featureCollectionName.value = mapData.value.tracks.name || ''
+
+                allTrackFeatures.value = Array.isArray(data.tracks.features) ? data.tracks.features : []
+                allMediaFeatures.value = Array.isArray(data.media.features) ? data.media.features : []
+
+                renderGeoJsonTrackLayer(allTrackFeatures.value)
+                renderGeoJsonMediaLayer(allMediaFeatures.value)
+                break
+            case 'Planung':
+                if(geoJsonMediaLayer) {
+                    geoJsonMediaLayer.remove()
+                }
+
+                if(geoJsonTrackLayer) {
+                    geoJsonTrackLayer.remove()
+                }
+
+                markers.remove()
+
+                featureCollectionName.value = mapData.value.planners.name || ''
+                allPlannerFeatures.value = Array.isArray(data.planners.features) ? data.planners.features : []
+                console.info('allPlannerFeatures', allPlannerFeatures.value)
+                break
+        }
+    },
+    calculateNauticalMiles = (polylineLayer) => {
+        const latlngs = polylineLayer.getLatLngs();
+        let totalMeters = 0;
+
+        for (let i = 0; i < latlngs.length - 1; i++) {
+            totalMeters += latlngs[i].distanceTo(latlngs[i + 1]);
+        }
+
+        // 1 Seemeile = 1852 Meter
+        return totalMeters / 1852;
+    },
+    getSegmentNM = (latlng1, latlng2) => {
+        return latlng1.distanceTo(latlng2) / 1852;
+    },
+    rebuildWaypointMarkers = (waypoints) => {
+        if (!map) return;
+
+        // Alte Marker entfernen
+        waypointMarkers.forEach((m) => map.removeLayer(m));
+        waypointMarkers = [];
+
+        waypoints.forEach((latlng, idx) => {
+            const wpNumber = idx + 1;
+
+            // Benutzerdefiniertes Badge-Icon für den Wegpunkt
+            const icon = L.divIcon({
+                className: 'wp-badge-wrapper',
+                html: `<div class="wp-badge">WP ${wpNumber}</div>`,
+                iconSize: 10,
+                iconAnchor: [22, -8] // Leicht unterhalb des Stützpunktes positioniert, damit der Drag-Punkt frei bleibt!
+            });
+
+            const marker = L.marker(latlng, {
+                icon,
+                interactive: true, // Erlaubt Hover für Koordinaten-Anzeige
+                pmIgnore: true     // Wichtig: Geoman soll diesen Info-Marker nicht als editierbares Objekt behandeln
+            }).addTo(map);
+
+            // Dezimal-Koordinaten beim Hovern über den WP-Marker anzeigen
+            const latStr = latlng.lat.toFixed(5);
+            const lngStr = latlng.lng.toFixed(5);
+            marker.bindTooltip(`<strong>WP ${wpNumber}</strong><br/>Lat: ${latStr}°<br/>Lng: ${lngStr}°`, {
+                direction: 'bottom',
+                offset: 0,
+                className: 'nautical-hover-tooltip'
+            });
+
+            waypointMarkers.push(marker);
+        });
+    },
+    formatLegTime = (nm) => {
+        if (!averageSpeedKnots.value || averageSpeedKnots.value <= 0) return '-';
+        const hrs = nm / averageSpeedKnots.value;
+        const h = Math.floor(hrs);
+        const m = Math.round((hrs - h) * 60);
+        return `${h}h ${String(m).padStart(2, '0')}m`;
+    },
     getMediaStyle = () => {
         return { opacity: 1 }
+    },
+    updateSegmentTooltip = (segment, index) => {
+        const pts = segment.getLatLngs();
+        if (pts.length < 2) return;
+
+        let segMeters = 0;
+        for (let i = 0; i < pts.length - 1; i++) {
+            segMeters += pts[i].distanceTo(pts[i + 1]);
+        }
+        const nm = segMeters / 1852;
+        const course = String(getBearing(pts[0], pts[pts.length - 1])).padStart(3, '0');
+        const legTime = formatLegTime(nm);
+
+        const tooltipContent = `
+    <div style="text-align: left; line-height: 1.4;">
+      <strong>Etappe ${index + 1}</strong> (WP ${index + 1} → WP ${index + 2})<br/>
+      Distanz: <strong>${nm.toFixed(2)} NM</strong><br/>
+      Kurs: <strong>${course}°</strong> | Zeit: <strong>~${legTime}</strong>
+    </div>
+  `;
+
+        if (!segment.getTooltip()) {
+            segment.bindTooltip(tooltipContent, {
+                permanent: false, // Erscheint nur bei MouseOver!
+                sticky: true,     // Folgt dem Mauszeiger entlang der Linie
+                className: 'nautical-hover-tooltip'
+            });
+        } else {
+            segment.setTooltipContent(tooltipContent);
+        }
+    },
+    handleEachPlannerFaeture = (feature, layer) => {
+        feature.properties.points.forEach(p => {
+            var popupHtml = `
+            <div style="min-width: 195px; font-family: system-ui, sans-serif;">
+                <strong>${p.name} ID ${p.id}</strong><br>
+                ${p.desc}<br>
+                Lat: ${p.latlng.lat}<br>
+                Lng: ${p.latlng.lng}
+            </div>`;
+
+            const marker = L.circleMarker(p.latlng, {
+                color: '#f00',
+                radius: 6,
+                opacity: 1,
+                fillOpacity: 1,
+                className: 'planner-point',
+                bubblingPointerEvents: true,
+                pane: trackPointPaneName,
+                zIndex: 1000,
+            })
+            marker.bindPopup(popupHtml)
+            marker.addTo(map)
+        })
     },
     handleEachTrackFaeture = (feature, layer) => {
         feature.properties.points.forEach(p => {
@@ -291,6 +584,39 @@ const fetchApi = async () => {
             showMedia(props)
         })
     },
+    renderGeoJsonPlannerLayer = (data) => {
+        console.info('data', data)
+        if (!map) return
+        if (geoJsonPlannerLayer) geoJsonPlannerLayer.remove()
+
+        const featureCollection = {
+            type: 'FeatureCollection',
+            features: data
+        }
+        map.getPane(trackPointPaneName).style.zIndex = 600;
+        map.getPane(trackPointPaneName).style.pointerEvents = 'auto';
+
+        geoJsonPlannerLayer = L.geoJSON(featureCollection, {
+            style: {
+                zIndex: 600,
+                color: 'red',
+                width: 30,
+            },
+            pane: trackPointPaneName,
+            onEachFeature: handleEachPlannerFaeture,
+            pointToLayer: (geoJsonPoint, latlng) => {
+                console.info('geoJsonPoint', geoJsonPoint)
+                L.Marker(latlng)
+            }
+        }).addTo(map)
+
+//        console.info('data', data.properties)
+        console.info('bounds', geoJsonPlannerLayer.getBounds().isValid())
+
+        if (geoJsonPlannerLayer.getBounds().isValid()) {
+            map.fitBounds(geoJsonPlannerLayer.getBounds())
+        }
+    },
     renderGeoJsonTrackLayer = (data) => {
         if (!map) return
         if (geoJsonTrackLayer) geoJsonTrackLayer.remove()
@@ -326,6 +652,40 @@ const fetchApi = async () => {
 
         map.addLayer(markers);
     },
+    // planner
+    createSegmentLayer = (latlngs, insertIndex = null) => {
+        const segment = L.polyline(latlngs, {
+            color: '#0284c7',
+            weight: 5,       // Etwas breiter für leichteres MouseOver
+            opacity: 0.85
+        }).addTo(map);
+
+        if (insertIndex !== null) {
+            segments.splice(insertIndex, 0, segment);
+        } else {
+            segments.push(segment);
+        }
+
+        // Visuelles Feedback beim Hovern über die Linie
+        segment.on('mouseover', () => segment.setStyle({ color: '#0369a1', weight: 7 }));
+        segment.on('mouseout', () => segment.setStyle({ color: '#0284c7', weight: 5 }));
+
+        return segment;
+    },
+    loadFromGeoJson = (geoJson) => {
+        let coords = [];
+        if (geoJson.geometry.type === 'LineString') {
+            coords = geoJson.geometry.coordinates;
+        } else if (geoJson.geometry.type === 'MultiLineString') {
+            coords = geoJson.geometry.coordinates.flat();
+        }
+
+        for (let i = 0; i < coords.length - 1; i++) {
+            const start = L.latLng(coords[i][1], coords[i][0]);
+            const end = L.latLng(coords[i + 1][1], coords[i + 1][0]);
+            createSegmentLayer([start, end]);
+        }
+    },
     updateLayerStyles = () => {
         if (!geoJsonTrackLayer) return
         geoJsonTrackLayer.eachLayer((layer) => {
@@ -338,6 +698,68 @@ const fetchApi = async () => {
             }
         })
     },
+    updatePlannerLayerStyles = () => {
+        if (!geoJsonPlannerLayer) return
+        geoJsonPlannerLayer.eachLayer((layer) => {
+            const feature = layer.feature
+            if (feature && feature.geometry.type === 'LineString') {
+                layer.setStyle(getPlannerStyle(feature))
+                if (feature.properties.id === selectedPlannerId.value) {
+                    layer.bringToFront()
+                }
+            }
+        })
+    },
+    selectTour = (id, zoomToTrack = false, moveToCenter = false) => {
+        selectedPlannerId.value = selectedPlannerId.value === id ? null : id
+
+        const myOffcanvas = document.getElementById('offcanvasTracks'),
+            tour = allPlannerFeatures.value.find(p => p.properties.id === id);
+
+        console.info('tour', tour)
+
+        if(myOffcanvas) {
+            myOffcanvas.addEventListener('hidden.bs.offcanvas', () => {
+                if(!isMobile) {
+                    unSelectPlanner()
+                }
+//                const bounds = L.latLngBounds(props.northEast, props.southWest);
+            })
+        }
+
+        if(selectedPlannerId.value !== null) {
+
+            if(geoJsonPlannerLayer) {
+                geoJsonPlannerLayer.remove()
+            }
+
+            renderGeoJsonPlannerLayer(tour)
+            loadFromGeoJson(tour);
+
+            renderGeoJsonPlannerLayer(tour)
+
+            geoJsonPlannerLayer.eachLayer((layer) => {
+                bindLayerEvents(layer);
+            });
+
+            loadFromGeoJson(tour);
+
+            if (moveToCenter) {
+//                const bounds = tour.getBounds();
+                const bounds = L.latLngBounds(props.northEast, props.southWest);
+                map.fitBounds(bounds);
+            }
+
+            if (zoomToTrack) {
+                geoJsonPlannerLayer.eachLayer(layer => {
+                    if (layer.feature?.properties?.id === id) {
+                        map.fitBounds(layer.getBounds(), { maxZoom: props.maxZoom })
+                        layer.openPopup()
+                    }
+                })
+            }
+        }
+    },
     selectTrack = (id, zoomToTrack = false, moveToCenter = true) => {
         selectedTrackId.value = selectedTrackId.value === id ? null : id
 
@@ -348,21 +770,21 @@ const fetchApi = async () => {
                 if(!isMobile) {
                     unSelectTrack()
                 }
-                const bounds = L.latLngBounds(northEast, southWest);
+                const bounds = L.latLngBounds(props.northEast, props.southWest);
                 map.fitBounds(bounds);
             })
         }
 
         if(selectedTrackId.value !== null && geoJsonTrackLayer) {
             if (moveToCenter) {
-                const bounds = L.latLngBounds(northEast, southWest);
+                const bounds = L.latLngBounds(props.northEast, props.southWest);
                 map.fitBounds(bounds);
             }
 
             if (zoomToTrack) {
                 geoJsonTrackLayer.eachLayer((layer) => {
                     if (layer.feature?.properties?.id === id) {
-                        map.fitBounds(layer.getBounds(), { maxZoom: maxZoom })
+                        map.fitBounds(layer.getBounds(), { maxZoom: props.maxZoom })
                         layer.openPopup()
                     }
                 })
@@ -372,6 +794,10 @@ const fetchApi = async () => {
     unSelectTrack = () => {
         selectedTrackId.value = null
         updateLayerStyles()
+    },
+    unSelectPlanner = () => {
+        selectedPlannerId.value = null
+        updatePlannerLayerStyles()
     },
     showMedia = (props) => {
         // Falls bereits ein Modal offen ist, dieses zuerst entfernen
@@ -459,25 +885,41 @@ const fetchApi = async () => {
                 closeModal();
             }
         };
-    };
+    },
+    estimatedDuration = computed(() => {
+        if (!averageSpeedKnots.value || averageSpeedKnots.value <= 0 || totalDistanceNM.value <= 0) {
+            return '0h 00m';
+        }
+        const totalHours = totalDistanceNM.value / averageSpeedKnots.value;
+        const hours = Math.floor(totalHours);
+        const minutes = Math.round((totalHours - hours) * 60);
+        return `${hours}h ${String(minutes).padStart(2, '0')}m`;
+    });
 
+// Wenn der Nutzer die Geschwindigkeit in Knoten ändert -> Tooltips aktualisieren
+watch(averageSpeedKnots, () => {
+    segments.forEach((seg, index) => updateSegmentTooltip(seg, index));
+})
 watch(selectedYear, () => {
     selectedTrackId.value = null
     fetchApi()
 })
-
+watch(selectedModus, () => {
+    selectedTrackId.value = null
+    setDataByModus()
+})
 watch([selectedTrackId, hoveredTrackId], () => {
     updateLayerStyles()
 })
 
 onMounted(() => {
     map = L.map(mapContainer.value, {
-        zoom: zoom,
-        maxZoom: maxZoom,
-        center: center,
+        zoom: props.zoom,
+        maxZoom: props.maxZoom,
+        center: props.center,
     });
 
-    const bounds = L.latLngBounds(northEast, southWest);
+    const bounds = L.latLngBounds(props.northEast, props.southWest);
     map.fitBounds(bounds);
 
     const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
@@ -494,12 +936,13 @@ onMounted(() => {
     map.createPane(trackPaneName);
     map.createPane(trackPointPaneName);
     map.createPane(mediaPaneName);
+
     map.getPane(mediaPaneName).style.zIndex = 10000;
     map.getPane(mediaPaneName).style.pointerEvents = 'auto';
 
     L.control.layers(
         {'OpenStreetMap': osmLayer},
-        {'Seezeichen (OpenSeaMap)': openSeaMapLayer},
+        {'OpenSeaMap': openSeaMapLayer},
         { position: 'topright' }
     ).addTo(map)
 
@@ -517,17 +960,17 @@ onMounted(() => {
         nautic: true
     }).addTo(map);
 
-    map.on('click', (e) => console.info('latlng', e.latlng))
-
     fetchApi()
 })
-
 onUnmounted(() => {
     map?.remove()
 })
 </script>
 
 <style lang="scss">
+#modus {
+    width: 130px;
+}
 #tracks {
     width: 100%;
     height: 100%;
@@ -765,7 +1208,6 @@ onUnmounted(() => {
         padding-right: 12px;
     }
 }
-
 /* Der Close-Button oben rechts */
 .media-close-btn {
     display: inline-block;
@@ -786,5 +1228,105 @@ onUnmounted(() => {
 }
 .media-close-btn:hover {
     color: #cc0000;
+}
+#sailing-planner {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    border: 1px solid gray;
+    z-index: 10000;
+    border-radius: 8px;
+    background-color: transparent;
+
+    .sailing-planner {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .stats-bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        background: #0f172a;
+        color: #f8fafc;
+        padding: 0.85rem 1.25rem;
+        border-radius: 8px;
+    }
+    .stat-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+    }
+    .stat-item .label {
+        font-size: 0.75rem;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+    .stat-item strong {
+        font-size: 1.15rem;
+        color: #38bdf8;
+    }
+    .speed-control {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        background: #1e293b;
+        padding: 0.4rem 0.75rem;
+        border-radius: 6px;
+    }
+    .speed-control input {
+        width: 60px;
+        padding: 0.25rem 0.4rem;
+        border-radius: 4px;
+        border: 1px solid #334155;
+        background: #0f172a;
+        color: #f8fafc;
+        font-weight: bold;
+        text-align: center;
+    }
+    .output-panel {
+        background: #f4f4f5;
+        padding: 1rem;
+        border-radius: 8px;
+        max-height: 200px;
+        overflow-y: auto;
+        font-size: 0.85rem;
+    }
+    /* Hover-Tooltip Styling */
+    :deep(.nautical-hover-tooltip) {
+        background: rgba(15, 23, 42, 0.92);
+        color: #f8fafc;
+        border: 1px solid #38bdf8;
+        border-radius: 6px;
+        padding: 6px 10px;
+        font-size: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    /* Nummerierte Wegpunkt-Badges (WP 1, WP 2...) */
+    :deep(.wp-badge) {
+        background: #0284c7;
+        color: #ffffff;
+        font-size: 10px;
+        font-weight: 700;
+        text-align: center;
+        padding: 1px 4px;
+        border-radius: 4px;
+        border: 1px solid #ffffff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        white-space: nowrap;
+    }
+}
+.drag-box {
+    padding: 0;
+    background: #42b883;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.drag-box:active {
+    cursor: grabbing;
 }
 </style>

@@ -90,7 +90,6 @@ class AdminTrackController extends Controller
                                         $stamp = $p->time->getTimestamp();
                                         if($p->extensions->navionics_speed > 0 && $p->latitude && $p->longitude && 0 === $stamp % $modulo) {
                                             return [
-
                                                 'track_id'  => $track->id,
                                                 'lat'   => $p->latitude,
                                                 'lng'   => $p->longitude,

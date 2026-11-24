@@ -10,6 +10,11 @@ use MatanYadaev\EloquentSpatial\Objects\Point;
 
 class StoreMediaRequest extends AdminRequest
 {
+    protected $booleanFields = ['active'];
+    protected $defaults = [
+        'active'    => true,
+    ];
+
     protected function prepareForValidation()
     {
         $videoDisk = Storage::disk('video');

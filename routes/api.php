@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiTrackController;
-
+use App\Http\Controllers\Api\ApiRoutePlannerDataController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,5 +18,5 @@ use App\Http\Controllers\Api\ApiTrackController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-//Route::resource('tracks', ApiTrackController::class);
+Route::post('route-planner-data/{routePlanner}', [ApiRoutePlannerDataController::class, 'store']);
 Route::post('tracks', [ApiTrackController::class, 'index']);

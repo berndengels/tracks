@@ -14,6 +14,7 @@ module.exports = {
     },
     resolve: {
         alias: {
+            'vue$': 'vue/dist/vue.esm-bundler.js',
             '@': path.resolve('resources/js'),
             'L@': path.resolve('resources/js/Libs'),
             'css@': path.resolve('resources/css'),

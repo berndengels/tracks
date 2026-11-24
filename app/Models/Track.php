@@ -3,10 +3,8 @@
 namespace App\Models;
 
 use App\Traits\Models\UseBooleanIcon;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\JoinClause;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property int $id

@@ -1,14 +1,16 @@
 @extends('layouts.default')
 
 @section('main')
-    <div id="tracks"
-         data-init-north-east="{{ $northEast }}"
-         data-init-south-west="{{ $southWest }}"
-         data-init-center="{{ $center }}"
-         data-init-year-options="{{ $yearOptions }}"
-         data-zoom="{{ $zoom }}"
-         data-max-zoom="{{ $maxZoom }}"
-         data-km="{{ $km }}"
-         data-nm="{{ $nm }}"
-    />
+    <div id="app">
+        <sailing-tracks-map
+            :north-east='{!! $northEast !!}'
+            :south-west='{!! $southWest !!}'
+            :center='{!! $center !!}'
+            :year-options='{!! $yearOptions !!}'
+            :zoom='{!! $zoom !!}'
+            :max-zoom='{!! $maxZoom !!}'
+            :km='{!! $km !!}'
+            :nm='{!! $nm !!}'
+        ></sailing-tracks-map>
+    </div>
 @endsection

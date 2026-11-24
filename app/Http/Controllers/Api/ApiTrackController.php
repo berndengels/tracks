@@ -55,12 +55,20 @@ class ApiTrackController extends BaseController
             $trackName  = "Bernds Segeltörn $year";
 
             if($this->useCache) {
+                $plannerLineFeatures   = Cache::remember("plannerLineFeatures{$zoom}_{$year}", $this->ttl, fn() => GeoJSON::getRoutePlannerlineFeatures(year: $year));
                 $lineFeatures   = Cache::remember("lineFeatures{$zoom}_{$year}", $this->ttl, fn() => GeoJSON::getlineFeaturesFromBound(southWest: $southWest, northEast: $northEast, modulo: $modulo, year: $year));
                 $mediaFeatures  = Cache::remember("mediaFeatures{$zoom}_{$year}", $this->ttl, fn() => GeoJSON::getMediaFeaturesFromBound(southWest: $southWest, northEast: $northEast, year: $year));
             } else {
+                $plannerLineFeatures   = GeoJSON::getRoutePlannerlineFeatures(year: $year);
                 $lineFeatures   = GeoJSON::getlineFeaturesFromBound(southWest: $southWest, northEast: $northEast, modulo: $modulo, year: $year);
                 $mediaFeatures  = GeoJSON::getMediaFeaturesFromBound(southWest: $southWest, northEast: $northEast, year: $year);
             }
+
+            $planners = [
+                'type'  => 'FeatureCollection',
+                'name'  =>  'TourPlanung',
+                'features'  => $plannerLineFeatures,
+            ];
 
             $tracks = [
                 'type'  => 'FeatureCollection',
@@ -78,6 +86,7 @@ class ApiTrackController extends BaseController
                 'error'     => null,
                 'tracks'    => $tracks,
                 'media'     => $media,
+                'planners'  => $planners,
                 'bounds'    => [$southWest, $northEast],
                 'maxZoom'   => $this->maxZoom,
             ]);

@@ -3,37 +3,50 @@
 namespace App\Repositories;
 
 use App\Models\Media;
+use App\Models\RoutePlanner;
+use App\Models\RoutePlannerData;
 use App\Models\Track;
 use App\Models\TrackData;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class GeoJSON
 {
-    public static function getlineFeatures($modulo, $year)
+    public static function getRoutePlannerlineFeatures($year)
     {
-        return Track::with(['trackdata'])
-            ->whereActive(true)
-            ->whereRaw('YEAR(start) = ?', [$year])
-            ->orderBy('start')
+        return RoutePlanner::with(['routePlannerData'])
+            ->whereRaw('YEAR(created_at) = ?', [$year])
+            ->orderBy('created_at')
             ->get()
-            ->map(fn(Track $t) => [
+            ->map(fn(RoutePlanner $t) => [
                 'type'  => 'Feature',
                 'properties' => [
                     'id'    => $t->id,
                     'name'  => $t->name,
-                    'start' => $t->start->addHours(2)->format('d.m.Y H:i'),
-                    'end'   => $t->end->addHours(2)->format('d.m.Y H:i'),
-                    'color' => 'red',
+                    'desc'  => $t->desc,
+                    'points' => $t->routePlannerData()
+                        ->orderBy('id')
+                        ->get()
+                        ->map(fn (RoutePlannerData $p) => [
+                            'latlng'    => [
+                                'lat'   => $p->lat,
+                                'lng'   => $p->lng,
+                            ],
+                            'id'  => $p->id,
+                            'name'  => $p->name,
+                            'desc'  => $p->desc,
+                            'route_planner_id'  => $p->route_planner_id,
+                        ])
+
                 ],
                 'geometry' => [
                     'type'  => 'LineString',
-                    'coordinates'   => $t->trackdata()
-                        ->whereRaw('MOD(stamp, ?) = 0', [$modulo])
-                        ->orderBy('datetime')
+                    'coordinates'   => $t->routePlannerData()
+                        ->orderBy('id')
                         ->get()
-                        ->map(fn (TrackData $p) => [(float) $p->lng,(float) $p->lat])
-                        ->values()
-                        ->toArray(),
+                        ->map(fn (RoutePlannerData $p) => [(float) $p->lng,(float) $p->lat])
+//                        ->values()
+//                        ->toArray(),
                 ]
             ]);
     }
@@ -224,6 +237,19 @@ class GeoJSON
         return collect([$nordEast, $southWest]);
     }
 
+    public static function getBoundsByModel(Model $model)
+    {
+        $minLat = (float) app($model)::selectRaw('MIN(lat) AS val')->whereRaw('YEAR(datetime) = ?', [$year])->first()->val;
+        $maxLat = (float) app($model)::selectRaw('MAX(lat) AS val')->whereRaw('YEAR(datetime) = ?', [$year])->first()->val;
+        $minLng = (float) app($model)::selectRaw('MIN(lng) AS val')->whereRaw('YEAR(datetime) = ?', [$year])->first()->val;
+        $maxLng = (float) app($model)::selectRaw('MAX(lng) AS val')->whereRaw('YEAR(datetime) = ?', [$year])->first()->val;
+
+        $nordEast   = [$maxLat, $maxLng];
+        $southWest  = [$minLat, $minLng];
+
+        return collect([$nordEast, $southWest]);
+    }
+
     public static function getNordEast($year)
     {
         return collect(self::getBounds($year)[0]);
@@ -232,5 +258,15 @@ class GeoJSON
     public static function getSouthWest($year)
     {
         return collect(self::getBounds($year)[1]);
+    }
+
+    public static function getNordEastByModel(Model $model)
+    {
+        return collect(self::getBoundsByModel($model)[0]);
+    }
+
+    public static function getSouthWestByModel(Model $model)
+    {
+        return collect(self::getBoundsByModel($model)[1]);
     }
 }

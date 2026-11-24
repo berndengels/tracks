@@ -13,10 +13,10 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}?{{ time() }}">
     @stack('styles')
     @auth()
-        <script src="{{ mix('js/app-admin.js') }}?{{ time() }}"></script>
+        <script src="{{ mix('js/app-admin.js') }}?{{ time() }}" defer></script>
     @endauth
     @guest
-        <script src="{{ mix('js/app.js') }}?{{ time() }}"></script>
+        <script src="{{ mix('js/app.js') }}?{{ time() }}" defer></script>
     @endguest
     @stack('scripts')
 </head>
@@ -36,6 +36,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.media.index') }}">Media</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.route-planners.index') }}">Planungen</a>
                             </li>
                         </ul>
                     </div>

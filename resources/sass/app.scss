@@ -88,3 +88,12 @@ body {
 .switch {
     cursor: pointer;
 }
+textarea {
+    min-height: 100px;
+    &.form-control {
+        min-height: 100px;
+    }
+}
+.cursor-move {
+    cursor: move;
+}
