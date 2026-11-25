@@ -773,31 +773,6 @@ const fetchApi = async () => {
             segment.setTooltipContent(tooltipContent);
         }
     },
-    handleEachPlannerFaeture = (feature, layer) => {
-        feature.properties.points.forEach(p => {
-            var popupHtml = `
-            <div style="min-width: 195px; font-family: system-ui, sans-serif;">
-                <strong>${p.name}</strong><br>
-                ${p.desc}<br>
-                Lat: ${p.latlng.lat}<br>
-                Lng: ${p.latlng.lng}
-            </div>`;
-
-            const marker = L.circleMarker(p.latlng, {
-//                stroke: false,
-                color: '#f00',
-                radius: 6,
-                opacity: 1,
-                fillOpacity: 1,
-                className: 'planner-point',
-                bubblingPointerEvents: true,
-                pane: trackPointPaneName,
-                zIndex: 1000,
-            })
-            marker.bindPopup(popupHtml)
-            marker.addTo(map)
-        })
-    },
     handleEachTrackFaeture = (feature, layer) => {
         feature.properties.points.forEach(p => {
             var popupHtml = `
@@ -855,7 +830,7 @@ const fetchApi = async () => {
             style: {
                 zIndex: 600,
                 color: 'red',
-                width: 30,
+                width: 6,
             },
             pane: trackPointPaneName,
             onEachFeature: handleEachPlannerFaeture

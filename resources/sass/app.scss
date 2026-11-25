@@ -44,6 +44,10 @@ body {
 .bg-yellow { background-color: $yellow }
 .bg-orange { background-color: $orange }
 .bg-dark { background-color: $bgDark }
+
+#app {
+    height: 100%;
+}
 #adminMap {
     width: 90%;
     height: 100vh;

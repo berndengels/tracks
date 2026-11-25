@@ -49,7 +49,7 @@
 						<VueSpinnerHourglass color="red" size="50" margin="auto"/>
 					</div>
 				</div>
-				<aside v-else id="offcanvasTracks" class="sidebar offcanvas offcanvas-start text-bg-dark"
+				<aside v-else id="offcanvasTracks" ref="offcanvas" class="sidebar offcanvas offcanvas-start text-bg-dark"
 				       data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
 				       aria-labelledby="offcanvasScrollingLabel">
 					<div class="offcanvas-header">
@@ -134,7 +134,6 @@ import 'leaflet-draw/dist/leaflet.draw.css';
 import "leaflet.measurecontrol";
 import {VueSpinnerHourglass} from 'vue3-spinners';
 import {isMobile} from '@basitcodeenv/vue3-device-detect'
-//import { useDraggable } from '@vueuse/core'
 import moment from "moment";
 import TourCalculationPanel from "c@/TourCalculationPanel.vue";
 
@@ -168,6 +167,7 @@ const props = defineProps([
 	isLoading = ref(true),
 	totalDistanceNM = ref('0.00'),
 	modus = ref(null),
+	offcanvas = ref(),
 	currentTourGeoJson = ref(null),
 	mapData = ref(null),
 	errorMsg = ref(null),
@@ -374,15 +374,15 @@ const fetchApi = async () => {
 				renderGeoJsonMediaLayer(allMediaFeatures.value)
 				break
 			case 'Planung':
-/*
-				if (geoJsonMediaLayer) {
-					geoJsonMediaLayer.remove()
-				}
+				/*
+								if (geoJsonMediaLayer) {
+									geoJsonMediaLayer.remove()
+								}
 
-				if (geoJsonTrackLayer) {
-					geoJsonTrackLayer.remove()
-				}
-*/
+								if (geoJsonTrackLayer) {
+									geoJsonTrackLayer.remove()
+								}
+				*/
 				markers.remove()
 
 				featureCollectionName.value = mapData.value.planners.name || ''
@@ -451,7 +451,7 @@ const fetchApi = async () => {
 		return {opacity: 1}
 	},
 	clearPlannerGeoJson = () => {
-		if ( layerGroup && geoJsonPlannerLayer ) {
+		if (layerGroup && geoJsonPlannerLayer) {
 			layerGroup.clearLayers();
 			map.removeLayer(layerGroup)
 			geoJsonPlannerLayer = null
@@ -552,12 +552,14 @@ const fetchApi = async () => {
 			</div>`;
 
 			const marker = L.circleMarker(p.latlng, {
-				color: '#009',
-				radius: 3,
+				color: '#c00',
+				radius: 6,
 				opacity: 1,
 				fillOpacity: 1,
 				className: 'planner-point',
+				zIndex: 1000,
 				bubblingPointerEvents: true,
+				pane: trackPointPaneName,
 			});
 
 			marker.bindPopup(popupHtml);
@@ -568,7 +570,7 @@ const fetchApi = async () => {
 	},
 	handleEachTrackFaeture = (feature, layer) => {
 		feature.properties.points.forEach(p => {
-			var popupHtml = `
+			let popupHtml = `
             <div style="min-width: 195px; font-family: system-ui, sans-serif;">
                 <strong>${p.name}</strong><br>
                 <strong>Zeit: </strong>${p.time} Uhr<br>
@@ -628,7 +630,7 @@ const fetchApi = async () => {
 				weight: 30,
 			},
 			pane: trackPointPaneName,
-			onEachFeature: handleEachPlannerFaeture
+			onEachFeature: handleEachPlannerFeature
 		})
 		layerGroup.addLayer(geoJsonPlannerLayer);
 
@@ -750,7 +752,7 @@ const fetchApi = async () => {
 			currentTourGeoJson.value = geojson.properties.id === selectedPlannerId.value
 
 			if (moveToCenter) {
-                const bounds = tour.getBounds();
+				const bounds = tour.getBounds();
 //				const bounds = L.latLngBounds(props.northEast, props.southWest);
 				map.fitBounds(bounds);
 			}
@@ -836,7 +838,7 @@ const fetchApi = async () => {
 
 		// Video-Element unterhalb der Kopfzeile erstellen
 
-		var media = {};
+		let media = {};
 
 		switch (props.type) {
 			case 'image':
