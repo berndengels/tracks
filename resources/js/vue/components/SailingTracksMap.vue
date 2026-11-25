@@ -103,7 +103,7 @@
 									@mouseenter="hoveredPlannerId = feature.properties.id"
 									@mouseleave="hoveredPlannerId = null"
 								>
-									<div v-if="eature.properties.points" class="track-title">{{ feature.properties.name }}
+									<div v-if="feature.properties.points" class="track-title">{{ feature.properties.name }}
 										<span>(Points: {{ feature.properties.points.length }})</span></div>
 									<div class="track-meta" v-html="feature.properties.desc"></div>
 								</li>
