@@ -49,7 +49,7 @@
 						<VueSpinnerHourglass color="red" size="50" margin="auto"/>
 					</div>
 				</div>
-				<aside v-else id="offcanvasTracks" ref="offcanvas" class="sidebar offcanvas offcanvas-start text-bg-dark"
+				<aside v-else id="offcanvasTracks" ref="offcanvas" class="sidebar offcanvas offcanvas-start show text-bg-dark"
 				       data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
 				       aria-labelledby="offcanvasScrollingLabel">
 					<div class="offcanvas-header">
@@ -60,8 +60,7 @@
 						<div class="filter-bar">
 							<label for="year-select"><strong>Segeljahr:</strong></label>
 							<select id="year-select" v-model="selectedYear">
-								<option v-for="option in yearOptions" :key="option.value" :value="option.value"
-								        v-html="option.label"/>
+								<option v-for="option in yearOptions" :key="option.value" :value="option.value" v-html="option.label"/>
 							</select>
 						</div>
 
@@ -104,7 +103,7 @@
 									@mouseenter="hoveredPlannerId = feature.properties.id"
 									@mouseleave="hoveredPlannerId = null"
 								>
-									<div class="track-title">{{ feature.properties.name }}
+									<div v-if="eature.properties.points" class="track-title">{{ feature.properties.name }}
 										<span>(Points: {{ feature.properties.points.length }})</span></div>
 									<div class="track-meta" v-html="feature.properties.desc"></div>
 								</li>
