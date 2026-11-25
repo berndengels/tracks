@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreRoutePlannerDataRequest;
 use App\Models\RoutePlanner;
 use App\Repositories\GeoJSON;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRoutePlannerDataRequest;
 
 class ApiRoutePlannerDataController extends Controller
 {
+    public function index(RoutePlanner $routePlanner)
+    {
+        $data = GeoJSON::getlineFeaturesByRoutePlanner($routePlanner);
+
+        return response()->json($data);
+    }
+
     /**
      * Store a newly created resource in storage.
      */

@@ -18,5 +18,6 @@ use App\Http\Controllers\Api\ApiRoutePlannerDataController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('route-planner-data/{routePlanner}', [ApiRoutePlannerDataController::class, 'index']);
 Route::post('route-planner-data/{routePlanner}', [ApiRoutePlannerDataController::class, 'store']);
 Route::post('tracks', [ApiTrackController::class, 'index']);

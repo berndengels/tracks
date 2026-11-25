@@ -113,8 +113,9 @@ class AdminRoutePlannerController extends Controller
     {
         $maxZoom = $this->maxZoom;
         $zoom = $this->zoom;
-        $southWest  = GeoJSON::getSouthWestByModel($routePlanner)->toJson();
-        $northEast  = GeoJSON::getNordEastByModel($routePlanner)->toJson();
+//        $southWest  = GeoJSON::getSouthWestByModel(model:  $routePlanner, relation: 'routePlannerData')->toJson();
+        $southWest  = GeoJSON::getSouthWestByModel(model: $routePlanner, relation:  'routePlannerData')->toJson();
+        $northEast  = GeoJSON::getNordEastByModel(model: $routePlanner, relation: 'routePlannerData')->toJson();
         $center     = RoutePlannerData::selectRaw('AVG(lat) lat, AVG(lng) lng')->first()->toJson();
         $yearOptions = RoutePlanner::selectRaw('DISTINCT YEAR(`created_at`) year')->get()
             ->map(fn($y) => [

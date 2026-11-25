@@ -1,0 +1,57 @@
+{
+    "type": "Feature",
+    "properties": {
+        "id": 1,
+        "name": "Netzelkow (Usedom) Tour",
+        "desc": "",
+        "points": [
+            {
+                "latlng": {
+                    "lat": "54.035500",
+                    "lng": "13.886000"
+                },
+                "id": 1,
+                "name": "01_Netzelkow_Usedom",
+                "desc": "Start: Hafen Netzelkow \/ Achterwasser (Usedom)",
+                "route_planner_id": 1
+            },
+            {
+                "latlng": {
+                    "lat": "53.428500",
+                    "lng": "14.552800"
+                },
+                "id": 3,
+                "name": "03_Stettin_Oder",
+                "desc": "Oder \/ Stettin Einfahrt Richtung Westoder",
+                "route_planner_id": 1
+            },
+            {
+                "latlng": {
+                    "lat": "52.872200",
+                    "lng": "14.142500"
+                },
+                "id": 4,
+                "name": "04_Hohensaaten",
+                "desc": "Schleuse Hohensaaten \/ Einfahrt Oder-Havel-Kanal",
+                "route_planner_id": 1
+            }
+        ]
+    },
+    "geometry": {
+        "type": "LineString",
+        "coordinates": [
+            [
+                13.886,
+                54.0355
+            ],
+            [
+                14.5528,
+                53.4285
+            ],
+            [
+                14.1425,
+                52.8722
+            ]
+        ]
+    }
+}

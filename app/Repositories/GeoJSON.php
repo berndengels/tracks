@@ -9,6 +9,9 @@ use App\Models\Track;
 use App\Models\TrackData;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Collection;
+use function PHPUnit\Framework\isInstanceOf;
 
 class GeoJSON
 {
@@ -24,6 +27,7 @@ class GeoJSON
                     'id'    => $t->id,
                     'name'  => $t->name,
                     'desc'  => $t->desc,
+/*
                     'points' => $t->routePlannerData()
                         ->orderBy('id')
                         ->get()
@@ -37,7 +41,7 @@ class GeoJSON
                             'desc'  => $p->desc,
                             'route_planner_id'  => $p->route_planner_id,
                         ])
-
+*/
                 ],
                 'geometry' => [
                     'type'  => 'LineString',
@@ -49,6 +53,41 @@ class GeoJSON
 //                        ->toArray(),
                 ]
             ]);
+    }
+
+    public static function getlineFeaturesByRoutePlanner(RoutePlanner $routePlaner)
+    {
+        $routePlaner->load(['routePlannerData']);
+
+        return [
+            'type'  => 'Feature',
+            'properties' => [
+                'id'    => $routePlaner->id,
+                'name'  => $routePlaner->name,
+                'desc'  => $routePlaner->desc,
+                'points' => $routePlaner->routePlannerData()
+                    ->orderBy('id')
+                    ->get()
+                    ->map(fn (RoutePlannerData $p) => [
+                        'latlng'    => [
+                            'lat'   => $p->lat,
+                            'lng'   => $p->lng,
+                        ],
+                        'id'  => $p->id,
+                        'name'  => $p->name,
+                        'desc'  => $p->desc,
+                        'route_planner_id'  => $p->route_planner_id,
+                    ])
+
+            ],
+            'geometry' => [
+                'type'  => 'LineString',
+                'coordinates'   => $routePlaner->routePlannerData()
+                    ->orderBy('id')
+                    ->get()
+                    ->map(fn (RoutePlannerData $p) => [(float) $p->lng,(float) $p->lat])
+            ]
+        ];
     }
 
     public static function getPointFeatures($modulo, $year)
@@ -237,17 +276,29 @@ class GeoJSON
         return collect([$nordEast, $southWest]);
     }
 
-    public static function getBoundsByModel(Model $model)
+    public static function getBoundsByModel(Model $model, $relation = null)
     {
-        $minLat = (float) app($model)::selectRaw('MIN(lat) AS val')->whereRaw('YEAR(datetime) = ?', [$year])->first()->val;
-        $maxLat = (float) app($model)::selectRaw('MAX(lat) AS val')->whereRaw('YEAR(datetime) = ?', [$year])->first()->val;
-        $minLng = (float) app($model)::selectRaw('MIN(lng) AS val')->whereRaw('YEAR(datetime) = ?', [$year])->first()->val;
-        $maxLng = (float) app($model)::selectRaw('MAX(lng) AS val')->whereRaw('YEAR(datetime) = ?', [$year])->first()->val;
+        if($relation && $model->isRelation($relation)) {
+            $minLat = (float) app($model::class)->{$relation}()->selectRaw('MIN(lat) AS val')->first()->val;
+            $maxLat = (float) app($model::class)->{$relation}()->selectRaw('MAX(lat) AS val')->first()->val;
+            $minLng = (float) app($model::class)->{$relation}()->selectRaw('MIN(lng) AS val')->first()->val;
+            $maxLng = (float) app($model::class)->{$relation}()->selectRaw('MAX(lng) AS val')->first()->val;
 
-        $nordEast   = [$maxLat, $maxLng];
-        $southWest  = [$minLat, $minLng];
+            $nordEast   = [$maxLat, $maxLng];
+            $southWest  = [$minLat, $minLng];
 
-        return collect([$nordEast, $southWest]);
+            return collect([$nordEast, $southWest]);
+        } else {
+            $minLat = (float) app($model::class)::selectRaw('MIN(lat) AS val')->first()->val;
+            $maxLat = (float) app($model::class)::selectRaw('MAX(lat) AS val')->first()->val;
+            $minLng = (float) app($model::class)::selectRaw('MIN(lng) AS val')->first()->val;
+            $maxLng = (float) app($model::class)::selectRaw('MAX(lng) AS val')->first()->val;
+
+            $nordEast   = [$maxLat, $maxLng];
+            $southWest  = [$minLat, $minLng];
+
+            return collect([$nordEast, $southWest]);
+        }
     }
 
     public static function getNordEast($year)
@@ -260,13 +311,13 @@ class GeoJSON
         return collect(self::getBounds($year)[1]);
     }
 
-    public static function getNordEastByModel(Model $model)
+    public static function getNordEastByModel(Model $model, $relation = null)
     {
-        return collect(self::getBoundsByModel($model)[0]);
+        return collect(self::getBoundsByModel($model, $relation)[0]);
     }
 
-    public static function getSouthWestByModel(Model $model)
+    public static function getSouthWestByModel(Model $model, $relation = null)
     {
-        return collect(self::getBoundsByModel($model)[1]);
+        return collect(self::getBoundsByModel($model, $relation)[1]);
     }
 }
