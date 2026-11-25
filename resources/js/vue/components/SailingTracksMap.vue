@@ -100,7 +100,7 @@
                                         active: feature.properties.id === selectedPlannerId,
                                         hovered: feature.properties.id === selectedPlannerId
                                     }"
-									@click="selectTour(feature.properties.id)"
+									@click="toggleGeoJsonPlannerLayer(feature)"
 									@mouseenter="hoveredPlannerId = feature.properties.id"
 									@mouseleave="hoveredPlannerId = null"
 								>
@@ -201,7 +201,8 @@ let map = null,
 	geoJsonMediaLayer = null,
 	segments = [],
 	waypointMarkers = [],
-	isAutoHealing = false;
+	isAutoHealing = false,
+	layerGroup = null;
 
 // --- API-Request per Axios-POST ---
 const fetchApi = async () => {
@@ -373,6 +374,7 @@ const fetchApi = async () => {
 				renderGeoJsonMediaLayer(allMediaFeatures.value)
 				break
 			case 'Planung':
+/*
 				if (geoJsonMediaLayer) {
 					geoJsonMediaLayer.remove()
 				}
@@ -380,7 +382,7 @@ const fetchApi = async () => {
 				if (geoJsonTrackLayer) {
 					geoJsonTrackLayer.remove()
 				}
-
+*/
 				markers.remove()
 
 				featureCollectionName.value = mapData.value.planners.name || ''
@@ -448,8 +450,22 @@ const fetchApi = async () => {
 	getMediaStyle = () => {
 		return {opacity: 1}
 	},
-	updateTourData = () => {
-		currentTourGeoJson.value = allPlannerFeatures.value.find(p => p.properties.id === selectedPlannerId.value)
+	clearPlannerGeoJson = () => {
+		if ( layerGroup && geoJsonPlannerLayer ) {
+			layerGroup.clearLayers();
+			map.removeLayer(layerGroup)
+			geoJsonPlannerLayer = null
+			layerGroup = null
+		}
+	},
+	removePlannerLayer = () => {
+		if (layerGroup && map) {
+			layerGroup.clearLayers();
+			map.removeLayer(layerGroup);
+			layerGroup = null;
+		}
+		selectedPlannerId.value = null
+//		currentTourGeoJson.value = null
 	},
 	updateSegmentTooltip = (segment, index) => {
 		const pts = segment.getLatLngs();
@@ -479,16 +495,61 @@ const fetchApi = async () => {
 			segment.setTooltipContent(tooltipContent);
 		}
 	},
-	handleEachPlannerFaeture = (feature, layer) => {
+	toggleGeoJsonPlannerLayer = (data) => {
+		if (!map || !data) return;
+
+		const rawData = toRaw(data),
+			// ID ggf. anpassen, z. B. rawData.id oder rawData.properties.id
+			clickedId = rawData.id ?? rawData.properties?.id;
+
+		// 1. TOGGLE: Bei erneutem Klick auf denselben Link -> ausblenden
+		if (selectedPlannerId.value === clickedId && layerGroup) {
+			removePlannerLayer();
+			selectedPlannerId.value = null
+			currentTourGeoJson.value = null
+			return;
+		}
+
+		// 2. WECHSEL: Alten Layer + alte Marker restlos löschen
+		removePlannerLayer();
+
+		// 3. Neue Gruppe erstellen und direkt zur Karte hinzufügen
+		layerGroup = L.layerGroup().addTo(map);
+
+		const featureCollection = {
+			type: 'FeatureCollection',
+			features: Array.isArray(rawData) ? rawData : [rawData]
+		};
+
+		const geoJsonPlannerLayer = L.geoJSON(featureCollection, {
+			style: {
+				color: 'blue',
+				weight: 5, // 30 ist extrem breit, 5 ist eine gute Linienbreite
+			},
+			onEachFeature: handleEachPlannerFeature
+		});
+
+		// MultiLine zur Gruppe hinzufügen
+		layerGroup.addLayer(geoJsonPlannerLayer);
+		selectedPlannerId.value = clickedId
+		currentTourGeoJson.value = clickedId === selectedPlannerId.value ? rawData : null
+
+		if (geoJsonPlannerLayer.getBounds().isValid()) {
+			map.fitBounds(geoJsonPlannerLayer.getBounds());
+		}
+	},
+	handleEachPlannerFeature = (feature) => {
+		if (!feature?.properties?.points) return;
+
 		feature.properties.points.forEach(p => {
-			var desc = p.desc ? p.desc + '<br>' : '',
-				popupHtml = `
-            <div style="min-width: 195px; font-family: system-ui, sans-serif;">
-                <strong>${p.name} ID ${p.id}</strong><br>
-                ${desc}
-                Lat: ${p.latlng.lat}<br>
-                Lng: ${p.latlng.lng}
-            </div>`;
+			const desc = p.desc ? p.desc + '<br>' : '';
+			const popupHtml = `
+			<div style="min-width: 195px; font-family: system-ui, sans-serif;">
+				<strong>${p.name} ID ${p.id}</strong><br>
+				${desc}
+				Lat: ${p.latlng.lat}<br>
+				Lng: ${p.latlng.lng}
+			</div>`;
 
 			const marker = L.circleMarker(p.latlng, {
 				color: '#009',
@@ -497,11 +558,12 @@ const fetchApi = async () => {
 				fillOpacity: 1,
 				className: 'planner-point',
 				bubblingPointerEvents: true,
-				pane: trackPointPaneName,
-				zIndex: 1000,
-			})
-			marker.bindPopup(popupHtml)
-			marker.addTo(map)
+			});
+
+			marker.bindPopup(popupHtml);
+
+			// WICHTIG: Nicht an map, sondern an layerGroup anhängen!
+			marker.addTo(layerGroup);
 		})
 	},
 	handleEachTrackFaeture = (feature, layer) => {
@@ -519,7 +581,7 @@ const fetchApi = async () => {
 				fillOpacity: 0,
 				className: 'track-point',
 				bubblingPointerEvents: true,
-				pane: trackPointPaneName,
+//				pane: trackPointPaneName,
 			})
 			marker.bindPopup(popupHtml)
 			marker.addTo(map)
@@ -548,7 +610,8 @@ const fetchApi = async () => {
 	},
 	renderGeoJsonPlannerLayer = (data) => {
 		if (!map) return
-		if (geoJsonPlannerLayer) geoJsonPlannerLayer.remove()
+
+		removePlannerLayer()
 
 		map.getPane(trackPointPaneName).style.zIndex = 600;
 		map.getPane(trackPointPaneName).style.pointerEvents = 'auto';
@@ -557,7 +620,7 @@ const fetchApi = async () => {
 			type: 'FeatureCollection',
 			features: Array.isArray(data) ? toRaw(data) : [toRaw(data)]
 		}
-
+		layerGroup = L.layerGroup()
 		geoJsonPlannerLayer = L.geoJSON(toRaw(featureCollection), {
 			style: {
 				zIndex: 600,
@@ -567,6 +630,7 @@ const fetchApi = async () => {
 			pane: trackPointPaneName,
 			onEachFeature: handleEachPlannerFaeture
 		})
+		layerGroup.addLayer(geoJsonPlannerLayer);
 
 		if (geoJsonPlannerLayer.getBounds().isValid()) {
 			map.fitBounds(geoJsonPlannerLayer.getBounds())
@@ -574,7 +638,7 @@ const fetchApi = async () => {
 	},
 	renderGeoJsonTrackLayer = (data) => {
 		if (!map) return
-		if (geoJsonTrackLayer) geoJsonTrackLayer.remove()
+		clearPlannerGeoJson()
 
 		const featureCollection = {
 			type: 'FeatureCollection',
@@ -672,9 +736,6 @@ const fetchApi = async () => {
 		const myOffcanvas = document.getElementById('offcanvasTracks'),
 			geojson = allPlannerFeatures.value.find(p => p.properties.id === id);
 
-		console.info('selectedPlannerId', selectedPlannerId.value)
-		console.info('selectTour', geojson)
-
 		if (myOffcanvas) {
 			myOffcanvas.addEventListener('hidden.bs.offcanvas', () => {
 				if (!isMobile) {
@@ -686,7 +747,7 @@ const fetchApi = async () => {
 		if (geojson) {
 			renderGeoJsonPlannerLayer(geojson)
 			loadFromGeoJson(geojson)
-            updateTourData(geojson)
+			currentTourGeoJson.value = geojson.properties.id === selectedPlannerId.value
 
 			if (moveToCenter) {
                 const bounds = tour.getBounds();
@@ -741,10 +802,7 @@ const fetchApi = async () => {
 	},
 	unSelectPlanner = () => {
 		selectedPlannerId.value = null
-		if (geoJsonPlannerLayer) {
-			geoJsonPlannerLayer.remove()
-			alert('remove')
-		}
+		clearPlannerGeoJson()
 	},
 	showMedia = (props) => {
 		// Falls bereits ein Modal offen ist, dieses zuerst entfernen
@@ -848,11 +906,11 @@ watch(selectedModus, () => {
 watch([selectedTrackId, hoveredTrackId], () => {
 	updateLayerStyles()
 })
+/*
 watch(selectedPlannerId, (id) => {
-//	geoJsonPlannerLayer.values.filter(p => p.properties.id !== selectedPlannerId.value).remove()
 	updatePlannerLayerStyles()
 })
-
+*/
 onMounted(() => {
 	map = L.map(mapContainer.value, {
 		zoom: props.zoom,
