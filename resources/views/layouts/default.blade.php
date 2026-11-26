@@ -38,7 +38,7 @@
                                 <a class="nav-link" href="{{ route('admin.media.index') }}">Media</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.route-planners.index') }}">TourPlanungen</a>
+                                <a class="nav-link" href="{{ route('admin.route-planners.index') }}">Tour-Planungen</a>
                             </li>
                         </ul>
                     </div>

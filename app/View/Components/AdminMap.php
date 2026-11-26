@@ -6,7 +6,6 @@ use Closure;
 use App\Models\Track;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Collection;
 
 class AdminMap extends Component
 {
