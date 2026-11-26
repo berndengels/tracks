@@ -30,10 +30,11 @@ yarn-error.log
 /composer.lock
 /package-lock.json
 /_ide_helper.php
-/public/css/
-/public/js/
-/public/leaflet.markercluster/
-/public/webfonts/
+/public/css
+/public/js
+/public/leaflet.markercluster
+/public/images
+/public/webfonts
 /public/mix-manifest.json
 /public/site.webmanifest
 /public/favicon-32x32.png
@@ -42,4 +43,3 @@ yarn-error.log
 /public/apple-touch-icon.png
 /public/favicon-16x16.png
 /public/favicon.ico
-/public/images/
