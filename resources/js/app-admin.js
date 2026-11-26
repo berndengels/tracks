@@ -40,9 +40,13 @@ $(document).ajaxError(function( event, xhr, settings, thrownError ) {
 
 import SailingTripPlanner from "c@/SailingTripPlanner.vue";
 const app = createApp({});
-app.component('sailing-trip-planner', SailingTripPlanner).mount('#app');
+const compSailingTripPlanner= app.component('sailing-trip-planner', SailingTripPlanner);
 
 $(document).ready(() => {
+    if($('#app').is(':visible')) {
+        compSailingTripPlanner.mount('#app');
+    }
+
     $(".delSoft,.delsoft").click(()=> {
         return confirm("Daten wirklich löschen");
     });

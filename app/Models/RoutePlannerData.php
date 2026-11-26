@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use Malhal\Geographical\Geographical;
 use MatanYadaev\EloquentSpatial\Objects\Point;
 use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
-use Carbon\Carbon;
 
 /**
  * @property int $id
@@ -63,8 +62,8 @@ class RoutePlannerData extends Model
     protected $guarded = ['id'];
     public $timestamps = false;
     protected $casts = [
-        'lat'   => 'decimal:6',
-        'lng'   => 'decimal:6',
+        'lat'   => 'float',
+        'lng'   => 'float',
         'pos'   => Point::class,
     ];
 

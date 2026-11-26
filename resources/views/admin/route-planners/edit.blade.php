@@ -17,6 +17,7 @@
 		</div>
         <div id="app">
             <sailing-trip-planner
+				:route-planner = '{!! $routePlannerResourse !!}'
                 :north-east='{!! $northEast !!}'
                 :south-west='{!! $southWest !!}'
                 :center='{!! $center !!}'

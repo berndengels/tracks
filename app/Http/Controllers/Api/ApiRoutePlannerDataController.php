@@ -9,17 +9,29 @@ use App\Models\RoutePlannerData;
 use App\Repositories\GeoJSON;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoutePlannerDataRequest;
+use Illuminate\Support\Carbon;
 
 class ApiRoutePlannerDataController extends Controller
 {
-    public function index(RoutePlanner $routePlanner)
+	public function __construct()
+	{
+		$this->useCache = config('tracks.use_cache');
+		$this->year = Carbon::today(config('app.timezone'))->year;
+	}
+
+	public function index(RoutePlanner $routePlanner)
     {
         $data = GeoJSON::getlineFeaturesByRoutePlanner($routePlanner);
 
         return response()->json($data);
     }
 
-    /**
+	public function show(RoutePlannerData $routePlannerData) {
+
+		return response()->json($routePlannerData->attributesToArray());
+	}
+
+	/**
      * Store a newly created resource in storage.
      */
     public function store(StoreRoutePlannerDataRequest $request)

@@ -69,19 +69,15 @@
 
 <script setup>
 const $ = require('jquery')
-import {ref, computed, watch, watchEffect, onMounted, onUnmounted, useTemplateRef} from 'vue'
+import {ref, computed, watch, watchEffect, onMounted, onUnmounted, useTemplateRef, toRaw} from 'vue'
 import axios from 'axios'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import "leaflet.markercluster/dist/MarkerCluster.css"
-import "leaflet.markercluster/dist/MarkerCluster.Default.css"
-import { MarkerClusterGroup } from 'leaflet.markercluster';
 import "leaflet.nauticscale/dist/leaflet.nauticscale";
 import 'leaflet-draw';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import "leaflet.measurecontrol";
 import { VueSpinnerHourglass } from 'vue3-spinners';
-import { isMobile } from '@basitcodeenv/vue3-device-detect'
 import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 import moment from "moment";
@@ -90,6 +86,7 @@ moment.locale('de');
 moment.locale('de_DE');
 
 const props = defineProps([
+		'routePlanner',
         'northEast',
         'southWest',
         'center',
@@ -97,14 +94,15 @@ const props = defineProps([
         'maxZoom',
     ]),
 // API-Konfiguration (passe URL und Payload an dein Backend an)
-    API_URL = '/api/tracks',
+    API_URL = '/api/route-planner/' + props.routePlanner.id,
+	routePlannerData = props.routePlanner.points,
     startTime = moment(),
     // Reaktive Zustände
 	offcanvasEl = useTemplateRef('myOffcanvas'),
     duration = ref(null),
     featureCollectionName = ref(''),
     allPlannerFeatures = ref([]),
-    isLoading = ref(true),
+    isLoading = ref(false),
     totalDistanceNM = ref('0.00'),
     mapData = ref(null),
     errorMsg = ref(null),
@@ -119,25 +117,20 @@ const props = defineProps([
 
 let map = null,
     geoJsonLayer = null,
+	isAutoHealing = false,
+	layerGroup = null,
     segments = [],
     waypointMarkers = [],
-    isAutoHealing = false,
-	layerGroup = null;
+	geoJsonPlannerLayer = null;
 
-// --- API-Request per Axios-POST ---
+// --- API-Request per Axios-GET ---
 const fetchApi = async () => {
         errorMsg.value = null
 
-        if(! selectedYear.value) {
-            errorMsg.value = 'Bitte ein gültiges Jahr auswählen!';
-            return false
-        }
-
         try {
-            const resp = await axios.post(API_URL, {
-                year: selectedYear.value,
-                southWest: {lat: southWest[0], lng: southWest[1]},
-                northEast: {lat: northEast[0], lng: northEast[1]},
+            const resp = await axios.get(API_URL, {
+                southWest: {lat: props.southWest[0], lng: props.southWest[1]},
+	            northEast: {lat: props.northEast[0], lng: props.northEast[1]},
                 zoom: map.getZoom(),
             })
             if(resp && resp.data) {
@@ -152,8 +145,7 @@ const fetchApi = async () => {
                     }
 
                     console.info('planners', resp.data.planners)
-//                    featureCollectionName.value = 'Touren' === modus.value ? mapData.value.tracks.name || '' : mapData.value.planners.name || ''
-                    featureCollectionName.value = 'Törns/Planung'
+                    featureCollectionName.value = 'Törns-Planung'
                     setDataByModus()
                     isLoading.value = false
                 }
@@ -388,74 +380,52 @@ const fetchApi = async () => {
     setDataByModus = () => {
         const data = mapData.value
 
-        switch (selectedModus.value) {
-            case 'Track':
-                if(geoJsonPlannerLayer) {
-                    geoJsonPlannerLayer.remove()
-                }
-                allTrackFeatures.value = Array.isArray(data.tracks.features) ? data.tracks.features : []
-                allMediaFeatures.value = Array.isArray(data.media.features) ? data.media.features : []
+        allPlannerFeatures.value = Array.isArray(data.planners.features) ? data.planners.features[0] : []
+        renderGeoJsonPlannerLayer(allPlannerFeatures.value)
 
-                renderGeoJsonTrackLayer(allTrackFeatures.value)
-                renderGeoJsonMediaLayer(allMediaFeatures.value)
-                break
-            case 'Planung':
-                if(geoJsonMediaLayer) {
-                    geoJsonMediaLayer.remove()
-                }
+        // Event-Listener für Änderungen an der bestehenden Linie
+        geoJsonPlannerLayer.on('pm:edit', updateRouteData);
+        geoJsonPlannerLayer.on('pm:dragend', updateRouteData);
 
-                if(geoJsonTrackLayer) {
-                    geoJsonTrackLayer.remove()
-                }
-
-                allPlannerFeatures.value = Array.isArray(data.planners.features) ? data.planners.features[0] : []
-                renderGeoJsonPlannerLayer(allPlannerFeatures.value)
-
-                // Event-Listener für Änderungen an der bestehenden Linie
-                geoJsonPlannerLayer.on('pm:edit', updateRouteData);
-                geoJsonPlannerLayer.on('pm:dragend', updateRouteData);
-
-                geoJsonPlannerLayer.eachLayer((layer) => {
-                    bindLayerEvents(layer);
-                    // Optional: Bearbeitungsmodus direkt beim Laden aktivieren
-                    layer.pm.enable();
-                });
+        geoJsonPlannerLayer.eachLayer((layer) => {
+            bindLayerEvents(layer);
+            // Optional: Bearbeitungsmodus direkt beim Laden aktivieren
+            layer.pm.enable();
+        });
 
 //                createSegmentsFromGeoJson(allPlannerFeatures.value)
-                loadFromGeoJson(allPlannerFeatures.value);
+        loadFromGeoJson(allPlannerFeatures.value);
 
-                // 4. Event-Listener für neu gezeichnete Linien
-                // Neue gezeichnete Linien in verbundene Einzelsegmente zerlegen
-                map.on('pm:create', (e) => {
-                    const latlngs = e.layer.getLatLngs();
-                    map.removeLayer(e.layer);
+        // 4. Event-Listener für neu gezeichnete Linien
+        // Neue gezeichnete Linien in verbundene Einzelsegmente zerlegen
+        map.on('pm:create', (e) => {
+            const latlngs = e.layer.getLatLngs();
+            map.removeLayer(e.layer);
 
-                    // Falls bereits Segmente existieren, vom letzten Wegpunkt aus weiterverbinden
-                    if (segments.length > 0 && latlngs.length > 0) {
-                        const lastSegPts = segments[segments.length - 1].getLatLngs();
-                        const lastPoint = lastSegPts[lastSegPts.length - 1];
-                        createSegmentLayer([lastPoint, latlngs[0]]);
-                    }
+            // Falls bereits Segmente existieren, vom letzten Wegpunkt aus weiterverbinden
+            if (segments.length > 0 && latlngs.length > 0) {
+                const lastSegPts = segments[segments.length - 1].getLatLngs();
+                const lastPoint = lastSegPts[lastSegPts.length - 1];
+                createSegmentLayer([lastPoint, latlngs[0]]);
+            }
 
-                    for (let i = 0; i < latlngs.length - 1; i++) {
-                        createSegmentLayer([latlngs[i], latlngs[i + 1]]);
-                    }
-                    updateRouteData();
-                });
+            for (let i = 0; i < latlngs.length - 1; i++) {
+                createSegmentLayer([latlngs[i], latlngs[i + 1]]);
+            }
+            updateRouteData();
+        });
 
-                if (segments.length > 0) {
-                    const group = L.featureGroup(segments);
-                    map.fitBounds(group.getBounds(), { padding: [40, 40] });
-                }
-                // Event-Listener für gelöschte Linien
-                map.on('pm:remove', updateRouteData);
+        if (segments.length > 0) {
+            const group = L.featureGroup(segments);
+            map.fitBounds(group.getBounds(), { padding: [40, 40] });
+        }
+        // Event-Listener für gelöschte Linien
+        map.on('pm:remove', updateRouteData);
 //                map.fitBounds(geoJsonPlannerLayer.getBounds(), { padding: [30, 30] });
 
-                // Initialen Stand einmal erfassen
-                updateRouteData()
-                markers.remove()
-                break
-        }
+        // Initialen Stand einmal erfassen
+        updateRouteData()
+        markers.remove()
     },
     bindLayerEvents = (layer) => {
         layer.on('pm:edit', updateRouteData);
@@ -538,8 +508,7 @@ const fetchApi = async () => {
     },
     storeWaypointData = async () => {
         const resp = await axios.post('/api/route-planner-data/' + selectedPlannerId.value, {
-//            route_planner_id: selectedPlannerId.value,
-            year: selectedYear.value,
+            route_planner_id: selectedPlannerId.value,
             waypoints: allWaypoints.value
         })
         if(resp && resp.data) {
@@ -595,9 +564,6 @@ const fetchApi = async () => {
             }
         };
     },
-    getMediaStyle = () => {
-        return { opacity: 1 }
-    },
     updateSegmentTooltip = (segment, index) => {
         const pts = segment.getLatLngs();
         if (pts.length < 2) return;
@@ -628,108 +594,6 @@ const fetchApi = async () => {
             segment.setTooltipContent(tooltipContent);
         }
     },
-    handleEachTrackFaeture = (feature, layer) => {
-        feature.properties.points.forEach(p => {
-            var popupHtml = `
-            <div style="min-width: 195px; font-family: system-ui, sans-serif;">
-                <strong>${p.name}</strong><br>
-                <strong>Zeit: </strong>${p.time} Uhr<br>
-                <strong>Speed: </strong>${p.kmSpeed} km/h, ${p.nmSpeed} kn<br>
-            </div>`;
-            const marker = L.circleMarker(p.latlng, {
-                stroke: false,
-                radius: 6,
-                opacity: 0,
-                fillOpacity: 0,
-                className: 'track-point',
-                bubblingPointerEvents: true,
-                pane: trackPointPaneName,
-            })
-            marker.bindPopup(popupHtml)
-            marker.addTo(map)
-        })
-
-        layer.on({
-            mouseover: () => {
-                hoveredTrackId.value = props.id
-                layer.bringToFront()
-            },
-            mouseout: () => {
-                if (hoveredTrackId.value === props.id) {
-                    hoveredTrackId.value = null
-                }
-            },
-        })
-    },
-    handleEachMediaFeature = (feature, layer) => {
-        const props = feature.properties,
-            marker = L.marker(feature.geometry.coordinates, { zIndex: 10 });
-
-        markers.addLayer(marker)
-        marker.on('click', () => {
-            showMedia(props)
-        })
-    },
-    renderGeoJsonPlannerLayer = (data) => {
-        if (!map) return
-        if (geoJsonPlannerLayer) geoJsonPlannerLayer.remove()
-
-        const featureCollection = {
-            type: 'FeatureCollection',
-            features: data
-        }
-        map.getPane(trackPointPaneName).style.zIndex = 600;
-        map.getPane(trackPointPaneName).style.pointerEvents = 'auto';
-
-        geoJsonPlannerLayer = L.geoJSON(featureCollection, {
-            style: {
-                zIndex: 600,
-                color: 'red',
-                width: 6,
-            },
-            pane: trackPointPaneName,
-            onEachFeature: handleEachPlannerFaeture
-        }).addTo(map)
-
-        if (data.length > 0 && geoJsonPlannerLayer.getBounds().isValid()) {
-            map.fitBounds(geoJsonPlannerLayer.getBounds())
-        }
-    },
-    renderGeoJsonTrackLayer = (data) => {
-        if (!map) return
-        if (geoJsonTrackLayer) geoJsonTrackLayer.remove()
-
-        const featureCollection = {
-            type: 'FeatureCollection',
-            features: data
-        }
-
-        geoJsonTrackLayer = L.geoJSON(featureCollection, {
-            style: getTrackStyle,
-            pane: trackPaneName,
-            onEachFeature: handleEachTrackFaeture
-        }).addTo(map)
-
-        if (data.length > 0 && geoJsonTrackLayer.getBounds().isValid()) {
-            map.fitBounds(geoJsonTrackLayer.getBounds())
-        }
-    },
-    renderGeoJsonMediaLayer = (data) => {
-        if (!map) return
-        if (geoJsonMediaLayer) geoJsonMediaLayer.remove()
-
-        const featureCollection = {
-            type: 'FeatureCollection',
-            features: data
-        }
-
-        geoJsonMediaLayer = L.geoJSON(featureCollection, {
-            style: getMediaStyle,
-            onEachFeature: handleEachMediaFeature
-        })
-
-        map.addLayer(markers);
-    },
     loadFromGeoJson = (geoJson) => {
         let coords = [];
         if (geoJson.geometry.type === 'LineString') {
@@ -756,128 +620,6 @@ const fetchApi = async () => {
             }
         })
     },
-    selectTrack = (id, zoomToTrack = false, moveToCenter = true) => {
-        selectedTrackId.value = selectedTrackId.value === id ? null : id
-
-        const myOffcanvas = document.getElementById('offcanvasTracks');
-
-        if(myOffcanvas) {
-            myOffcanvas.addEventListener('hidden.bs.offcanvas', () => {
-                if(!isMobile) {
-                    unSelectTrack()
-                }
-                const bounds = L.latLngBounds(northEast, southWest);
-                map.fitBounds(bounds);
-            })
-        }
-
-        if(selectedTrackId.value !== null && geoJsonTrackLayer) {
-            if (moveToCenter) {
-                const bounds = L.latLngBounds(northEast, southWest);
-                map.fitBounds(bounds);
-            }
-
-            if (zoomToTrack) {
-                geoJsonTrackLayer.eachLayer((layer) => {
-                    if (layer.feature?.properties?.id === id) {
-                        map.fitBounds(layer.getBounds(), { maxZoom: maxZoom })
-                        layer.openPopup()
-                    }
-                })
-            }
-        }
-    },
-    unSelectTrack = () => {
-        selectedTrackId.value = null
-        updateLayerStyles()
-    },
-    showMedia = (props) => {
-        // Falls bereits ein Modal offen ist, dieses zuerst entfernen
-        const existingBackdrop = document.querySelector('.media-modal-backdrop');
-        if (existingBackdrop) {
-            existingBackdrop.remove();
-        }
-
-        // Abgedunkelten Hintergrund über der Karte erstellen
-        const backdrop = L.DomUtil.create('div', 'media-modal-backdrop', map.getContainer());
-
-        // Karten-Interaktionen (Zoomen, Ziehen, Klicken) komplett blockieren
-        L.DomEvent.disableClickPropagation(backdrop);
-        L.DomEvent.disableScrollPropagation(backdrop);
-
-        // Äußeren Rahmen im Backdrop erstellen
-        const container = L.DomUtil.create('div', 'media-modal-container', backdrop);
-
-        // Kopfzeile erstellen
-        const header = L.DomUtil.create('div', 'media-modal-header', container);
-
-        // Titel als h5 einfügen
-        const heading = L.DomUtil.create('h5', '', header);
-        heading.textContent = `${props.name} ${moment(props.created).format('DD.MM.YYYY HH:mm')} Uhr` || '';
-
-        // Close-Button in die Kopfzeile einfügen
-        const closeBtn = L.DomUtil.create('span', 'media-close-btn', header);
-        closeBtn.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>';
-    //    closeBtn.innerHTML = '&times;';
-        closeBtn.title = 'Schließen (ESC)';
-
-        // Video-Element unterhalb der Kopfzeile erstellen
-
-        var media = {};
-
-        switch (props.type) {
-            case 'image':
-                media = L.DomUtil.create('img', '', container);
-                closeBtn.onclick = () => {
-                    container.remove();
-                };
-                break
-            case 'video':
-                media = L.DomUtil.create('video', '', container);
-                media.controls = true;
-                media.autoplay = true;
-                media.muted = false; // Oft nötig für Autoplay in modernen Browsern
-
-                closeBtn.onclick = () => {
-                    media.pause();
-                    container.remove();
-                    backdrop.remove();
-                };
-                media.onended = () => {
-                    container.remove();
-                    backdrop.remove();
-                }
-                break
-        }
-        media.src = props.file;
-
-        // Zentrale Schließen-Funktion inkl. Aufräumen des Keydown-Listeners
-        const closeModal = () => {
-            if('video' === props.type) {
-                media.pause();
-            }
-            backdrop.remove();
-            document.removeEventListener('keydown', onKeyDown);
-        };
-
-        // Handler für die Escape-Taste
-        const onKeyDown = (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        };
-
-        // Event-Listener registrieren
-        closeBtn.onclick = closeModal;
-        document.addEventListener('keydown', onKeyDown);
-
-        // Optional: Schließen bei Klick auf den dunklen Hintergrund außerhalb des Videos
-        backdrop.onclick = (e) => {
-            if (e.target === backdrop) {
-                closeModal();
-            }
-        };
-    },
     estimatedDuration = computed(() => {
         if (!averageSpeedKnots.value || averageSpeedKnots.value <= 0 || totalDistanceNM.value <= 0) {
             return '0h 00m';
@@ -886,7 +628,129 @@ const fetchApi = async () => {
         const hours = Math.floor(totalHours);
         const minutes = Math.round((totalHours - hours) * 60);
         return `${hours}h ${String(minutes).padStart(2, '0')}m`;
-    });
+    }),
+	removePlannerLayer = () => {
+		if (layerGroup && map && geoJsonPlannerLayer) {
+			layerGroup.clearLayers();
+			map.removeLayer(layerGroup);
+			geoJsonPlannerLayer = null
+			layerGroup = null;
+		}
+		selectedPlannerId.value = null
+//		currentTourGeoJson.value = null
+	},
+	handleEachPlannerFeature = (feature) => {
+		console.info('feature', feature.properties.points)
+		if (!feature?.properties?.points) return;
+		feature.properties.points.forEach(p => {
+			const desc = p.desc ? p.desc + '<br>' : '';
+			const popupHtml = `
+			<div style="min-width: 195px; font-family: system-ui, sans-serif;">
+				<strong>${p.name} ID ${p.id}</strong><br>
+				${desc}
+				Lat: ${p.latlng.lat}<br>
+				Lng: ${p.latlng.lng}
+			</div>`;
+
+			const marker = L.circleMarker(p.latlng, {
+				color: '#f60',
+				radius: 4,
+				opacity: 1,
+				fillOpacity: 1,
+				className: 'planner-point',
+				zIndex: 1000,
+				bubblingPointerEvents: true,
+				pane: trackPointPaneName,
+			});
+
+			marker
+				.bindPopup(popupHtml)
+				.on('mouseover', (el) => {
+					el.sourceTarget
+						.setStyle({radius: 10, color: '#f00'})
+				})
+				.on('mouseout', (el) => {
+					el.sourceTarget
+						.setStyle({radius: 4, color: '#f60'})
+						.closePopup()
+				})
+
+			// WICHTIG: Nicht an map, sondern an layerGroup anhängen!
+			marker.addTo(layerGroup);
+		})
+	},
+	renderGeoJsonPlannerLayer = (data) => {
+		if (!map) return
+
+		removePlannerLayer()
+
+		map.getPane(trackPointPaneName).style.zIndex = 600;
+		map.getPane(trackPointPaneName).style.pointerEvents = 'auto';
+
+		const featureCollection = {
+			type: 'FeatureCollection',
+			features: Array.isArray(data) ? toRaw(data) : [toRaw(data)]
+		}
+		layerGroup = L.layerGroup()
+		geoJsonPlannerLayer = L.geoJSON(toRaw(featureCollection), {
+			style: {
+				zIndex: 600,
+				color: 'blue',
+				weight: 30,
+			},
+			pane: trackPointPaneName,
+			onEachFeature: handleEachPlannerFeature
+		})
+		layerGroup.addLayer(geoJsonPlannerLayer);
+
+		if (geoJsonPlannerLayer.getBounds().isValid()) {
+			map.fitBounds(geoJsonPlannerLayer.getBounds())
+		}
+	},
+	toggleGeoJsonPlannerLayer = (data) => {
+		if (!map || !data) return;
+
+		const rawData = toRaw(data),
+			// ID ggf. anpassen, z. B. rawData.id oder rawData.properties.id
+			clickedId = rawData.id ?? rawData.properties?.id;
+
+		// 1. TOGGLE: Bei erneutem Klick auf denselben Link -> ausblenden
+		if (selectedPlannerId.value === clickedId && layerGroup) {
+			removePlannerLayer();
+			selectedPlannerId.value = null
+			currentTourGeoJson.value = null
+			return;
+		}
+
+		// 2. WECHSEL: Alten Layer + alte Marker restlos löschen
+		removePlannerLayer();
+
+		// 3. Neue Gruppe erstellen und direkt zur Karte hinzufügen
+		layerGroup = L.layerGroup().addTo(map);
+
+		const featureCollection = {
+			type: 'FeatureCollection',
+			features: Array.isArray(rawData) ? rawData : [rawData]
+		};
+
+		const geoJsonPlannerLayer = L.geoJSON(featureCollection, {
+			style: {
+				color: 'blue',
+				weight: 5, // 30 ist extrem breit, 5 ist eine gute Linienbreite
+			},
+			onEachFeature: handleEachPlannerFeature
+		});
+
+		// MultiLine zur Gruppe hinzufügen
+		layerGroup.addLayer(geoJsonPlannerLayer);
+		selectedPlannerId.value = clickedId
+		currentTourGeoJson.value = clickedId === selectedPlannerId.value ? rawData : null
+
+		if (geoJsonPlannerLayer.getBounds().isValid()) {
+			map.fitBounds(geoJsonPlannerLayer.getBounds());
+		}
+	}
+;
 
 // Wenn der Nutzer die Geschwindigkeit in Knoten ändert -> Tooltips aktualisieren
 watch(averageSpeedKnots, () => {
@@ -916,13 +780,15 @@ watchEffect((onCleanup) => {
 })
 
 onMounted(() => {
+	console.info('points', routePlannerData)
+
     map = L.map(mapContainer.value, {
-        zoom: zoom,
-        maxZoom: maxZoom,
-        center: center,
+        zoom: props.zoom,
+        maxZoom: props.maxZoom,
+        center: props.center,
     });
 
-    const bounds = L.latLngBounds(northEast, southWest);
+    const bounds = L.latLngBounds(props.northEast, props.southWest);
     map.fitBounds(bounds);
 
     const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
@@ -954,12 +820,7 @@ onMounted(() => {
     map.pm.setLang("de")
 
     // Z-Index höher als markerPane (600) setzen, z.B. 650 (aber unter Popups, die bei 700 liegen)
-    map.createPane(trackPaneName);
     map.createPane(trackPointPaneName);
-    map.createPane(mediaPaneName);
-
-    map.getPane(mediaPaneName).style.zIndex = 10000;
-    map.getPane(mediaPaneName).style.pointerEvents = 'auto';
 
     L.control.layers(
         {'OpenStreetMap': osmLayer},
@@ -981,7 +842,7 @@ onMounted(() => {
         nautic: true
     }).addTo(map);
 
-    fetchApi()
+//    fetchApi()
 })
 onUnmounted(() => {
     map?.remove()

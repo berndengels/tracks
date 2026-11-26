@@ -130,8 +130,8 @@ import "leaflet.markercluster/dist/MarkerCluster.css"
 import "leaflet.markercluster/dist/MarkerCluster.Default.css"
 import {MarkerClusterGroup} from 'leaflet.markercluster';
 import "leaflet.nauticscale/dist/leaflet.nauticscale";
-import 'leaflet-draw';
-import 'leaflet-draw/dist/leaflet.draw.css';
+//import 'leaflet-draw';
+//import 'leaflet-draw/dist/leaflet.draw.css';
 import "leaflet.measurecontrol";
 import {VueSpinnerHourglass} from 'vue3-spinners';
 import {isMobile} from '@basitcodeenv/vue3-device-detect'

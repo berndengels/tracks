@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoutePlannerRequest;
 use App\Http\Requests\UpdateRoutePlannerRequest;
+use App\Http\Resources\RoutePlannerResourse;
 use App\Models\RoutePlanner;
 use App\Models\RoutePlannerData;
 use App\Repositories\GeoJSON;
@@ -13,6 +14,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use MatanYadaev\EloquentSpatial\Objects\Point;
+use function MongoDB\BSON\toJSON;
 
 class AdminRoutePlannerController extends Controller
 {
@@ -114,7 +116,6 @@ class AdminRoutePlannerController extends Controller
 		$routePlanner->load(['routePlannerData']);
         $maxZoom = $this->maxZoom;
         $zoom = $this->zoom;
-//        $southWest  = GeoJSON::getSouthWestByModel(model:  $routePlanner, relation: 'routePlannerData')->toJson();
         $southWest  = GeoJSON::getSouthWestByModel(model: $routePlanner, relation:  'routePlannerData')->toJson();
         $northEast  = GeoJSON::getNordEastByModel(model: $routePlanner, relation: 'routePlannerData')->toJson();
         $center     = RoutePlannerData::selectRaw('AVG(lat) lat, AVG(lng) lng')->first()->toJson();
@@ -129,7 +130,9 @@ class AdminRoutePlannerController extends Controller
             ])
             ->toJson();
 
-        return view('admin.route-planners.edit', compact('routePlanner','northEast','southWest','maxZoom','yearOptions','center','zoom'));
+		$routePlannerResourse = (new RoutePlannerResourse($routePlanner))->toJson();
+
+        return view('admin.route-planners.edit', compact('routePlanner','routePlannerResourse','northEast','southWest','maxZoom','yearOptions','center','zoom'));
     }
 
     /**
