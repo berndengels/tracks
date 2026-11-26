@@ -49,7 +49,7 @@
 						<VueSpinnerHourglass color="red" size="50" margin="auto"/>
 					</div>
 				</div>
-				<aside v-else id="offcanvasTracks" ref="offcanvas" class="sidebar offcanvas offcanvas-start show text-bg-dark"
+				<aside v-else id="offcanvasTracks" ref="myOffcanvas" class="sidebar offcanvas offcanvas-start show text-bg-dark"
 				       data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
 				       aria-labelledby="offcanvasScrollingLabel">
 					<div class="offcanvas-header">
@@ -122,7 +122,7 @@
 
 <script setup>
 const $ = require('jquery')
-import {ref, computed, watch, onMounted, onUnmounted, useTemplateRef, toRaw} from 'vue'
+import {ref, computed, watch, watchEffect, onMounted, onUnmounted, useTemplateRef, toRaw} from 'vue'
 import axios from 'axios'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -137,6 +137,7 @@ import {VueSpinnerHourglass} from 'vue3-spinners';
 import {isMobile} from '@basitcodeenv/vue3-device-detect'
 import moment from "moment";
 import TourCalculationPanel from "c@/TourCalculationPanel.vue";
+import { Offcanvas } from "bootstrap"
 
 moment.locale('de');
 moment.locale('de_DE');
@@ -168,7 +169,7 @@ const props = defineProps([
 	isLoading = ref(true),
 	totalDistanceNM = ref('0.00'),
 	modus = ref(null),
-	offcanvas = ref(),
+	offcanvasEl = useTemplateRef('myOffcanvas'),
 	currentTourGeoJson = ref(null),
 	mapData = ref(null),
 	errorMsg = ref(null),
@@ -912,11 +913,28 @@ watch(selectedModus, () => {
 watch([selectedTrackId, hoveredTrackId], () => {
 	updateLayerStyles()
 })
-/*
-watch(selectedPlannerId, (id) => {
-	updatePlannerLayerStyles()
+watchEffect((onCleanup) => {
+	const el = offcanvasEl.value
+	if (!el) return
+
+	const handleShown = () => {
+		$('#map').css({marginLeft: "400px"})
+	}
+
+	const handleHidden = () => {
+		$('#map').css({marginLeft: 0})
+	}
+
+	// Bootstrap 5 native Events registrieren
+	el.addEventListener('shown.bs.offcanvas', handleShown)
+	el.addEventListener('hidden.bs.offcanvas', handleHidden)
+
+	// Wichtig: Listener wieder entfernen, wenn das Element verschwindet (z.B. bei v-if)
+	onCleanup(() => {
+		el.removeEventListener('shown.bs.offcanvas', handleShown)
+		el.removeEventListener('hidden.bs.offcanvas', handleHidden)
+	})
 })
-*/
 onMounted(() => {
 	map = L.map(mapContainer.value, {
 		zoom: props.zoom,
@@ -985,13 +1003,12 @@ onUnmounted(() => {
 	width: 100%;
 	height: 100%;
 }
-
 #map {
 	border: 1px solid green;
 	width: 100%;
 	height: 95%;
+	margin: 0;
 }
-
 #loader {
 	position: absolute;
 	width: 100%;
