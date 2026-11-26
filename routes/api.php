@@ -14,10 +14,17 @@ use App\Http\Controllers\Api\ApiRoutePlannerDataController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('route-planner-data/{routePlanner}', [ApiRoutePlannerDataController::class, 'index']);
-Route::post('route-planner-data/{routePlanner}', [ApiRoutePlannerDataController::class, 'store']);
+
+Route::group([
+	'as'        => 'planner.',
+	'middleware' => ['auth:sanctum'],
+], function () {
+	Route::resource('route-planner-data', ApiRoutePlannerDataController::class)->except(['show']);
+	Route::post('route-planner-data/{routePlanner}', [ApiRoutePlannerDataController::class, 'storePoints']);
+});
+
+//Route::get('route-planner-data/{routePlanner}', [ApiRoutePlannerDataController::class, 'index']);
 Route::post('tracks', [ApiTrackController::class, 'index']);

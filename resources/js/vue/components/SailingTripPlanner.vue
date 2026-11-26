@@ -4,18 +4,7 @@
             <div v-if="featureCollectionName" class="collection-header row w-full">
                 <div class="col-9 float-start ms-0">
                     <div class="d-inline-block">
-                        <select id="modus" v-model="selectedModus" class="form-select form-floating ms-3">
-                            <option v-for="item in modusOptions" :key="item.val" v-html="item.label" :value="item.val" />
-                        </select>
-                    </div>
-                    <div class="d-inline-block">
                         <strong>{{ featureCollectionName }}</strong>
-                        <button id="trackSelector"
-                                class="btn btn-outline-light"
-                                type="button"
-                                data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasTracks"
-                                aria-controls="offcanvasTracks">Select {{ modus }}</button>
                     </div>
                 </div>
                 <div class="col-3 float-end">
@@ -45,89 +34,42 @@
                 <div v-if="isLoading" id="loader" class="d-flex justify-content-center align-items-center min-vh-100">
                     <div class="text-danger">Lade Daten <VueSpinnerHourglass color="red" size="50" margin="auto"/></div>
                 </div>
-                <aside v-else id="offcanvasTracks" class="sidebar offcanvas offcanvas-start text-bg-dark" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" aria-labelledby="offcanvasScrollingLabel">
+                <aside v-else id="offcanvasTracks" ref="myOffcanvas" class="sidebar offcanvas offcanvas-start text-bg-dark" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" aria-labelledby="offcanvasScrollingLabel">
                     <div class="offcanvas-header">
                         <button type="button" class="btn-close btn-close-white me-0" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div offcanvas-body>
-                        <div class="filter-bar">
-                            <label for="year-select"><strong>Segeljahr:</strong></label>
-                            <select id="year-select" v-model="selectedYear">
-                                <option v-for="option in yearOptions" :key="option.value" :value="option.value" v-html="option.label" />
-                            </select>
-                        </div>
-                        <div v-if="'Track' === selectedModus">
-                            <h3>Törns {{ selectedYear }} ({{ yearlyTracks.length }})</h3>
-                            <ul class="track-list">
-                                <li
-                                    v-for="{ feature, stats } in yearlyTracks"
-                                    :key="feature.properties.id"
-                                    :class="{
-                                    active: feature.properties.id === selectedTrackId,
-                                    hovered: feature.properties.id === hoveredTrackId
+	                    <h3>Tour-Planung ({{ allPlannerFeatures.length }})</h3>
+	                    <ul class="track-list">
+		                    <li
+			                    v-for="feature in yearlyPlanners"
+			                    :key="feature.properties.id"
+			                    :class="{
+                                    active: feature.properties.id === selectedPlannerId,
+                                    hovered: feature.properties.id === selectedPlannerId
                                 }"
-                                    @click="selectTrack(feature.properties.id)"
-                                    @mouseenter="hoveredTrackId = feature.properties.id"
-                                    @mouseleave="hoveredTrackId = null"
-                                >
-                                    <div class="track-title">{{ feature.properties.name }} <span>({{ feature.properties.id }})</span></div>
-                                    <div class="track-meta">
-                                        {{ stats.nm.toFixed(1) }} sm ({{ stats.km.toFixed(1) }} km) • Ø
-                                        {{ stats.avgSpeedKn.toFixed(1) }} kn
-                                    </div>
-                                    <div class="track-date">Start: {{ (stats.start) }} Ende: {{ (stats.end) }}</div>
-                                </li>
-                            </ul>
-                        </div>
+			                    @click="toggleGeoJsonPlannerLayer(feature)"
+			                    @mouseenter="hoveredPlannerId = feature.properties.id"
+			                    @mouseleave="hoveredPlannerId = null"
+		                    >
+			                    <div class="track-title">
+				                    <strong v-html="feature.properties.name"></strong>
+				                    <span v-if="feature.properties.points">(Points: {{ feature.properties.points.length }})</span>
+			                    </div>
+			                    <div class="track-meta" v-html="feature.properties.desc"></div>
+		                    </li>
+	                    </ul>
                     </div>
                 </aside>
-                <div id="map" ref="mapContainer"></div>
-                <div v-if="'Planung' === selectedModus" id="sailing-planner">
-                    <div class="sailing-planner">
-                        <div><i class="fa-solid fa-up-down-left-right"></i></div>
-                        <!-- Obere Info-Leiste mit Distanz, ETA und Geschwindigkeits-Eingabe -->
-                        <div class="stats-bar">
-                            <div v-if="totalDistanceNM" class="stat-item">
-                                <span class="label">Gesamtdistanz</span>
-                                <strong>{{ Math.round(totalDistanceNM, 1)  }} NM</strong>
-                            </div>
-
-                            <div class="stat-item">
-                                <span class="label">Geschätzte Fahrzeit (ETA)</span>
-                                <strong>~ {{ estimatedDuration }}</strong>
-                            </div>
-
-                            <div class="stat-item speed-control">
-                                <label for="speed-input">Ø Fahrt:</label>
-                                <input
-                                    id="speed-input"
-                                    v-model.number="averageSpeedKnots"
-                                    type="number"
-                                    step="0.5"
-                                    min="0.5"
-                                    max="30"
-                                />
-                                <span>kn</span>
-                            </div>
-
-                            <div class="stat-item">
-                                <span class="label">Etappen</span>
-                                <strong>{{ segmentCount }}</strong>
-                            </div>
-                            <div class="stat-item">
-                                <button class="btn btn-outline-light" @click.prevent="storeWaypointData">WayPoints speichern</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
+	        <div id="map" ref="mapContainer"></div>
         </div>
     </div>
 </template>
 
 <script setup>
 const $ = require('jquery')
-import {ref, computed, watch, onMounted, onUnmounted} from 'vue'
+import {ref, computed, watch, watchEffect, onMounted, onUnmounted, useTemplateRef} from 'vue'
 import axios from 'axios'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -148,69 +90,39 @@ moment.locale('de');
 moment.locale('de_DE');
 
 const props = defineProps([
-        'initNorthEast',
-        'initSouthWest',
-        'initCenter',
-        'initYearOptions',
+        'northEast',
+        'southWest',
+        'center',
         'zoom',
         'maxZoom',
-        'km',
-        'nm',
     ]),
 // API-Konfiguration (passe URL und Payload an dein Backend an)
     API_URL = '/api/tracks',
     startTime = moment(),
-    zoom = props.zoom,
-    maxZoom = props.maxZoom,
-    km = props.km,
-    nm = props.nm,
-    northEast = JSON.parse(props.initNorthEast),
-    southWest = JSON.parse(props.initSouthWest),
-    center      = JSON.parse(props.initCenter),
-    yearOptions = JSON.parse(props.initYearOptions),
-    modusOptions = [
-        {val: null, label: '-- Modus --'},
-        {val: 'Track', label: 'Touren'},
-        {val: 'Planung', label: 'Planung'}
-    ],
     // Reaktive Zustände
+	offcanvasEl = useTemplateRef('myOffcanvas'),
     duration = ref(null),
     featureCollectionName = ref(''),
-    allTrackFeatures = ref([]),
-    allMediaFeatures = ref([]),
     allPlannerFeatures = ref([]),
     isLoading = ref(true),
     totalDistanceNM = ref('0.00'),
-    modus = ref(null),
     mapData = ref(null),
     errorMsg = ref(null),
     errorResponse = ref(null),
-    selectedYear = ref(new Date().getFullYear()),
-    selectedModus = ref('Planung'),
-    hoveredTrackId = ref(null),
     mapContainer = ref(null),
     geoJsonOutput = ref(null),
     segmentCount = ref(0),
     averageSpeedKnots = ref(5.0),
-    year = ref(moment().year()),
-    selectedTrackId = ref(null),
     selectedPlannerId = ref(null),
     allWaypoints = ref([]),
-    mediaPaneName = 'mediaPane',
-    trackPointPaneName = 'trackPointPane',
-    trackPaneName = 'trackPane',
-    markers = new MarkerClusterGroup({optios: {
-        zIndex: 1000,
-        clusterPane: mediaPaneName,
-    }});
+    trackPointPaneName = 'trackPointPane';
 
 let map = null,
-    geoJsonTrackLayer = null,
-    geoJsonPlannerLayer = null,
-    geoJsonMediaLayer = null,
+    geoJsonLayer = null,
     segments = [],
     waypointMarkers = [],
-    isAutoHealing = false;
+    isAutoHealing = false,
+	layerGroup = null;
 
 // --- API-Request per Axios-POST ---
 const fetchApi = async () => {
@@ -257,64 +169,7 @@ const fetchApi = async () => {
             isLoading.value = false
         }
     },
-    yearlyTracks = computed(() => {
-    return allTrackFeatures.value
-        .filter((f) => f.geometry?.type === 'LineString')
-        .map((feature) => ({
-            feature,
-            stats: getTrackStats(feature)
-        }));
-    }),
-    getYearFromFeature = (feature) => moment(feature.properties?.start).year(),
-    getTrackStats = (feature) => {
-        const props = feature.properties || {},
-            km = parseFloat(props.km) || 0,
-            nm = parseFloat(props.nm) || 0,
-            startDate = new Date(props.start),
-            endDate = new Date(props.end);
-
-        let avgSpeedKn = 0,
-            durationFormatted = '–';
-
-        if (startDate && endDate && endDate > startDate) {
-            const diffMs = endDate.getTime() - startDate.getTime(),
-                diffHours = diffMs / (1000 * 60 * 60);
-
-            if (diffHours > 0) {
-                avgSpeedKn = nm / diffHours
-            }
-
-            const totalMinutes = Math.round(diffMs / (1000 * 60)),
-                hrs = Math.floor(totalMinutes / 60),
-                mins = totalMinutes % 60;
-
-            durationFormatted = `${hrs} Std. ${mins} Min.`
-        }
-
-        return {
-            id: props.id,
-            km,
-            nm,
-            start: props.start || '–',
-            end: props.end || '–',
-            avgSpeedKn,
-            durationFormatted
-        }
-    },
-    getTrackStyle = (feature) => {
-        const id = feature.properties.id,
-            isSelected = id === selectedTrackId.value,
-            isHovered = id === hoveredTrackId.value;
-
-        if (isSelected) {
-            return { color: '#f00', weight: 6, opacity: 1 }
-        }
-        if (isHovered) {
-            return { color: '#f80', weight: 5, opacity: 0.9 }
-        }
-
-        return { color: '#1e3a8a', weight: 5, opacity: 0.9, zIndex: 1000 }
-    },
+	yearlyPlanners = computed(() => allPlannerFeatures.value.filter((f) => f.geometry?.type === 'LineString')),
     createSegmentsFromGeoJson = (geoJson) => {
         // Koordinaten extrahieren (unterstützt LineString & MultiLineString)
         let coords = [];
@@ -1037,19 +892,27 @@ const fetchApi = async () => {
 watch(averageSpeedKnots, () => {
     segments.forEach((seg, index) => updateSegmentTooltip(seg, index));
 })
+watchEffect((onCleanup) => {
+	const el = offcanvasEl.value
+	if (!el) return
 
-watch(selectedYear, () => {
-    selectedTrackId.value = null
-    fetchApi()
-})
+	const handleShown = () => {
+		$('#map').css({marginLeft: "400px"})
+	}
 
-watch(selectedModus, () => {
-    selectedTrackId.value = null
-    setDataByModus()
-})
+	const handleHidden = () => {
+		$('#map').css({marginLeft: 0})
+	}
 
-watch([selectedTrackId, hoveredTrackId], () => {
-    updateLayerStyles()
+	// Bootstrap 5 native Events registrieren
+	el.addEventListener('shown.bs.offcanvas', handleShown)
+	el.addEventListener('hidden.bs.offcanvas', handleHidden)
+
+	// Wichtig: Listener wieder entfernen, wenn das Element verschwindet (z.B. bei v-if)
+	onCleanup(() => {
+		el.removeEventListener('shown.bs.offcanvas', handleShown)
+		el.removeEventListener('hidden.bs.offcanvas', handleHidden)
+	})
 })
 
 onMounted(() => {
@@ -1120,7 +983,6 @@ onMounted(() => {
 
     fetchApi()
 })
-
 onUnmounted(() => {
     map?.remove()
 })
@@ -1135,9 +997,9 @@ onUnmounted(() => {
     height: 100%;
 }
 #map {
-    border: 1px solid green;
     width: 100%;
     height: 95%;
+	margin: 0;
 }
 #loader {
     position: absolute;

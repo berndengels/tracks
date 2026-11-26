@@ -137,7 +137,6 @@ import {VueSpinnerHourglass} from 'vue3-spinners';
 import {isMobile} from '@basitcodeenv/vue3-device-detect'
 import moment from "moment";
 import TourCalculationPanel from "c@/TourCalculationPanel.vue";
-import { Offcanvas } from "bootstrap"
 
 moment.locale('de');
 moment.locale('de_DE');
@@ -935,6 +934,7 @@ watchEffect((onCleanup) => {
 		el.removeEventListener('hidden.bs.offcanvas', handleHidden)
 	})
 })
+
 onMounted(() => {
 	map = L.map(mapContainer.value, {
 		zoom: props.zoom,
