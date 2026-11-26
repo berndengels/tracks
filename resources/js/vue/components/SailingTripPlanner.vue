@@ -30,7 +30,7 @@
                 </table>
             </div>
 
-            <div class="sailing-dashboard">
+            <!--div class="sailing-dashboard">
                 <div v-if="isLoading" id="loader" class="d-flex justify-content-center align-items-center min-vh-100">
                     <div class="text-danger">Lade Daten <VueSpinnerHourglass color="red" size="50" margin="auto"/></div>
                 </div>
@@ -61,7 +61,7 @@
 	                    </ul>
                     </div>
                 </aside>
-            </div>
+            </div-->
 	        <div id="map" ref="mapContainer"></div>
         </div>
     </div>
@@ -139,8 +139,6 @@ const fetchApi = async () => {
                     console.error(resp.data.error)
                 } else {
                     mapData.value = {
-                        media: resp.data.media,
-                        tracks: resp.data.tracks,
                         planners: resp.data.planners
                     }
 
@@ -850,17 +848,12 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss">
-#modus {
-    width: 130px;
-}
-#tracks {
-    width: 100%;
-    height: 100%;
-}
 #map {
     width: 100%;
-    height: 95%;
+    height: 100%;
 	margin: 0;
+	border: 1px solid green;
+	background-color: #6c757d;
 }
 #loader {
     position: absolute;
@@ -1031,85 +1024,6 @@ onUnmounted(() => {
     font-weight: 600;
     color: #0f172a;
     margin-top: 2px;
-}
-
-/* Der äußere Rahmen des Video-Overlays */
-.media-modal-backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Halbtransparentes Schwarz */
-    z-index: 1000; /* Über allen Karten-Layern und Controls */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.media-modal-container {
-    width: 800px; /* Feste Breite */
-    max-width: 90%; /* Fallback für sehr kleine Bildschirme */
-    background-color: #1e1e1e;
-    border: 3px solid #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
-    box-sizing: border-box;
-    display: flex !important;
-    flex-direction: column !important; /* Zwingt Header und Video untereinander */
-    overflow: hidden;
-    video, img {
-        width: 100%;
-        height: 100%;
-        border-radius: 5px;
-        object-fit: cover;
-        clear: both;
-    }
-}
-/* Kopfzeile für Titel und Close-Button */
-.media-modal-header {
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 14px;
-    background-color: #2c2c2c;
-    border-bottom: 1px solid #444;
-    h5 {
-        margin: 0;
-        padding: 0;
-        color: #ffffff;
-        font-family: sans-serif;
-        font-size: 16px;
-        font-weight: 600;
-        line-height: 1.2;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        padding-right: 12px;
-    }
-}
-/* Der Close-Button oben rechts */
-.media-close-btn {
-    display: inline-block;
-    float: right;
-    width: 26px;
-    height: 26px;
-    background-color: transparent;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    font-size: 18px;
-    font-weight: bold;
-    line-height: 24px;
-    text-align: center;
-    cursor: pointer;
-    flex-shrink: 0;
-    padding: 0;
-}
-.media-close-btn:hover {
-    color: #cc0000;
 }
 #sailing-planner {
     position: absolute;
