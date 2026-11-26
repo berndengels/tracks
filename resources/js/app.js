@@ -1,8 +1,6 @@
 import toastr from 'toastr';
 import axios from "axios";
-import { createApp } from "vue";
 
-window.createApp = createApp;
 window.toastr = toastr;
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -80,10 +78,17 @@ $(document).ajaxError(function( event, xhr, settings, thrownError ) {
 });
 
 // init Vue Components
-import SailingTracksMap from "c@/SailingTracksMap.vue";
-const app = createApp({});
-app.component('sailing-tracks-map', SailingTracksMap).mount('#app');
+import { createApp } from "vue";
+import SailingTracksMap from "c@/SailingTracksMap";
+const app = createApp({}),
+    compSailingTracksMap = app.component('sailing-tracks-map', SailingTracksMap);
+
 $(document).ready(() => {
+    // erst nach dem Laden der Seite und nur wenn iD app vorhanden unf geladen
+    if($('#app').is(':visible')) {
+        compSailingTracksMap.mount('#app');
+    }
+
     $(".delSoft,.delsoft").click(()=> {
         return confirm("Daten wirklich löschen");
     });

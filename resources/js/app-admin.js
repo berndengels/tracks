@@ -1,5 +1,3 @@
-import SailingTracksMap from "c@/SailingTracksMap.vue";
-
 try {
     //	require('bootstrap');
 //    require('bootstrap/js/dist/carousel');
@@ -29,10 +27,6 @@ window.$ = window.jQuery = jQuery = $ = require('jquery');
 import Edit from "L@/Edit";
 window.Edit = global.Edit = new Edit;
 
-import SailingTripPlanner from "c@/SailingTripPlanner.vue";
-
-const app = createApp({});
-
 if($('[name="csrf-token"]').is(":visible")) {
     const csrfToken = $('[name="csrf-token"]').attr('content');
     $.ajaxSetup({
@@ -44,19 +38,12 @@ $(document).ajaxError(function( event, xhr, settings, thrownError ) {
     console.error('xhr', xhr);
 });
 
-$(document).ready(() => {
+import SailingTripPlanner from "c@/SailingTripPlanner.vue";
+const app = createApp({});
+app.component('sailing-trip-planner', SailingTripPlanner).mount('#app');
 
+$(document).ready(() => {
     $(".delSoft,.delsoft").click(()=> {
         return confirm("Daten wirklich löschen");
     });
-    app.component('SailingTripPlanner', SailingTripPlanner).mount('#app');
-/*
-    const sailingTripPlanner = document.getElementById('sailingTripPlanner');
-    switch (true) {
-        case $(sailingTripPlanner).is(":visible"):
-//            createApp(SailingTracksMap, {...tracks.dataset}).mount(tracks);
-            app.component('SailingTripPlanner', SailingTripPlanner);
-            break;
-    }
-*/
 });

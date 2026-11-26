@@ -16,13 +16,13 @@
 			</div>
 		</div>
         <div id="app">
-            <SailingTripPlanner
-                :init-north-east='{!! $northEast !!}'
-                :init-south-west='{!! $southWest !!}'
-                :init-center='{!! $center !!}'
+            <sailing-trip-planner
+                :north-east='{!! $northEast !!}'
+                :south-west='{!! $southWest !!}'
+                :center='{!! $center !!}'
                 :zoom='{!! $zoom !!}'
                 :max-zoom='{!! $maxZoom !!}'
-            ></SailingTripPlanner>
+            ></sailing-trip-planner>
         </div>
     </div>
 @endsection

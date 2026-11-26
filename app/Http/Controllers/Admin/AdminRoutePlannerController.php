@@ -111,6 +111,7 @@ class AdminRoutePlannerController extends Controller
      */
     public function edit(RoutePlanner $routePlanner)
     {
+		$routePlanner->load(['routePlannerData']);
         $maxZoom = $this->maxZoom;
         $zoom = $this->zoom;
 //        $southWest  = GeoJSON::getSouthWestByModel(model:  $routePlanner, relation: 'routePlannerData')->toJson();
@@ -127,7 +128,6 @@ class AdminRoutePlannerController extends Controller
                 'label' => '--bitte wählen--',
             ])
             ->toJson();
-        $routePlanner->load(['routePlannerData']);
 
         return view('admin.route-planners.edit', compact('routePlanner','northEast','southWest','maxZoom','yearOptions','center','zoom'));
     }

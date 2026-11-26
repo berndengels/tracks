@@ -9,9 +9,6 @@ use App\Models\Track;
 use App\Models\TrackData;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Support\Collection;
-use function PHPUnit\Framework\isInstanceOf;
 
 class GeoJSON
 {
@@ -27,7 +24,6 @@ class GeoJSON
                     'id'    => $t->id,
                     'name'  => $t->name,
                     'desc'  => $t->desc,
-/*
                     'points' => $t->routePlannerData()
                         ->orderBy('id')
                         ->get()
@@ -41,8 +37,7 @@ class GeoJSON
                             'desc'  => $p->desc,
                             'route_planner_id'  => $p->route_planner_id,
                         ])
-*/
-                ],
+				],
                 'geometry' => [
                     'type'  => 'LineString',
                     'coordinates'   => $t->routePlannerData()
@@ -117,8 +112,9 @@ class GeoJSON
                     'coordinates'  => [(float) $p->lng,(float) $p->lat],
                 ],
             ])
-            ->values()
-            ->toArray();
+//            ->values()
+//            ->toArray()
+			;
     }
 
     public static function getMediaFeatures($year)
@@ -140,7 +136,9 @@ class GeoJSON
                     'type'  => 'Point',
                     'coordinates'  => [(float) $m->lat, (float) $m->lng],
                 ],
-            ])->toArray();
+            ])
+//			->toArray()
+			;
     }
 
     public static function getMediaFeaturesFromBound(array $southWest, array $northEast, int $year)
@@ -165,7 +163,9 @@ class GeoJSON
                     'type'  => 'Point',
                     'coordinates'  => [(float) $m->lat, (float) $m->lng],
                 ],
-            ])->toArray();
+            ])
+//			->toArray()
+			;
     }
 
     public static function getlineFeaturesFromBound(array $southWest, array $northEast, int $modulo, int $year)
@@ -257,8 +257,9 @@ class GeoJSON
                     'coordinates'  => [(float) $p->lng,(float) $p->lat],
                 ],
             ])
-            ->values()
-            ->toArray();
+//            ->values()
+//            ->toArray()
+		;
 
         return $data;
     }

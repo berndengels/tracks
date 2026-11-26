@@ -103,8 +103,10 @@
 									@mouseenter="hoveredPlannerId = feature.properties.id"
 									@mouseleave="hoveredPlannerId = null"
 								>
-									<div v-if="feature.properties.points" class="track-title">{{ feature.properties.name }}
-										<span>(Points: {{ feature.properties.points.length }})</span></div>
+									<div class="track-title">
+										<strong v-html="feature.properties.name"></strong>
+										<span v-if="feature.properties.points">(Points: {{ feature.properties.points.length }})</span>
+									</div>
 									<div class="track-meta" v-html="feature.properties.desc"></div>
 								</li>
 							</ul>
@@ -119,8 +121,6 @@
 </template>
 
 <script setup>
-alert('OK')
-
 const $ = require('jquery')
 import {ref, computed, watch, onMounted, onUnmounted, useTemplateRef, toRaw} from 'vue'
 import axios from 'axios'
@@ -451,18 +451,11 @@ const fetchApi = async () => {
 	getMediaStyle = () => {
 		return {opacity: 1}
 	},
-	clearPlannerGeoJson = () => {
-		if (layerGroup && geoJsonPlannerLayer) {
-			layerGroup.clearLayers();
-			map.removeLayer(layerGroup)
-			geoJsonPlannerLayer = null
-			layerGroup = null
-		}
-	},
 	removePlannerLayer = () => {
-		if (layerGroup && map) {
+		if (layerGroup && map && geoJsonPlannerLayer) {
 			layerGroup.clearLayers();
 			map.removeLayer(layerGroup);
+			geoJsonPlannerLayer = null
 			layerGroup = null;
 		}
 		selectedPlannerId.value = null
@@ -540,8 +533,8 @@ const fetchApi = async () => {
 		}
 	},
 	handleEachPlannerFeature = (feature) => {
+		console.info('feature', feature.properties.points)
 		if (!feature?.properties?.points) return;
-
 		feature.properties.points.forEach(p => {
 			const desc = p.desc ? p.desc + '<br>' : '';
 			const popupHtml = `
@@ -553,8 +546,8 @@ const fetchApi = async () => {
 			</div>`;
 
 			const marker = L.circleMarker(p.latlng, {
-				color: '#c00',
-				radius: 6,
+				color: '#f60',
+				radius: 4,
 				opacity: 1,
 				fillOpacity: 1,
 				className: 'planner-point',
@@ -563,7 +556,17 @@ const fetchApi = async () => {
 				pane: trackPointPaneName,
 			});
 
-			marker.bindPopup(popupHtml);
+			marker
+				.bindPopup(popupHtml)
+				.on('mouseover', (el) => {
+					el.sourceTarget
+						.setStyle({radius: 10, color: '#f00'})
+				})
+				.on('mouseout', (el) => {
+					el.sourceTarget
+						.setStyle({radius: 4, color: '#f60'})
+						.closePopup()
+				})
 
 			// WICHTIG: Nicht an map, sondern an layerGroup anhängen!
 			marker.addTo(layerGroup);
@@ -641,7 +644,7 @@ const fetchApi = async () => {
 	},
 	renderGeoJsonTrackLayer = (data) => {
 		if (!map) return
-		clearPlannerGeoJson()
+		removePlannerLayer()
 
 		const featureCollection = {
 			type: 'FeatureCollection',
@@ -805,7 +808,7 @@ const fetchApi = async () => {
 	},
 	unSelectPlanner = () => {
 		selectedPlannerId.value = null
-		clearPlannerGeoJson()
+		removePlannerLayer()
 	},
 	showMedia = (props) => {
 		// Falls bereits ein Modal offen ist, dieses zuerst entfernen

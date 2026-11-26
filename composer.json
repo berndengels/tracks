@@ -22,7 +22,8 @@
         "php-ffmpeg/php-ffmpeg": "^1.4",
         "plutuss/getid3-laravel": "^1.1",
         "protonemedia/laravel-form-components": "^3.8",
-        "spatie/laravel-medialibrary": "^11.23"
+        "spatie/laravel-medialibrary": "^11.23",
+        "tuytoosh/active": "^1.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.16",

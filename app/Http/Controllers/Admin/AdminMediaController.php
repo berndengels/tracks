@@ -19,7 +19,6 @@ class AdminMediaController extends Controller
     public function index()
     {
         $data = Media::with(['track'])->paginate(50);
-
         return view('admin.media.index', compact('data'));
     }
 

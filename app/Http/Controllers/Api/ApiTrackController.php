@@ -47,6 +47,7 @@ class ApiTrackController extends BaseController
                     'error'     => 'Bitte ein Jahr auswählen',
                     'tracks'    => null,
                     'media'     => null,
+					'planners'  => null,
                     'bounds'    => [$southWest, $northEast],
                     'maxZoom'   => $this->maxZoom,
                 ]);

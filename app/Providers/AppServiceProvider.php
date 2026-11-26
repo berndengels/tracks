@@ -23,6 +23,9 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use MatanYadaev\EloquentSpatial\EloquentSpatial;
 use MatanYadaev\EloquentSpatial\Enums\Srid;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -46,8 +49,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         Paginator::useBootstrapFive();
         EloquentSpatial::setDefaultSrid(Srid::WGS84);
-
-        \Debugbar::disable();
+		\Debugbar::disable();
 
         Blade::components([
             'table' => Table::class,

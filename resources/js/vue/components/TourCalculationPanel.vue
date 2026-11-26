@@ -41,21 +41,23 @@
 
 <script setup>
 import {ref, computed, watch, useTemplateRef} from 'vue'
-//import { useDraggable } from '@vueuse/core'
-import L from "leaflet";
+import { useDraggable } from '@vueuse/core'
+import { UseDraggable } from '@vueuse/components'
 
 let segments = [],
     waypointMarkers = [];
-
-const props = defineProps([
-        'geojson',
-    ]),
+const props = defineProps(['geojson']),
     totalDistanceNM = ref('0.00'),
     currentGeoJson = ref(props.geojson),
     segmentCount = ref(0),
     averageSpeedKnots = ref(5.0),
     allWaypoints = ref([]),
-    el = useTemplateRef('plannerBox'),
+	el = useTemplateRef('plannerBox'),
+/*
+	{ x, y, style} = useDraggable => (el, {
+//		initialValue: { x: 40, y: 40 },
+	}),
+*/
     geoJsonOutput = ref(null),
     getSegmentNM = (latlng1, latlng2) => {
         return latlng1.distanceTo(latlng2) / 1852;
@@ -108,6 +110,8 @@ const props = defineProps([
         return `${hours}h ${String(minutes).padStart(2, '0')}m`;
     });
 
+useDraggable(el)
+
 watch(averageSpeedKnots, () => {
     segments.forEach((seg, index) => updateSegmentTooltip(seg, index));
 })
@@ -116,7 +120,7 @@ watch(averageSpeedKnots, () => {
 <style scoped lang="scss">
 #sailing-planner {
     position: absolute;
-    bottom: 10px;
+    bottom: 70px;
     right: 10px;
     width: 300px;
     height: 140px;
