@@ -70,7 +70,6 @@ class TrackController extends Controller
         $km = (int) $distances->km;
         $nm = (int) $distances->nm;
 
-//        return view('tracks.index', compact('tracks','points','bounds','duration','media','km','nm'));
         return view('tracks.index', compact('northEast','southWest', 'km','nm','maxZoom','yearOptions','center','zoom'));
     }
 }

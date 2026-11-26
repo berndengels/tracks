@@ -119,6 +119,8 @@
 </template>
 
 <script setup>
+alert('OK')
+
 const $ = require('jquery')
 import {ref, computed, watch, onMounted, onUnmounted, useTemplateRef, toRaw} from 'vue'
 import axios from 'axios'

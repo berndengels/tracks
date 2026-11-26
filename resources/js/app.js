@@ -1,7 +1,6 @@
 import toastr from 'toastr';
 import axios from "axios";
 import { createApp } from "vue";
-import { createPinia } from 'pinia';
 
 window.createApp = createApp;
 window.toastr = toastr;
@@ -84,18 +83,8 @@ $(document).ajaxError(function( event, xhr, settings, thrownError ) {
 import SailingTracksMap from "c@/SailingTracksMap.vue";
 const app = createApp({});
 app.component('sailing-tracks-map', SailingTracksMap).mount('#app');
-
 $(document).ready(() => {
     $(".delSoft,.delsoft").click(()=> {
         return confirm("Daten wirklich löschen");
     });
-/*
-    const tracks = document.getElementById('tracks');
-    switch (true) {
-        case $(tracks).is(":visible"):
-            app.component('SailingTracksMap', SailingTracksMap).mount('#app');
-//            createApp(SailingTracksMap, {...tracks.dataset}).mount(tracks);
-            break;
-    }
-*/
 });
