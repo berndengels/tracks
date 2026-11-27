@@ -55,8 +55,8 @@ class AppServiceProvider extends ServiceProvider
 		$agent = new Agent();
 		$isMobile = true === $agent->isPhone() || true === $agent->isTablet();
 
-		View::share('isMobile', fn() => (bool)$isMobile);
-		View::share('isNotMobile', fn() => (bool)!$isMobile);
+		View::share('isMobile', (bool)$isMobile);
+		View::share('isNotMobile', (bool)!$isMobile);
 
 		Blade::components([
             'table' => Table::class,
