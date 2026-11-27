@@ -535,14 +535,19 @@ const fetchApi = async () => {
 	handleEachPlannerFeature = (feature) => {
 		console.info('feature', feature.properties.points)
 		if (!feature?.properties?.points) return;
+
 		feature.properties.points.forEach(p => {
 			const desc = p.desc ? p.desc + '<br>' : '';
 			const popupHtml = `
 			<div style="min-width: 195px; font-family: system-ui, sans-serif;">
 				<strong>${p.name} ID ${p.id}</strong><br>
 				${desc}
-				Lat: ${p.latlng.lat}<br>
-				Lng: ${p.latlng.lng}
+				Lat: ${p.latlng.lat} Lng: ${p.latlng.lng}<br>
+				Distanz: ${p.distance} nm<br>
+				Distanz-Total: ${p.distanceTotal} nm<br>
+				Dauer: ${p.duration}<br>
+				Dauer-Total: ${p.durationTotal}<br>
+				EST: ${moment(p.eta).format('DD.MM.YYYY HH:MM')}
 			</div>`;
 
 			const marker = L.circleMarker(p.latlng, {
@@ -614,6 +619,23 @@ const fetchApi = async () => {
 			showMedia(props)
 		})
 	},
+	stylePlannerLayer = (geoJsonFeature) => {
+		console.info('geoJsonFeature', geoJsonFeature)
+		let style = {
+			zIndex: 600,
+			color: 'blue',
+			weight: 30,
+		}
+		geoJsonFeature
+			.on('mouseover', () => {
+				style.color = "green"
+			})
+			.on('mouseout', () => {
+				style.color = "blue"
+			})
+
+		return style
+	},
 	renderGeoJsonPlannerLayer = (data) => {
 		if (!map) return
 
@@ -628,13 +650,9 @@ const fetchApi = async () => {
 		}
 		layerGroup = L.layerGroup()
 		geoJsonPlannerLayer = L.geoJSON(toRaw(featureCollection), {
-			style: {
-				zIndex: 600,
-				color: 'blue',
-				weight: 30,
-			},
 			pane: trackPointPaneName,
-			onEachFeature: handleEachPlannerFeature
+			onEachFeature: handleEachPlannerFeature,
+			style: stylePlannerLayer,
 		})
 		layerGroup.addLayer(geoJsonPlannerLayer);
 
@@ -941,6 +959,7 @@ onMounted(() => {
 		maxZoom: props.maxZoom,
 		center: props.center,
 	});
+	map.on('click', ({latlng}) => console.info('latlng', latlng))
 
 	const bounds = L.latLngBounds(props.northEast, props.southWest);
 	map.fitBounds(bounds);

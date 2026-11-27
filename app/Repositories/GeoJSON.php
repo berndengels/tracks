@@ -9,45 +9,84 @@ use App\Models\Track;
 use App\Models\TrackData;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use function PHPUnit\Framework\isInstanceOf;
 
 class GeoJSON
 {
-    public static function getRoutePlannerlineFeatures($year)
+    public static function getRoutePlannerlineFeatures(int $routePlannerId, $speed = 5.0, $statTime = null)
     {
-        return RoutePlanner::with(['routePlannerData'])
-            ->whereRaw('YEAR(created_at) = ?', [$year])
-            ->orderBy('created_at')
-            ->get()
-            ->map(fn(RoutePlanner $t) => [
-                'type'  => 'Feature',
-                'properties' => [
-                    'id'    => $t->id,
-                    'name'  => $t->name,
-                    'desc'  => $t->desc,
-                    'points' => $t->routePlannerData()
-                        ->orderBy('id')
-                        ->get()
-                        ->map(fn (RoutePlannerData $p) => [
-                            'latlng'    => [
-                                'lat'   => $p->lat,
-                                'lng'   => $p->lng,
-                            ],
-                            'id'  => $p->id,
-                            'name'  => $p->name,
-                            'desc'  => $p->desc,
-                            'route_planner_id'  => $p->route_planner_id,
-                        ])
+
+		$points = collect(DB::select('CALL get_route_calculations(?,?,?)', [$routePlannerId, $speed, $statTime]));
+
+		$data = RoutePlanner::with(['routePlannerData'])
+			->orderBy('created_at')
+			->get()
+			->map(fn(RoutePlanner $t) => [
+				'type'  => 'Feature',
+				'properties' => [
+					'id'    => $t->id,
+					'name'  => $t->name,
+					'desc'  => $t->desc,
+					'points' => $points
+						->map(fn (\stdClass $p) => [
+							'latlng'    => [
+								'lat'   => $p->lat,
+								'lng'   => $p->lng,
+							],
+							'id'  => $p->id,
+							'route_planner_id'  => $p->route_planner_id,
+							'name'  => $p->name,
+							'desc'  => $p->desc,
+							'distance' => $p->leg_nm,
+							'distanceTotal' => $p->total_nm,
+							'duration' => $p->leg_duration,
+							'durationTotal'	=> $p->total_duration,
+							'speed'	=> $p->used_speed_kn,
+							'eta'	=> $p->eta,
+						])
 				],
-                'geometry' => [
-                    'type'  => 'LineString',
-                    'coordinates'   => $t->routePlannerData()
-                        ->orderBy('id')
-                        ->get()
-                        ->map(fn (RoutePlannerData $p) => [(float) $p->lng,(float) $p->lat])
-//                        ->values()
-//                        ->toArray(),
-                ]
-            ]);
+				'geometry' => [
+					'type'  => 'LineString',
+					'coordinates'   => $t->routePlannerData()
+						->orderBy('id')
+						->get()
+						->map(fn (RoutePlannerData $p) => [(float) $p->lng,(float) $p->lat])
+				]
+			]);
+/*
+		$data = collect(DB::select('CALL get_route_calculations(?,?,?)', [$routePlannerId, $speed, $statTime]))
+			->map(fn(\stdClass $t) => [
+				'type'  => 'Feature',
+				'properties' => [
+					'id'    => $t->id,
+					'name'  => $t->name,
+					'desc'  => $t->desc,
+					'points' => $routePlannerData
+						->map(fn (RoutePlannerData $p) => [
+							'latlng'    => [
+								'lat'   => $p->lat,
+								'lng'   => $p->lng,
+							],
+							'id'  => $p->id,
+							'route_planner_id'  => $p->route_planner_id,
+							'name'  => $p->name,
+							'desc'  => $p->desc,
+							'distance' => $t->leg_nm,
+							'distanceTotal' => $t->total_nm,
+							'duration' => $t->leg_duration,
+							'durationTotal'	=> $t->total_duration,
+							'speed'	=> $t->used_speed_kn,
+							'eta'	=> $t->eta,
+						])
+				],
+				'geometry' => [
+					'type'  => 'LineString',
+					'coordinates'   => $routePlannerData->map(fn (RoutePlannerData $p) => [(float) $p->lng,(float) $p->lat])
+				]
+			]);;
+*/
+		return $data;
     }
 
     public static function getlineFeaturesByRoutePlanner(RoutePlanner $routePlaner)

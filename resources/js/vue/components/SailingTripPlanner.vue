@@ -780,8 +780,6 @@ watchEffect((onCleanup) => {
 })
 
 onMounted(() => {
-	console.info('points', routePlannerData)
-
     map = L.map(mapContainer.value, {
         zoom: props.zoom,
         maxZoom: props.maxZoom,

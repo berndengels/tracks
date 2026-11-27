@@ -41,6 +41,9 @@ class ApiTrackController extends BaseController
             $zoom       = (int) $request->post('zoom');
             $year       = $request->post('year', null);
             $modulo     = $this->zoomModulo[$zoom] ?? $this->limit;
+			$routePlannerId  = $request->post('route-planner-id', 1);
+			$speed		= $request->post('speed', 5.0);
+			$startTime		= $request->post('speed', Carbon::now(config('app.timezone')));
 
             if(! $year) {
                 return response()->json([
@@ -56,11 +59,11 @@ class ApiTrackController extends BaseController
             $trackName  = "Bernds Segeltörn $year";
 
             if($this->useCache) {
-                $plannerLineFeatures   = Cache::remember("plannerLineFeatures{$zoom}_{$year}", $this->ttl, fn() => GeoJSON::getRoutePlannerlineFeatures(year: $year));
+                $plannerLineFeatures   = Cache::remember("plannerLineFeatures{$zoom}_{$year}", $this->ttl, fn() => GeoJSON::getRoutePlannerlineFeatures($routePlannerId, $speed, $startTime));
                 $lineFeatures   = Cache::remember("lineFeatures{$zoom}_{$year}", $this->ttl, fn() => GeoJSON::getlineFeaturesFromBound(southWest: $southWest, northEast: $northEast, modulo: $modulo, year: $year));
                 $mediaFeatures  = Cache::remember("mediaFeatures{$zoom}_{$year}", $this->ttl, fn() => GeoJSON::getMediaFeaturesFromBound(southWest: $southWest, northEast: $northEast, year: $year));
             } else {
-                $plannerLineFeatures   = GeoJSON::getRoutePlannerlineFeatures(year: $year);
+                $plannerLineFeatures   = GeoJSON::getRoutePlannerlineFeatures($routePlannerId, $speed, $startTime);
                 $lineFeatures   = GeoJSON::getlineFeaturesFromBound(southWest: $southWest, northEast: $northEast, modulo: $modulo, year: $year);
                 $mediaFeatures  = GeoJSON::getMediaFeaturesFromBound(southWest: $southWest, northEast: $northEast, year: $year);
             }

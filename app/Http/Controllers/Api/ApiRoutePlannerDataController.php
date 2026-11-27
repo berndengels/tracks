@@ -41,7 +41,7 @@ class ApiRoutePlannerDataController extends Controller
             'lat'   => (float) $wp['lat'],
             'lng'   => (float) $wp['lng'],
         ])->toArray();
-
+/*
         $plannerLineFeatures = GeoJSON::getRoutePlannerlineFeatures(year: $request->validated('year'));
 
         $planners = [
@@ -53,6 +53,7 @@ class ApiRoutePlannerDataController extends Controller
         return response()->json([
             'planners'  => $planners,
         ]);
+*/
     }
 
 	/**
@@ -71,7 +72,7 @@ class ApiRoutePlannerDataController extends Controller
 		$routePlanner->routePlannerData()->insertOrIgnore($data);
 
 		$routePlanner->refresh();
-
+/*
 		$plannerLineFeatures = GeoJSON::getRoutePlannerlineFeatures(year: $request->validated('year'));
 
 		$planners = [
@@ -83,6 +84,7 @@ class ApiRoutePlannerDataController extends Controller
 		return response()->json([
 			'planners'  => $planners,
 		]);
+*/
 	}
 
 	public function update(UpdateRoutePlannerDataRequest $request, RoutePlannerData $routePlannerData) {
