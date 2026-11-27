@@ -15,15 +15,17 @@
 				</x-form>
 			</div>
 		</div>
-        <div id="app">
-            <sailing-trip-planner
-				:route-planner = '{!! $routePlannerResourse !!}'
-                :north-east='{!! $northEast !!}'
-                :south-west='{!! $southWest !!}'
-                :center='{!! $center !!}'
-                :zoom='{!! $zoom !!}'
-                :max-zoom='{!! $maxZoom !!}'
-            ></sailing-trip-planner>
-        </div>
+		@if($isNotMobile)
+			<div id="app">
+				<sailing-trip-planner
+						:route-planner = '{!! $routePlannerResourse !!}'
+						:north-east='{!! $northEast !!}'
+						:south-west='{!! $southWest !!}'
+						:center='{!! $center !!}'
+						:zoom='{!! $zoom !!}'
+						:max-zoom='{!! $maxZoom !!}'
+				></sailing-trip-planner>
+			</div>
+		@endif
     </div>
 @endsection

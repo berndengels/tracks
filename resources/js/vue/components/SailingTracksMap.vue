@@ -135,8 +135,8 @@ import 'leaflet-draw/dist/leaflet.draw.css';
 import "leaflet.measurecontrol";
 import {VueSpinnerHourglass} from 'vue3-spinners';
 import {isMobile} from '@basitcodeenv/vue3-device-detect'
-import moment from "moment";
 import TourCalculationPanel from "c@/TourCalculationPanel.vue";
+import moment from "moment";
 
 moment.locale('de');
 moment.locale('de_DE');

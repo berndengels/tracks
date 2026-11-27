@@ -80,6 +80,8 @@ import "leaflet.measurecontrol";
 import { VueSpinnerHourglass } from 'vue3-spinners';
 import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
+import {isMobile} from '@basitcodeenv/vue3-device-detect'
+
 import moment from "moment";
 
 moment.locale('de');

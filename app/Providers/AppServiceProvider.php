@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Jenssegers\Agent\Agent;
 use MatanYadaev\EloquentSpatial\EloquentSpatial;
 use MatanYadaev\EloquentSpatial\Enums\Srid;
 use Illuminate\Support\Facades\Route;
@@ -51,7 +52,13 @@ class AppServiceProvider extends ServiceProvider
         EloquentSpatial::setDefaultSrid(Srid::WGS84);
 		\Debugbar::disable();
 
-        Blade::components([
+		$agent = new Agent();
+		$isMobile = true === $agent->isPhone() || true === $agent->isTablet();
+
+		View::share('isMobile', fn() => (bool)$isMobile);
+		View::share('isNotMobile', fn() => (bool)!$isMobile);
+
+		Blade::components([
             'table' => Table::class,
             'tr' => Tr::class,
             'td' => Td::class,
