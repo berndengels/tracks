@@ -375,15 +375,13 @@ const fetchApi = async () => {
 				renderGeoJsonMediaLayer(allMediaFeatures.value)
 				break
 			case 'Planung':
-				/*
-								if (geoJsonMediaLayer) {
-									geoJsonMediaLayer.remove()
-								}
+				if (geoJsonMediaLayer) {
+					geoJsonMediaLayer.remove()
+				}
 
-								if (geoJsonTrackLayer) {
-									geoJsonTrackLayer.remove()
-								}
-				*/
+				if (geoJsonTrackLayer) {
+					geoJsonTrackLayer.remove()
+				}
 				markers.remove()
 
 				featureCollectionName.value = mapData.value.planners.name || ''
@@ -459,7 +457,7 @@ const fetchApi = async () => {
 			layerGroup = null;
 		}
 		selectedPlannerId.value = null
-//		currentTourGeoJson.value = null
+		currentTourGeoJson.value = null
 	},
 	updateSegmentTooltip = (segment, index) => {
 		const pts = segment.getLatLngs();
@@ -499,13 +497,14 @@ const fetchApi = async () => {
 		// 1. TOGGLE: Bei erneutem Klick auf denselben Link -> ausblenden
 		if (selectedPlannerId.value === clickedId && layerGroup) {
 			removePlannerLayer();
-			selectedPlannerId.value = null
-			currentTourGeoJson.value = null
 			return;
 		}
 
 		// 2. WECHSEL: Alten Layer + alte Marker restlos löschen
 		removePlannerLayer();
+
+		map.getPane(trackPointPaneName).style.zIndex = 600;
+		map.getPane(trackPointPaneName).style.pointerEvents = 'auto';
 
 		// 3. Neue Gruppe erstellen und direkt zur Karte hinzufügen
 		layerGroup = L.layerGroup().addTo(map);
@@ -515,7 +514,7 @@ const fetchApi = async () => {
 			features: Array.isArray(rawData) ? rawData : [rawData]
 		};
 
-		const geoJsonPlannerLayer = L.geoJSON(featureCollection, {
+		geoJsonPlannerLayer = L.geoJSON(featureCollection, {
 			style: {
 				color: 'blue',
 				weight: 5, // 30 ist extrem breit, 5 ist eine gute Linienbreite
@@ -533,7 +532,6 @@ const fetchApi = async () => {
 		}
 	},
 	handleEachPlannerFeature = (feature) => {
-		console.info('feature', feature.properties.points)
 		if (!feature?.properties?.points) return;
 
 		feature.properties.points.forEach(p => {
@@ -618,47 +616,6 @@ const fetchApi = async () => {
 		marker.on('click', () => {
 			showMedia(props)
 		})
-	},
-	stylePlannerLayer = (geoJsonFeature) => {
-		console.info('geoJsonFeature', geoJsonFeature)
-		let style = {
-			zIndex: 600,
-			color: 'blue',
-			weight: 30,
-		}
-		geoJsonFeature
-			.on('mouseover', () => {
-				style.color = "green"
-			})
-			.on('mouseout', () => {
-				style.color = "blue"
-			})
-
-		return style
-	},
-	renderGeoJsonPlannerLayer = (data) => {
-		if (!map) return
-
-		removePlannerLayer()
-
-		map.getPane(trackPointPaneName).style.zIndex = 600;
-		map.getPane(trackPointPaneName).style.pointerEvents = 'auto';
-
-		const featureCollection = {
-			type: 'FeatureCollection',
-			features: Array.isArray(data) ? toRaw(data) : [toRaw(data)]
-		}
-		layerGroup = L.layerGroup()
-		geoJsonPlannerLayer = L.geoJSON(toRaw(featureCollection), {
-			pane: trackPointPaneName,
-			onEachFeature: handleEachPlannerFeature,
-			style: stylePlannerLayer,
-		})
-		layerGroup.addLayer(geoJsonPlannerLayer);
-
-		if (geoJsonPlannerLayer.getBounds().isValid()) {
-			map.fitBounds(geoJsonPlannerLayer.getBounds())
-		}
 	},
 	renderGeoJsonTrackLayer = (data) => {
 		if (!map) return
@@ -752,42 +709,6 @@ const fetchApi = async () => {
 				}
 			}
 		})
-	},
-	selectTour = (id, zoomToTrack = true, moveToCenter = false) => {
-		selectedPlannerId.value = selectedPlannerId.value === id ? null : id
-//		selectedPlannerId.value = id
-
-		const myOffcanvas = document.getElementById('offcanvasTracks'),
-			geojson = allPlannerFeatures.value.find(p => p.properties.id === id);
-
-		if (myOffcanvas) {
-			myOffcanvas.addEventListener('hidden.bs.offcanvas', () => {
-				if (!isMobile) {
-					unSelectPlanner()
-				}
-			})
-		}
-
-		if (geojson) {
-			renderGeoJsonPlannerLayer(geojson)
-			loadFromGeoJson(geojson)
-			currentTourGeoJson.value = geojson.properties.id === selectedPlannerId.value
-
-			if (moveToCenter) {
-				const bounds = tour.getBounds();
-//				const bounds = L.latLngBounds(props.northEast, props.southWest);
-				map.fitBounds(bounds);
-			}
-
-			if (zoomToTrack) {
-				geoJsonPlannerLayer.eachLayer(layer => {
-					if (layer.feature?.properties?.id === id) {
-						map.fitBounds(layer.getBounds(), {maxZoom: props.maxZoom})
-						layer.openPopup()
-					}
-				})
-			}
-		}
 	},
 	selectTrack = (id, zoomToTrack = false, moveToCenter = true) => {
 		selectedTrackId.value = selectedTrackId.value === id ? null : id
